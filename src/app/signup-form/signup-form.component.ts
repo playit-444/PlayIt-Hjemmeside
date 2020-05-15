@@ -23,7 +23,7 @@ export class SignupFormComponent implements OnInit {
   CreateUser() {
     this.Test()
     .subscribe(success => {
-      console.log(success); 
+      console.log(success);
       this.modal.close("test");
     },
       err => {
