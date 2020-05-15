@@ -9,9 +9,11 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,17 @@ import { LoginFormComponent } from './login-form/login-form.component';
     FooterComponent,
     SignupFormComponent,
     CheckboxComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

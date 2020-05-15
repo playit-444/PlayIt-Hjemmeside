@@ -1,6 +1,6 @@
 <div class="modal-body">
     <h4 class="modal-title center">Opret Mig</h4>
-    <form>
+    <form [formGroup]='signUpForm'>
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -8,7 +8,7 @@
                         <fa-icon [icon]="faUser"></fa-icon>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Brugernavn">
+                <input type="text" class="form-control" placeholder="Brugernavn" formControlName="userName">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -16,7 +16,7 @@
                         <fa-icon [icon]="faAt"></fa-icon>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Email" formControlName="email">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -24,7 +24,7 @@
                         <fa-icon [icon]="faKey"></fa-icon>
                     </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Adgangskode">
+                <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -37,7 +37,8 @@
 
             <app-checkbox cbId="MitId" cbText="Test text cb"></app-checkbox>
 
-            <a href="#" class="btn btn-lg btn-success float-right" (click)="CreateUser()">Opret</a>
+            <a href="#" class="btn btn-lg btn-success float-right" (click)="CreateUser()">Opret
+            </a>
         </div>
     </form>
 </div>
