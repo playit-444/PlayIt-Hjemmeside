@@ -21,5 +21,7 @@
   </nav>
 
   <ng-template #content let-modal>
-    <app-signup-form></app-signup-form>
+    <app-signup-form [modal]="modal"></app-signup-form>
   </ng-template>
+
+  <pre>{{ closeResult }}</pre>
