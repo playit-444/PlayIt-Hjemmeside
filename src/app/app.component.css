@@ -6,6 +6,10 @@
   z-index:999;
 }
 
+#site-content {
+  background-color: azure;
+}
+
 #footer {
   padding: 0;
 }
