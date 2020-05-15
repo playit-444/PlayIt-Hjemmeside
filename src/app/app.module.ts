@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {AuthInterceptor} from './auth/auth.interceptor';
     HeaderComponent,
     FooterComponent,
     SignupFormComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

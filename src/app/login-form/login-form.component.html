@@ -1,0 +1,25 @@
+<div class="modal-body">
+    <h4 class="modal-title center">Log Ind</h4>
+    <form>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Brugernavn / Email">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faKey"></fa-icon>
+                    </span>
+                </div>
+                <input type="password" class="form-control" placeholder="Adgangskode">
+            </div>
+
+            <a href="#" class="btn btn-lg btn-success float-right" (click)="Login()">Log Ind</a>
+        </div>
+    </form>
+</div>

@@ -5,13 +5,12 @@ import {map} from "rxjs/operators";
 import { User } from '../models/user';
 
 @Component({
-  selector: 'app-signup-form',
-  templateUrl: './signup-form.component.html',
-  styleUrls: ['./signup-form.component.css']
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.css']
 })
-export class SignupFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
   faUser = faUser;
-  faAt = faAt;
   faKey = faKey;
   @Input() modal;
 
@@ -20,7 +19,7 @@ export class SignupFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  CreateUser() {
+  Login() {
     this.Test()
     .subscribe(success => {
       console.log(success);
@@ -34,12 +33,12 @@ export class SignupFormComponent implements OnInit {
   Test(){
 
     let user: User = {
+      password:"test",
       userName: "Test",
       email: "test",
-      password:"test",
-      ipv4: ""
+      ipv4: "123.123.123.123"
     }
-    return this.http.post("https://api.444.dk/api/Account", user)
+    return this.http.post("https://api.444.dk/api/Account/signin", user)
       .pipe(
         map((data: any) => {
 return data;
