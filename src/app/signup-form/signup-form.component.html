@@ -1,16 +1,18 @@
 <div class="modal-body">
+    <alert></alert>
     <h4 class="modal-title center">Opret Mig</h4>
     <form [formGroup]='signUpForm'>
         <div class="form-group">
-            <div class="input-group mb-3">
+            <div class="input-group mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faUser"></fa-icon>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Brugernavn" formControlName="userName">
+                <input name="username" ng-model="username" type="text" class="form-control" placeholder="Brugernavn" formControlName="userName" required minlength="4">
             </div>
-            <div class="input-group mb-3">
+            <!--span class="text-danger" ng-show="signUpForm.username.$error.required">Brugernavn er påkrævet</-span-->
+            <div class="input-group mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faAt"></fa-icon>
@@ -18,7 +20,7 @@
                 </div>
                 <input type="text" class="form-control" placeholder="Email" formControlName="email">
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faKey"></fa-icon>
@@ -26,7 +28,7 @@
                 </div>
                 <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
             </div>
-            <div class="input-group mb-3">
+            <div class="input-group mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faKey"></fa-icon>
