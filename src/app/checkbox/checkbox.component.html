@@ -1,6 +1,6 @@
-<input type="checkbox" id="cb" hidden (change)="changeCheckbox()">
-<label for="cb">
+<input type="checkbox" [id]="cbId" hidden (change)="changeCheckbox()">
+<label [for]="cbId">
     <fa-icon [icon]="faSquare"  style="font-weight:400" *ngIf="checkboxChecked == false"></fa-icon>
     <fa-icon [icon]="faCheckSquare" style="font-weight:400" *ngIf="checkboxChecked == true"></fa-icon>
-    bc text
+    {{cbText}}
 </label>
