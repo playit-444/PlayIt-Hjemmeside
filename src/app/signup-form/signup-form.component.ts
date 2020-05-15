@@ -18,8 +18,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   CreateUser() {
-    //console.log(this.modal.elementRef);
-    this.modal.close("test");
+    this.modal.close('test');
   }
 
 }

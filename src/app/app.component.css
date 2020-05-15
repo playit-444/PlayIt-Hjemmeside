@@ -2,4 +2,9 @@
   position: fixed;
   left: 0;
   right: 0;
+  padding: 0;
+}
+
+#footer {
+  padding: 0;
 }
