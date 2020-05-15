@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
+import { HttpClient } from '@angular/common/http';
+import {map} from "rxjs/operators";
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-signup-form',
@@ -12,13 +15,34 @@ export class SignupFormComponent implements OnInit {
   faKey = faKey;
   @Input() modal;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   CreateUser() {
-    this.modal.close("test");
+    this.Test()
+    .subscribe(success => {
+      console.log(success); 
+      this.modal.close("test");
+    },
+      err => {
+        console.log(err);
+      });
+  }
+
+  Test(){
+
+    let user: User = {
+      userName: "Test",
+      email: "test",
+      password:"test"
+    }
+    return this.http.post("https://api.444.dk/api/Account", user)
+      .pipe(
+        map((data: any) => {
+return data;
+        }));
   }
 
 }
