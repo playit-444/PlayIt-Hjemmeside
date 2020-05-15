@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
