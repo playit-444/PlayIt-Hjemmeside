@@ -9,7 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

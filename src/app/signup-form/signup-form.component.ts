@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
-import { HttpClient } from '@angular/common/http';
-import {map} from "rxjs/operators";
 import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-signup-form',
@@ -14,35 +15,37 @@ export class SignupFormComponent implements OnInit {
   faAt = faAt;
   faKey = faKey;
   @Input() modal;
+  signUpForm: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private customerService: UserService, private fb: FormBuilder,) { }
+
+
+
 
   ngOnInit(): void {
+
+    this.signUpForm = this.fb.group({
+      userName: [''],
+      email: [''],
+      password:['']
+    });
   }
 
   CreateUser() {
-    this.Test()
+
+    let user: User = {
+      userName: this.signUpForm.value.userName,
+      email: this.signUpForm.value.email,
+      password: this.signUpForm.value.password,
+    }
+
+    this.customerService.CreateUser(user)
     .subscribe(success => {
-      console.log(success); 
+      console.log(success);
       this.modal.close("test");
     },
       err => {
         console.log(err);
       });
   }
-
-  Test(){
-
-    let user: User = {
-      userName: "Test",
-      email: "test",
-      password:"test"
-    }
-    return this.http.post("https://api.444.dk/api/Account", user)
-      .pipe(
-        map((data: any) => {
-return data;
-        }));
-  }
-
 }
