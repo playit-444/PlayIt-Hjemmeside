@@ -1,37 +1,43 @@
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Opret Mig</h4>
-</div>
 <div class="modal-body">
+    <h4 class="modal-title center">Opret Mig</h4>
     <form>
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Brugernavn" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Brugernavn">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faAt"></fa-icon>
+                    </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Email">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faKey"></fa-icon>
+                    </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Adgangskode" aria-label="Password" aria-describedby="basic-addon1">
+                <input type="password" class="form-control" placeholder="Adgangskode">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faKey"></fa-icon>
+                    </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Gentag adgangskode" aria-label="Repeat password" aria-describedby="basic-addon1">
+                <input type="password" class="form-control" placeholder="Gentag adgangskode">
             </div>
 
             <app-checkbox cbId="MitId" cbText="Test text cb"></app-checkbox>
+
+            <a href="#" class="btn btn-lg btn-success float-right" (click)="CreateUser()">Opret</a>
         </div>
     </form>
-</div>
-<div class="modal-footer">
 </div>
