@@ -16,6 +16,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { TableSelectionComponent } from './table-selection/table-selection.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TableSelectionComponent } from './table-selection/table-selection.compo
     SignupFormComponent,
     CheckboxComponent,
     LoginFormComponent,
-    TableSelectionComponent
+    TableSelectionComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
