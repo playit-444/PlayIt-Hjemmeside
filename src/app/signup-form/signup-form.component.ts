@@ -33,28 +33,33 @@ export class SignupFormComponent implements OnInit {
     this.signUpForm = this.fb.group({
       userName: [''],
       email: [''],
-      password:['']
+      password:[''],
+      confirmPassword:['']
     });
   }
 
   CreateUser() {
 
-
-    const user: User = {
-      userName: this.signUpForm.value.userName,
-      email: this.signUpForm.value.email,
-      password: this.signUpForm.value.password
+    if(this.signUpForm.value.password !== this.signUpForm.value.confirmPassword)
+    {
+      this.toastr.error('Password og Gentag Password skal matche', 'Fejl!');
     }
+    else {
+      const user: User = {
+        userName: this.signUpForm.value.userName,
+        email: this.signUpForm.value.email,
+        password: this.signUpForm.value.password
+      }
 
-    this.userService.CreateUser(user)
-    .subscribe(success => {
-      this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
-      this.modal.close();
-    },
-      err => {
-        this.toastr.error(err.error, 'Der skete en fejl!');
-        console.log(err.error);
-      });
+      this.userService.CreateUser(user)
+      .subscribe(success => {
+        this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
+        this.modal.close();
+      },
+        err => {
+          this.toastr.error(err.error, 'Der skete en fejl!');
+          console.log(err.error);
+        });
+    }
   }
-
 }

@@ -15,6 +15,8 @@ import {AuthInterceptor} from './auth/auth.interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
+import { GameSelectionComponent } from './game-selection/game-selection.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { TableSelectionComponent } from './table-selection/table-selection.component';
 import { TableComponent } from './table/table.component';
 
@@ -27,7 +29,10 @@ import { TableComponent } from './table/table.component';
     CheckboxComponent,
     LoginFormComponent,
     TableSelectionComponent,
-    TableComponent
+    TableComponent,
+    GameSelectionComponent,
+    HomePageComponent,
+    TableSelectionComponent
   ],
   imports: [
     BrowserModule,
