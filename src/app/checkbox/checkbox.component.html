@@ -1,6 +1,8 @@
-<input type="checkbox" [id]="cbId" hidden (change)="changeCheckbox()">
-<label [for]="cbId">
-    <fa-icon [icon]="faSquare" style="font-size: 24px;" *ngIf="checkboxChecked == false"></fa-icon>
-    <fa-icon [icon]="faCheckSquare" style="font-size: 24px;" *ngIf="checkboxChecked == true"></fa-icon>
-    {{cbText}}
-</label>
+<div class="d-inline-block">
+  <input type="checkbox" [id]="cbId" hidden (change)="changeCheckbox()">
+  <label [for]="cbId" class="cb-label">
+      <fa-icon [icon]="faSquare" style="font-size: 24px;" *ngIf="checkboxChecked == false"></fa-icon>
+      <fa-icon [icon]="faCheckSquare" style="font-size: 24px;" *ngIf="checkboxChecked == true"></fa-icon>
+      <span class="ml-2">{{cbText}}</span>
+  </label>
+</div>

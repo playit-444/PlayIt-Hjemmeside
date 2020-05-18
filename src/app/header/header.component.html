@@ -14,8 +14,10 @@
         </li>
       </ul>
       <div>
-        <a href="#" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="open(loginContent)">Log ind</a>
-        <a href="#" class="btn btn-success text-uppercase ml-2" (click)="open(createContent)">Opret dig</a>
+        <a *ngIf="!cookieService.check('session-token')" href="#" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="open(loginContent)">Log ind</a>
+        <a *ngIf="!cookieService.check('session-token')" href="#" class="btn btn-success text-uppercase ml-2" (click)="open(createContent)">Opret dig</a>
+        <a *ngIf="cookieService.check('session-token')" href="#" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
+        <img *ngIf="cookieService.check('session-token')" src="https://image.444.dk/user-alt-512.png" class="user-image"/>
       </div>
     </div>
   </nav>
@@ -24,7 +26,7 @@
     <app-signup-form [modal]="createModal"></app-signup-form>
   </ng-template>
   <ng-template #loginContent let-loginModal>
-    <app-login-form [modal]="loginModal"></app-login-form>
+    <app-login-form [modal]="loginModal" [verified]="verified"></app-login-form>
   </ng-template>
 
   <pre>{{ closeResult }}</pre>
