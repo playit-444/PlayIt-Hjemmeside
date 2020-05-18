@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { TableSelectionComponent } from './table-selection/table-selection.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     CheckboxComponent,
     LoginFormComponent,
     GameSelectionComponent,
-    HomePageComponent
+    HomePageComponent,
+    TableSelectionComponent
   ],
   imports: [
     BrowserModule,

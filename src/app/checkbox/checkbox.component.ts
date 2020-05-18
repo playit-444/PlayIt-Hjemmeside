@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { faSquare, faCheckSquare } from '@fortawesome/free-regular-svg-icons';
+import {Component, OnInit, Input} from '@angular/core';
+import {faSquare, faCheckSquare} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-checkbox',
@@ -17,13 +17,12 @@ export class CheckboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-  
+  };
+
   changeCheckbox() {
     if (this.checkboxChecked) {
       this.checkboxChecked = false;
-    }
-    else {
+    } else {
       this.checkboxChecked = true;
     }
   }

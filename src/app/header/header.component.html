@@ -4,19 +4,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Spil</a>
+          <a class="nav-link" routerLink="tableSelection" href="javascript:void();">Spil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Turneringer</a>
+          <a class="nav-link" href="javascript:void();">Turneringer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Præmier</a>
+          <a class="nav-link" href="javascript:void();">Præmier</a>
         </li>
       </ul>
       <div>
-        <a *ngIf="!cookieService.check('session-token')" href="#" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="open(loginContent)">Log ind</a>
-        <a *ngIf="!cookieService.check('session-token')" href="#" class="btn btn-success text-uppercase ml-2" (click)="open(createContent)">Opret dig</a>
-        <a *ngIf="cookieService.check('session-token')" href="#" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
+        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="open(loginContent)">Log ind</a>
+        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" class="btn btn-success text-uppercase ml-2" (click)="open(createContent)">Opret dig</a>
+        <a *ngIf="cookieService.check('session-token')" href="javascript:void();" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
         <img *ngIf="cookieService.check('session-token')" src="https://image.444.dk/user-alt-512.png" class="user-image"/>
       </div>
     </div>
