@@ -6,7 +6,6 @@ import { User } from '../models/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { IpServiceService } from '../services/ip-service.service';
-import { isIPv4 } from 'net';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   @Input() modal;
   loginForm: FormGroup;
 
-  constructor(private customerService: UserService, private ipServiceService: IpServiceService, private fb: FormBuilder,) { }
+  constructor(private customerService: UserService, private ipServiceService: IpServiceService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -35,7 +34,7 @@ export class LoginFormComponent implements OnInit {
     let iPv4;
     this.ipServiceService.getIPAddress().subscribe((res:any)=>{
       iPv4=res.ip;
-      this.MakeHttpRequest(iPv4)
+      this.MakeHttpRequest(iPv4);
     });
   }
 
@@ -50,7 +49,7 @@ export class LoginFormComponent implements OnInit {
 
     this.customerService.Login(user)
     .subscribe(success => {
-      this.modal.close("test");
+      this.modal.close();
     },
       err => {
         console.log(err);
