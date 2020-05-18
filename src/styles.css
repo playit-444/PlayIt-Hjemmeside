@@ -2,3 +2,24 @@
 body {
     background-color: #10004d;
 }
+
+.input-group input {
+    border-color: #10004d;
+}
+
+.input-group .input-group-text {
+    border-color: #1E035C;
+    color: #fff;
+    background-color: #1E035C;
+}
+
+.modal-title {
+    color: #1E035C;
+    font-weight: 800;
+    text-align: center;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+    border-color: #1E035C;
+}
