@@ -1,9 +1,9 @@
-import { CookieService } from 'ngx-cookie-service';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {CookieService} from 'ngx-cookie-service';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { ToastrService } from 'ngx-toastr';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../services/user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent implements OnInit {
 
   closeResult = '';
-  @ViewChild('loginContent') loginContent:TemplateRef<any>;
+  @ViewChild('loginContent') loginContent: TemplateRef<any>;
   verified = false;
   loggedIn: boolean;
 
@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     public cookieService: CookieService,
     private toastr: ToastrService
-    ) {}
+  ) {
+  }
 
   open(content) {
     this.modalService.open(content);
@@ -34,19 +35,19 @@ export class HeaderComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-        let urlParmToken = params['token'];
+        const urlParmToken = params['token'];
 
         if (urlParmToken != null) {
           this.userService.Verify(urlParmToken)
             .subscribe(success => {
-              this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Succes!');
-              this.verified = true;
-              this.modalService.open(this.loginContent);
-            },
-            err => {
-              this.toastr.error(err.error, 'Der skete en fejl!');
-              console.log(err);
-            });
+                this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Succes!');
+                this.verified = true;
+                this.modalService.open(this.loginContent);
+              },
+              err => {
+                this.toastr.error(err.error, 'Der skete en fejl!');
+                console.log(err);
+              });
         }
       });
   }

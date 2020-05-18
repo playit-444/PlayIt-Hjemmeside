@@ -5,17 +5,16 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class IpServiceService {
+export class GameTypeService {
 
   constructor(private http: HttpClient) {
   }
 
-  public getIPAddress() {
-    return this.http.get('https://api.ipify.org/?format=json')
+  GetGameType() {
+    return this.http.get('https://api.444.dk/api/GameType')
       .pipe(
         map((data: any) => {
           return data;
         }));
-    // return this.http.get('https://api.ipify.org/?format=json');
   }
 }
