@@ -15,6 +15,8 @@ import {AuthInterceptor} from './auth/auth.interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
+import { GameSelectionComponent } from './game-selection/game-selection.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ToastrModule } from 'ngx-toastr';
     FooterComponent,
     SignupFormComponent,
     CheckboxComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    GameSelectionComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
