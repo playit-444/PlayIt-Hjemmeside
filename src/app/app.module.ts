@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { GameSelectionComponent } from './game-selection/game-selection.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TableSelectionComponent } from './table-selection/table-selection.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import { TableSelectionComponent } from './table-selection/table-selection.compo
     SignupFormComponent,
     CheckboxComponent,
     LoginFormComponent,
+    TableSelectionComponent,
+    TableComponent,
     GameSelectionComponent,
     HomePageComponent,
     TableSelectionComponent

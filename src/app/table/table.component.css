@@ -1,0 +1,15 @@
+.table-comp {
+    display: inline-block;
+    height: 75px;
+    width: 225px;
+}
+.table-comp .table-comp-image-div{
+    max-height: 65px;
+    max-width: 85px;
+    display: flex;
+    align-items: center;
+}
+.table-comp .table-comp-image-div img {
+    height: 100%;
+    width: 100%;
+}
