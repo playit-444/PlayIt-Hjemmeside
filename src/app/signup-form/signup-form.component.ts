@@ -48,7 +48,7 @@ export class SignupFormComponent implements OnInit {
 
     this.userService.CreateUser(user)
     .subscribe(success => {
-      this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Success!');
+      this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
       this.modal.close();
     },
       err => {

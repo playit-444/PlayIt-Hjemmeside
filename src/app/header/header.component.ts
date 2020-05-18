@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
         if (urlParmToken != null) {
           this.userService.Verify(urlParmToken)
             .subscribe(success => {
-              this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Success!');
+              this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Succes!');
               this.verified = true;
               this.modalService.open(this.loginContent);
             },
