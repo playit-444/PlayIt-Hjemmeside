@@ -44,8 +44,8 @@ export class SignupFormComponent implements OnInit {
     const user: User = {
       userName: this.signUpForm.value.userName,
       email: this.signUpForm.value.email,
-      password: this.signUpForm.value.password,
-    }
+      password: this.signUpForm.value.password
+    } 
 
     this.customerService.CreateUser(user)
     .subscribe(success => {
@@ -57,4 +57,5 @@ export class SignupFormComponent implements OnInit {
         console.log(err);
       });
   }
+
 }

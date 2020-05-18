@@ -12,6 +12,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/auth.interceptor';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AlertComponent } from './alert/alert.component';
     FooterComponent,
     SignupFormComponent,
     CheckboxComponent,
+    LoginFormComponent,
     AlertComponent
   ],
   imports: [
