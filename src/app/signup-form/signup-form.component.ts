@@ -36,13 +36,11 @@ export class SignupFormComponent implements OnInit {
     let user: User = {
       userName: this.signUpForm.value.userName,
       email: this.signUpForm.value.email,
-      password: this.signUpForm.value.password,
-      ipv4: "",
-    }
+      password: this.signUpForm.value.password
+    } 
 
     this.customerService.CreateUser(user)
     .subscribe(success => {
-      console.log(success);
       this.modal.close("test");
     },
       err => {
