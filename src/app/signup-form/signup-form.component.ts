@@ -1,3 +1,4 @@
+import { AlertService } from './../services/alert.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../models/user';
@@ -17,7 +18,11 @@ export class SignupFormComponent implements OnInit {
   @Input() modal;
   signUpForm: FormGroup;
 
-  constructor(private customerService: UserService, private fb: FormBuilder,) { }
+  constructor(
+    private customerService: UserService,
+     private fb: FormBuilder,
+     private alertService: AlertService
+     ) { }
 
 
 
@@ -33,7 +38,10 @@ export class SignupFormComponent implements OnInit {
 
   CreateUser() {
 
-    let user: User = {
+    // reset alerts on submit
+    this.alertService.clear();
+
+    const user: User = {
       userName: this.signUpForm.value.userName,
       email: this.signUpForm.value.email,
       password: this.signUpForm.value.password
@@ -41,9 +49,11 @@ export class SignupFormComponent implements OnInit {
 
     this.customerService.CreateUser(user)
     .subscribe(success => {
-      this.modal.close("test");
+      this.alertService.success('Du er nu oprettet!', true);
+      this.modal.close();
     },
       err => {
+        this.alertService.error('Noget Gik Galt!');
         console.log(err);
       });
   }
