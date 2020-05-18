@@ -23,15 +23,13 @@ export class AuthInterceptor implements HttpInterceptor {
           err => {
             if (err.status === 401) {
               // this.authenticationService.token = "";
-              // this.router.navigateByUrl('/login');
-            } else if (err.status === 403) {
-              // this.router.navigateByUrl('/forbidden');
-            } else {
+              this.router.navigateByUrl('');
             }
           }
         )
-      )
-    } else
+      );
+    } else {
       return next.handle(req.clone());
+    }
   }
 }
