@@ -9,8 +9,12 @@ export class GameSelectionComponent implements OnInit {
 
   @Input() gameName: string;
 
+
+  imgSrc: string;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.gameName);
+    this.imgSrc = "https://image.444.dk/" + this.gameName +"-image.png";
   }
 }
