@@ -4,6 +4,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     public cookieService: CookieService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
   }
 
@@ -54,5 +56,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.cookieService.delete('session-token');
+    
+    //this.router.navigateByUrl('tableSelection');
   }
 }
