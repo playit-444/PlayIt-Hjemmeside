@@ -1,9 +1,8 @@
 <div class="modal-body">
-    <alert></alert>
     <h4 class="modal-title center">Opret Mig</h4>
     <form [formGroup]="signUpForm">
         <div class="form-group">
-            <div class="input-group mt-3">
+            <div class="input-group mb-3 mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faUser"></fa-icon>
@@ -12,7 +11,7 @@
                 <input name="username" ng-model="username" type="text" class="form-control" placeholder="Brugernavn" formControlName="userName" required minlength="4">
             </div>
             <!--span class="text-danger" ng-show="signUpForm.username.$error.required">Brugernavn er påkrævet</-span-->
-            <div class="input-group mt-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faAt"></fa-icon>
@@ -20,7 +19,7 @@
                 </div>
                 <input type="text" class="form-control" placeholder="Email" formControlName="email">
             </div>
-            <div class="input-group mt-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faKey"></fa-icon>
@@ -28,7 +27,7 @@
                 </div>
                 <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
             </div>
-            <div class="input-group mt-3">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faKey"></fa-icon>
@@ -37,7 +36,7 @@
                 <input type="password" class="form-control" placeholder="Gentag adgangskode">
             </div>
 
-            <app-checkbox cbId="MitId" cbText="Test text cb"></app-checkbox>
+            <app-checkbox class="ml-3" cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
 
             <a href="#" class="btn btn-lg btn-success float-right" (click)="CreateUser()">Opret
             </a>

@@ -2,17 +2,34 @@
   <div class="footer-middle">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 support">
+      <div class="col-md-8 support">
         <div class="footer-pad">
           <ul class="list-unstyled">
-            <li><a href="#">Payment Center</a></li>
-            <li><a href="#">Contact Directory</a></li>
+            <li class="mb-50">
+              <div class="flex-content">
+                <div class="d-inline-block circled-icon">
+                  <fa-icon [icon]="phone" size="2x"></fa-icon>
+                </div>
+                <div class="d-inline-block support-info">
+                  <span class="badge">+45 41 41 21 46</span> <br/>
+                  <span class="sub-badge">Man-Fre: 08:00 - 16:00</span>
+                </div>
+              </div>
+            </li>
+            <li class="mb-50">
+              <div class="flex-content">
+                <div class="d-inline-block circled-icon">
+                  <fa-icon [icon]="mail" size="2x"></fa-icon>
+                </div>
+                <div class="d-inline-block support-info">
+                  <span class="badge">Support@444.dk</span> <br/>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12">
-      </div>
-    	<div class="col-md-3">
+    	<div class="col-md-4">
         <h4 class="">OM OS</h4>
         <span>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id magna eget ipsum mollis scelerisque.
@@ -20,7 +37,7 @@
         </span>
         <br/>
         <br/>
-          <ul class="social-network social-circle">
+          <ul class="float-right social-network social-circle">
              <li><fa-icon [spin]="true" [icon]="facebook" size="2x"></fa-icon></li>
              <li><fa-icon [spin]="true" [icon]="twitter" size="2x"></fa-icon></li>
              <li><fa-icon [spin]="true" [icon]="linkedin" size="2x"></fa-icon></li>

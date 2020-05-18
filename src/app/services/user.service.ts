@@ -17,7 +17,7 @@ export class UserService {
             return data;
         }));
   }
-  
+
   Login(user: User) {
     return this.http.post("https://api.444.dk/api/Account/signin", user)
       .pipe(
@@ -25,9 +25,8 @@ export class UserService {
             return data;
         }));
   }
-  
+
   Verify(token: string) {
     return this.http.get("https://api.444.dk/api/Account/verify/" + token);
   }
-
 }

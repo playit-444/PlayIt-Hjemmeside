@@ -4,6 +4,7 @@ import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,9 +20,9 @@ export class SignupFormComponent implements OnInit {
   signUpForm: FormGroup;
 
   constructor(
-    private customerService: UserService,
+    private userService: UserService,
      private fb: FormBuilder,
-     private alertService: AlertService
+     private toastr: ToastrService
      ) { }
 
 
@@ -38,23 +39,21 @@ export class SignupFormComponent implements OnInit {
 
   CreateUser() {
 
-    // reset alerts on submit
-    this.alertService.clear();
 
     const user: User = {
       userName: this.signUpForm.value.userName,
       email: this.signUpForm.value.email,
       password: this.signUpForm.value.password
-    } 
+    }
 
-    this.customerService.CreateUser(user)
+    this.userService.CreateUser(user)
     .subscribe(success => {
-      this.alertService.success('Du er nu oprettet!', true);
+      this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
       this.modal.close();
     },
       err => {
-        this.alertService.error('Noget Gik Galt!');
-        console.log(err);
+        this.toastr.error(err.error, 'Der skete en fejl!');
+        console.log(err.error);
       });
   }
 

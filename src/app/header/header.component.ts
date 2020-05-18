@@ -1,7 +1,9 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -11,50 +13,45 @@ import { UserService } from '../services/user.service';
 export class HeaderComponent implements OnInit {
 
   closeResult = '';
-  public loginContent;
-  @ViewChild('loginContent') loginContent:TemplateRef;
+  @ViewChild('loginContent') loginContent:TemplateRef<any>;
+  verified = false;
+  loggedIn: boolean;
 
 
-  constructor(private modalService: NgbModal, private route: ActivatedRoute, private customerService: UserService) {}
+  constructor(
+    private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    public cookieService: CookieService,
+    private toastr: ToastrService
+    ) {}
 
   open(content) {
-    console.log(content);
-    
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+    this.modalService.open(content);
   }
 
   ngOnInit(): void {
-
     this.route
       .queryParams
       .subscribe(params => {
         let urlParmToken = params['token'];
-        
+
         if (urlParmToken != null) {
-          this.customerService.Verify(urlParmToken)
+          this.userService.Verify(urlParmToken)
             .subscribe(success => {
-              console.log("############### WORKS");
-              this.loginContent.open(this.loginContent)
-              document.getElementById("loginBtn").click();
+              this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Succes!');
+              this.verified = true;
+              this.modalService.open(this.loginContent);
             },
-              err => {
-                console.log(err);
-              });
+            err => {
+              this.toastr.error(err.error, 'Der skete en fejl!');
+              console.log(err);
+            });
         }
       });
+  }
+
+  logout() {
+    this.cookieService.delete('session-token');
   }
 }

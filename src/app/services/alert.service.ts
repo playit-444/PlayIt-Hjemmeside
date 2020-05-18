@@ -15,20 +15,23 @@ export class AlertService {
                     // only keep for a single route change
                     this.keepAfterRouteChange = false;
                 } else {
+                  console.log("asdasdasda")
                     // clear alert message
-                    this.clear();
+                    //this.clear();
                 }
             }
         });
     }
 
     getAlert(): Observable<any> {
+      console.log("getAlert");
         return this.subject.asObservable();
     }
 
     success(message: string, keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'success', text: message });
+        console.log(message);
     }
 
     error(message: string, keepAfterRouteChange = false) {

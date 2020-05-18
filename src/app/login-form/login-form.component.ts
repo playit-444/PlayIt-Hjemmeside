@@ -1,11 +1,12 @@
+import { UserService } from './../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit, Input } from '@angular/core';
-import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
-import { HttpClient } from '@angular/common/http';
-import {map} from "rxjs/operators";
+import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../models/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { UserService } from '../services/user.service';
 import { IpServiceService } from '../services/ip-service.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login-form',
@@ -16,11 +17,19 @@ export class LoginFormComponent implements OnInit {
   faUser = faUser;
   faKey = faKey;
   @Input() modal;
+  @Input() verified : boolean;
   loginForm: FormGroup;
 
-  constructor(private customerService: UserService, private ipServiceService: IpServiceService, private fb: FormBuilder) { }
+  constructor(
+    private userService: UserService,
+    private ipServiceService: IpServiceService,
+    private fb: FormBuilder,
+    private cookieService: CookieService,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
+    console.log(this.verified);
 
     this.loginForm = this.fb.group({
       userName: [''],
@@ -42,18 +51,20 @@ export class LoginFormComponent implements OnInit {
 
     let user: User = {
       userName: this.loginForm.value.userName,
-      email: this.loginForm.value.email,
       password: this.loginForm.value.password,
       ipv4: iPv4
     }
 
-    this.customerService.Login(user)
+    this.userService.Login(user)
     .subscribe(success => {
+      console.log(success.token)
+      this.toastr.success('Du er nu logget ind', 'Succes!');
+      this.cookieService.set('session-token', success.token )
       this.modal.close();
     },
       err => {
+        this.toastr.error(err.error, 'Der skete en fejl!');
         console.log(err);
       });
   }
-
 }

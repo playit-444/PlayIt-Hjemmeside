@@ -2,7 +2,7 @@
     <h4 class="modal-title center">Log Ind</h4>
     <form [formGroup]="loginForm">
         <div class="form-group">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
                         <fa-icon [icon]="faUser"></fa-icon>
@@ -19,7 +19,7 @@
                 <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
             </div>
 
-            <a href="#" class="btn btn-lg btn-success float-right" (click)="Login()">Log Ind</a>
+            <a href="#" class="btn btn-lg btn-success float-right mb-3" (click)="Login()">Log Ind</a>
         </div>
     </form>
 </div>

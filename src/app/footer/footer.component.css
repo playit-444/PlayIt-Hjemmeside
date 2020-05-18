@@ -37,7 +37,36 @@ footer a:hover {
 }
 
 .support {
-  
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.flex-content {
+  display: flex;
+  align-items: center;
+}
+
+.support span {
+  font-size: 0.8rem;
+}
+.support span.badge {
+  font-size: 1.0rem;
+}
+
+.mb-50 {
+  margin-bottom: 3rem;
+}
+
+.sub-badge {
+  padding: 0 .4rem;
+}
+.support-info {
+  margin-left: 10px;
+}
+.circled-icon {
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
 }
 
 /*SOCİAL İCONS*/
