@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,14 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
 
   closeResult = '';
+  @ViewChild('loginContent') loginContent:TemplateRef<any>;
 
-  constructor(private modalService: NgbModal) {}
+
+  constructor(private modalService: NgbModal, private route: ActivatedRoute, private customerService: UserService) {}
 
   open(content) {
+    console.log(content);
+    
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -31,5 +37,22 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route
+      .queryParams
+      .subscribe(params => {
+        let urlParmToken = params['token'];
+        
+        if (urlParmToken != null) {
+          this.customerService.Verify(urlParmToken)
+            .subscribe(success => {
+              console.log("############### WORKS");
+              this.modalService.open(this.loginContent);
+            },
+              err => {
+                console.log(err);
+              });
+        }
+      });
   }
 }
