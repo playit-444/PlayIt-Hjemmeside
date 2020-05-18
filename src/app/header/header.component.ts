@@ -11,8 +11,7 @@ import { UserService } from '../services/user.service';
 export class HeaderComponent implements OnInit {
 
   closeResult = '';
-  public loginContent;
-  @ViewChild('loginContent') loginContent:TemplateRef;
+  @ViewChild('loginContent') loginContent:TemplateRef<any>;
 
 
   constructor(private modalService: NgbModal, private route: ActivatedRoute, private customerService: UserService) {}
@@ -48,8 +47,7 @@ export class HeaderComponent implements OnInit {
           this.customerService.Verify(urlParmToken)
             .subscribe(success => {
               console.log("############### WORKS");
-              this.loginContent.open(this.loginContent)
-              document.getElementById("loginBtn").click();
+              this.modalService.open(this.loginContent);
             },
               err => {
                 console.log(err);
