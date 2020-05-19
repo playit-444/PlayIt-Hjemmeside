@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-game-selection',
@@ -11,10 +11,12 @@ export class GameSelectionComponent implements OnInit {
 
 
   imgSrc: string;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     console.log(this.gameName);
-    this.imgSrc = "https://image.444.dk/" + this.gameName +"-image.png";
+    this.imgSrc = 'https://image.444.dk/' + this.gameName + '-image.png';
   }
 }

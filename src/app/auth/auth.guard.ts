@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
-      console.log(this.cookieService.check("session-token"));
+      console.log(this.cookieService.check('session-token'));
     if (!this.cookieService.check('session-token')) {
       this.router.navigate(['']);
     }
