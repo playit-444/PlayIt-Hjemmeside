@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
 
       console.log(this.cookieService.check("session-token"));
     if (!this.cookieService.check('session-token')) {
-      this.router.navigate(['']);
+      this.router.navigate([''], {queryParams: {openlogin: true}});
     }
     return true;
 

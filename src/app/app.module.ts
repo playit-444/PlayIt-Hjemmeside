@@ -19,6 +19,7 @@ import { GameSelectionComponent } from './game-selection/game-selection.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { TableSelectionComponent } from './table-selection/table-selection.component';
 import { TableComponent } from './table/table.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TableComponent } from './table/table.component';
     TableComponent,
     GameSelectionComponent,
     HomePageComponent,
-    TableSelectionComponent
+    TableSelectionComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

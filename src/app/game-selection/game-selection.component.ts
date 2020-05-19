@@ -8,13 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GameSelectionComponent implements OnInit {
 
   @Input() gameName: string;
-
-
   imgSrc: string;
+  logoSrc: string;
+
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.gameName);
-    this.imgSrc = "https://image.444.dk/" + this.gameName +"-image.png";
+    this.imgSrc = 'https://image.444.dk/' + this.gameName +'-img.png';
+    this.logoSrc = 'https://image.444.dk/' + this.gameName + '-logo.png';
   }
 }

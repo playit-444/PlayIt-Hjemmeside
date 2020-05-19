@@ -1,0 +1,34 @@
+ngb-carousel img.cover-image {
+  opacity: 0.83;
+}
+
+.carousel-caption {
+  right: unset;
+  bottom: unset;
+  left: 0;
+  top: 0;
+  padding-left: 10%;
+  padding-top: 4%;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  height: 100%;
+  width: 100%;
+  text-align: left;
+}
+
+
+.carousel-logo {
+  position: absolute;
+    right: 15%;
+    top: 35%;
+}
+
+.carousel-item .carousel-logo img {
+  transition: top ease 0.5s;
+  cursor: pointer;
+}
+
+.carousel-item:hover .carousel-logo img {
+  top: 10%
+}
+
+

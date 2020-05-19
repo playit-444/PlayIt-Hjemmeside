@@ -1,3 +1,9 @@
-<div class="p-3">
-  <app-game-selection [gameName]="GameType"></app-game-selection>
-</div>
+<app-carousel [games]="GameTypes"></app-carousel>
+
+<ng-template ngFor let-gameType [ngForOf]="GameTypes">
+  <app-game-selection [gameName]="gameType.name"></app-game-selection>
+</ng-template>
+
+<ng-template #loginContent let-loginModal>
+  <app-login-form [modal]="loginModal"></app-login-form>
+</ng-template>

@@ -1,0 +1,15 @@
+<ngb-carousel *ngIf="coverSrc" [showNavigationArrows]="true" [showNavigationIndicators]="false" [pauseOnHover]="true" interval="5000">
+  <ng-template ngbSlide *ngFor="let game of games; index as i;">
+    <div class="picsum-img-wrapper bg-dark">
+      <img [src]="coverSrc[i]" alt="Random slide" class="cover-image">
+    </div>
+    <div class="carousel-caption">
+      <h3>{{game.name.toUpperCase()}}</h3>
+      <p>{{game.description}}</p>
+      <a routerLink="tableSelction" href="javascript:void();" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
+    </div>
+    <div class="carousel-logo">
+      <img [src]="logoSrc[i]">
+    </div>
+  </ng-template>
+</ngb-carousel>
