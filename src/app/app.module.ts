@@ -15,13 +15,10 @@ import {AuthInterceptor} from './auth/auth.interceptor';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
-import { GameSelectionComponent } from './game-selection/game-selection.component';
+import { GameComponent } from './game/game.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { TableSelectionComponent } from './table-selection/table-selection.component';
-import { TableComponent } from './table/table.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { GamePageComponent } from './game-page/game-page.component';
-import { LobbyComponent } from './lobby/lobby.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +28,10 @@ import { LobbyComponent } from './lobby/lobby.component';
     SignupFormComponent,
     CheckboxComponent,
     LoginFormComponent,
-    TableSelectionComponent,
-    TableComponent,
-    GameSelectionComponent,
+    GameComponent,
     HomePageComponent,
-    TableSelectionComponent,
     CarouselComponent,
     GamePageComponent,
-    LobbyComponent
   ],
   imports: [
     BrowserModule,

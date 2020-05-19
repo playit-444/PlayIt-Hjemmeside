@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableSelectionComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit(): void {
+    // this.gameService.GetGameType()
+    //   .subscribe(data => {
+    //     this.games = data.items;
+    //   },
+    //   err => {
+    //     this.toastr.error(err.error, 'Der skete en fejl!');
+    //     console.log(err);
+    //   });
   }
 
 }

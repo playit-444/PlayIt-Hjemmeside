@@ -1,7 +1,9 @@
+import { GameService } from '../services/game.service';
 import { Game } from './../models/game';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-page',
@@ -10,11 +12,13 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
-  GameTypes: Array<Game> = [];
+  games: Array<Game> = [];
 
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
+    private gameService: GameService,
+    private toastr: ToastrService,
     ) { }
 
   ngOnInit(): void {
@@ -27,13 +31,14 @@ export class HomePageComponent implements OnInit {
           this.modalService.open(this.loginContent);
         }
       });
-      const game: Game = {
-        name: 'krig',
-        description: 'Description'
-      };
 
-      this.GameTypes.push(game);
-      this.GameTypes.push(game);
+    this.gameService.GetGameType()
+      .subscribe(data => {
+        this.games = data.items;
+      },
+      err => {
+        this.toastr.error(err.error, 'Der skete en fejl!');
+        console.log(err);
+      });
   }
-
 }

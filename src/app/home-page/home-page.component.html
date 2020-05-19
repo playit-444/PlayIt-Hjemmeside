@@ -1,9 +1,22 @@
-<app-carousel [games]="GameTypes"></app-carousel>
+<div class="row">
+  <div class="col col-12">
+    <app-carousel [Games]="games" ></app-carousel>
+  </div>
+</div>
 
-<ng-template ngFor let-gameType [ngForOf]="GameTypes">
-  <app-game-selection [gameName]="gameType.name"></app-game-selection>
-</ng-template>
 
-<ng-template #loginContent let-loginModal>
-  <app-login-form [modal]="loginModal"></app-login-form>
-</ng-template>
+
+<div class="row">
+  <div class="col col-12">
+  <div class="content-container">
+    <ng-template ngFor let-game [ngForOf]="games">
+      <app-game [Logo]="game.logoPath" [Background]="game.backgroundPath"></app-game>
+    </ng-template>
+
+
+    <ng-template #loginContent let-loginModal>
+      <app-login-form [modal]="loginModal"></app-login-form>
+    </ng-template>
+    </div>
+  </div>
+</div>

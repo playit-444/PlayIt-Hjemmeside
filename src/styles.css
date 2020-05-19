@@ -70,3 +70,7 @@ ngb-carousel {
 .carousel-indicators{
   z-index: 20;
 }
+
+.carousel-control-next, .carousel-control-prev {
+  width: 5%;
+}

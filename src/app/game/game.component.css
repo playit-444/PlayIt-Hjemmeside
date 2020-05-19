@@ -6,13 +6,15 @@
   border: none;
   border-radius: 0;
   cursor: pointer;
+  box-shadow: 1px 10px 12px rgba(51,51,51,.3);
+  margin: 0 10px 20px 10px;
 }
 
 .game-card img{
   transition: transform .5s;
 }
 .game-card:hover img.game-background{
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .game-card img.game-logo {

@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class GameTypeService {
+export class GameService {
 
   constructor(private http: HttpClient) {
   }

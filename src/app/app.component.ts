@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GameTypeService} from './services/gameType.service';
+import {GameService} from './services/game.service';
 import {WebSocketService} from './services/web-socket.service';
 
 @Component({
@@ -10,11 +10,11 @@ import {WebSocketService} from './services/web-socket.service';
 export class AppComponent {
   title = 'PlayIt-Hjemmeside';
 
-  constructor(private gameTypeService: GameTypeService, private webSocketService: WebSocketService) {
+  constructor(private gameService: GameService, private webSocketService: WebSocketService) {
 
-    this.gameTypeService.GetGameType()
+    this.gameService.GetGameType()
       .subscribe(success => {
-          console.log(success);
+          //console.log(success);
         },
         err => {
           console.log(err);
