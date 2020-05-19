@@ -20,6 +20,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { TableSelectionComponent } from './table-selection/table-selection.component';
 import { TableComponent } from './table/table.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { GamePageComponent } from './game-page/game-page.component';
+import { LobbyComponent } from './lobby/lobby.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CarouselComponent } from './carousel/carousel.component';
     GameSelectionComponent,
     HomePageComponent,
     TableSelectionComponent,
-    CarouselComponent
+    CarouselComponent,
+    GamePageComponent,
+    LobbyComponent
   ],
   imports: [
     BrowserModule,
