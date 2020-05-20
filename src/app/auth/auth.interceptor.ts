@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Automatic include token in all http calls
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.cookieService.get('session-token') !== undefined && this.cookieService.get('session-token') !== '') {
+    if (this.cookieService.get('session-token') !== undefined && this.cookieService.get('session-token') !== '' && this.cookieService.get('session-token') !== 'undefined'){
       const jwtToken = this.cookieService.get('session-token');
       this.renewJwtToken(jwtToken);
       const clonedReq = req.clone({
