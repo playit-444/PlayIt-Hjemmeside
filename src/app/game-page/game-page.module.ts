@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table-selection/table/table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { GamePageRoutingModule } from './game-page-routing.module';
+import { PlayerComponent } from './lobby/player/player.component';
 
 
 @NgModule({
@@ -13,6 +13,7 @@ import { GamePageRoutingModule } from './game-page-routing.module';
     TableSelectionComponent,
     LobbyComponent,
     TableComponent,
+    PlayerComponent,
   ],
   imports: [
     CommonModule,
