@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import {MatDialogRef} from '@angular/material/dialog';
 
 
 @Component({
@@ -16,13 +17,13 @@ export class SignupFormComponent implements OnInit {
   faUser = faUser;
   faAt = faAt;
   faKey = faKey;
-  @Input() modal;
   signUpForm: FormGroup;
 
   constructor(
     private userService: UserService,
      private fb: FormBuilder,
-     private toastr: ToastrService
+     private toastr: ToastrService,
+    public dialogRef: MatDialogRef<SignupFormComponent>
      ) { }
 
 
@@ -54,7 +55,7 @@ export class SignupFormComponent implements OnInit {
       this.userService.CreateUser(user)
       .subscribe(success => {
         this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
-        this.modal.close();
+        this.dialogRef.close();
       },
         err => {
           this.toastr.error(err.error, 'Der skete en fejl!');

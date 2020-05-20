@@ -6,6 +6,7 @@ import {FormGroup, FormBuilder} from '@angular/forms';
 import {IpServiceService} from '../services/ip-service.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../services/user.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 
 @Component({
@@ -16,8 +17,6 @@ import {UserService} from '../services/user.service';
 export class LoginFormComponent implements OnInit {
   faUser = faUser;
   faKey = faKey;
-  @Input() modal;
-  @Input() verified: boolean;
   loginForm: FormGroup;
 
   constructor(
@@ -25,13 +24,12 @@ export class LoginFormComponent implements OnInit {
     private ipServiceService: IpServiceService,
     private fb: FormBuilder,
     private cookieService: CookieService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialogRef: MatDialogRef<LoginFormComponent>
   ) {
   }
 
   ngOnInit(): void {
-    console.log(this.verified);
-
     this.loginForm = this.fb.group({
       userName: [''],
       email: [''],
@@ -61,7 +59,7 @@ export class LoginFormComponent implements OnInit {
       .subscribe(success => {
           this.toastr.success('Du er nu logget ind', 'Succes!');
           this.cookieService.set('session-token', success.token);
-          this.modal.close();
+          this.dialogRef.close();
         },
         err => {
           this.toastr.error(err.error, 'Der skete en fejl!');

@@ -14,19 +14,19 @@
         </li>
       </ul>
       <div>
-        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="open(loginContent)">Log ind</a>
-        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" class="btn btn-success text-uppercase ml-2" (click)="open(createContent)">Opret dig</a>
+        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="login()">Log ind</a>
+        <a *ngIf="!cookieService.check('session-token')" href="javascript:void();" class="btn btn-success text-uppercase ml-2" (click)="create()">Opret dig</a>
         <a *ngIf="cookieService.check('session-token')" href="javascript:void();" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
         <img *ngIf="cookieService.check('session-token')" src="https://image.444.dk/user-alt-512.png" class="user-image"/>
       </div>
     </div>
   </nav>
 
-  <ng-template #createContent let-createModal>
+  <!-- <ng-template #createContent let-createModal>
     <app-signup-form [modal]="createModal"></app-signup-form>
-  </ng-template>
-  <ng-template #loginContent let-loginModal>
+  </ng-template> -->
+  <!-- <ng-template #loginContent let-loginModal>
     <app-login-form [modal]="loginModal" [verified]="verified"></app-login-form>
-  </ng-template>
+  </ng-template> -->
 
   <pre>{{ closeResult }}</pre>

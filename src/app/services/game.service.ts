@@ -17,4 +17,12 @@ export class GameService {
           return data;
         }));
   }
+
+  GetTables(id) {
+    return this.http.get('https://api.444.dk/api/Game/' + id)
+      .pipe(
+        map((data: any) => {
+          return data;
+        }));
+  }
 }

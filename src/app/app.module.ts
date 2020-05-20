@@ -19,6 +19,7 @@ import { GameComponent } from './game/game.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { GamePageComponent } from './game-page/game-page.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { GamePageComponent } from './game-page/game-page.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule,
   ],
   providers: [
     CookieService,

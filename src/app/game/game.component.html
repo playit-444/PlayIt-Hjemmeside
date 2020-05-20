@@ -1,7 +1,7 @@
 <div class="d-inline-block">
-  <div routerLink="game" class="card game-card">
-      <img class="game-background" [src]="Background">
-      <img class="game-logo" [src]="Logo">
+  <div routerLink="game" [queryParams]="{game: game | json}" class="card game-card">
+      <img class="game-background" [src]="game.backgroundPath">
+      <img class="game-logo" [src]="game.logoPath">
   </div>
 </div>
 
