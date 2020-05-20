@@ -1,4 +1,4 @@
-<div class="bg-secondary table-comp">
+<div class="table-comp" [routerLink]="['/game', 'lobby']" [queryParams]="{ tableID: 1}">
   <div class="table-container">
     <div class="table-comp-image-div">
         <img [src]="Logo"/>
@@ -7,7 +7,11 @@
       <span>Bord 1</span>
     </div>
     <div class="table-comp-players-div">
-
+      <div>
+        <span>
+          <fa-icon [icon]="faUsers"></fa-icon> 3/4
+        </span>
+    </div>
     </div>
   </div>
 </div>

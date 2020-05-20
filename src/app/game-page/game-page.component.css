@@ -1,4 +1,9 @@
 .table-overview-container {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
+  margin-right: -15px;
+}
+
+.chat-container {
+  margin-left: -15px;
 }

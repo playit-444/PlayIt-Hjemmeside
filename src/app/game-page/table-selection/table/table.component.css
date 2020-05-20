@@ -2,6 +2,14 @@
   display: inline-block;
   height: 75px;
   width: 225px;
+  margin: 0 10px 20px 10px;
+  box-shadow: 1px 5px 10px 0px #bbb;
+  border-radius: 5px;
+  position: relative;
+}
+
+.table-comp:hover {
+  top: -4px;
 }
 
 .table-container {
@@ -31,7 +39,14 @@
 
 .table-comp-players-div {
   grid-area: players;
-  justify-self: center;
-  align-self: center;
+  justify-self: right;
+  align-self: end;
 }
 
+.table-comp-players-div > div{
+  padding: 3px;
+  border-top-left-radius: 11px;
+  border-left: 2px solid #999;
+  border-top: 2px solid #999;
+  box-shadow: -1px -1px 5px 0px #bbb;
+}

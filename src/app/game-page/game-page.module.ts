@@ -3,6 +3,7 @@ import { TableSelectionComponent } from './table-selection/table-selection.compo
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table-selection/table/table.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { GamePageRoutingModule } from './game-page-routing.module';
 
@@ -15,6 +16,7 @@ import { GamePageRoutingModule } from './game-page-routing.module';
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     GamePageRoutingModule,
   ]
 })
