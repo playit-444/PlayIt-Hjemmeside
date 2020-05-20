@@ -17,11 +17,11 @@
 }
 
 .game-card img.game-logo {
-  transition: top ease 0.5s;
+  transition: margin ease 0.5s;
 }
 
 .game-card:hover img.game-logo {
-  top: 110px;
+  margin-top: -20px;
 }
 
 .game-background {
@@ -33,11 +33,7 @@
 }
 
 .game-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
+  position: relative;
 }
 
 
@@ -58,25 +54,23 @@
   align-self: center;
   width: 100%;
   height: 100%;
+  background-color: black;
 }
 .game-comp-background-div img {
   height: 100%;
   width: 100%;
+  opacity: 0.4;
 }
 
 .game-comp-logo-div{
   grid-area: image;
   justify-self: center;
   align-self: center;
-  width: 100%;
-  height: 100%;
   z-index: 10;
 }
 .game-comp-logo-div img {
-  grid-area: image;
-  justify-self: center;
-  align-self: center;
   max-width: 125px;
+  max-height: 150px;
 }
 
 .game-comp-players-div {
