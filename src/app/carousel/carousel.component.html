@@ -6,7 +6,7 @@
     <div class="carousel-caption">
       <h3>{{game.name.toUpperCase()}}</h3>
       <p>{{game.description}}</p>
-      <a routerLink="game" [queryParams]="{game: game | json}" href="javascript:void();" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
+      <a routerLink="game" [queryParams]="{gameID: game.gameTypeId}" href="javascript:void();" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
     </div>
     <div class="carousel-logo">
       <img [src]="Games[i].logoPath">

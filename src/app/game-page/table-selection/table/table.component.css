@@ -18,17 +18,18 @@
   grid-template-columns: 100px auto 60px;
   grid-template-rows: auto;
   grid-template-areas:
-    "logo table-num players"
+    "logo table-num players";
+    padding-left: 3px;
 }
 
 .table-comp-image-div{
   grid-area: logo;
-  justify-self: center;
+  justify-self: start;
   align-self: center;
 }
 .table-comp-image-div img {
-    height: 100%;
-    width: 100%;
+    max-height: 70px;
+    max-width: 85px;
 }
 
 .table-comp-num-div {
