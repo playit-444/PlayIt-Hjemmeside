@@ -10,8 +10,16 @@ export class GameService {
   constructor(private http: HttpClient) {
   }
 
-  GetGameType() {
+  GetGameTypes() {
     return this.http.get('https://api.444.dk/api/GameType')
+      .pipe(
+        map((data: any) => {
+          return data;
+        }));
+  }
+
+  GetGameType(id) {
+    return this.http.get('https://api.444.dk/api/GameType/' + id)
       .pipe(
         map((data: any) => {
           return data;

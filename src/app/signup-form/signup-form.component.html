@@ -1,5 +1,8 @@
 <div class="modal-body">
     <h4 class="modal-title center">Opret Mig</h4>
+    <div class="text-center">
+      <span>Allerede oprettet? <a href="javascript:void();" (click)="login()" >Log ind</a></span>
+    </div>
     <form [formGroup]="signUpForm">
         <div class="form-group">
             <div class="input-group mb-3 mt-3">
@@ -36,7 +39,7 @@
                 <input type="password" class="form-control" placeholder="Gentag adgangskode" formControlName="confirmPassword">
             </div>
 
-            <app-checkbox class="ml-3" cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
+            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
 
             <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret"/>
         </div>

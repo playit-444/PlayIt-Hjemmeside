@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from './../services/alert.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { faUser, faAt, faKey } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {MatDialogRef} from '@angular/material/dialog';
+import { LoginFormComponent } from '../login-form/login-form.component';
 
 
 @Component({
@@ -23,10 +25,9 @@ export class SignupFormComponent implements OnInit {
     private userService: UserService,
      private fb: FormBuilder,
      private toastr: ToastrService,
-    public dialogRef: MatDialogRef<SignupFormComponent>
+    public dialogRef: MatDialogRef<SignupFormComponent>,
+    private loginForm: MatDialog,
      ) { }
-
-
 
 
   ngOnInit(): void {
@@ -37,6 +38,11 @@ export class SignupFormComponent implements OnInit {
       password:[''],
       confirmPassword:['']
     });
+  }
+
+  login() {
+    this.loginForm.open(LoginFormComponent);
+    this.dialogRef.close();
   }
 
   CreateUser() {

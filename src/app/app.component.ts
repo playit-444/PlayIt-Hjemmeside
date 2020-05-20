@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(private gameService: GameService, private webSocketService: WebSocketService) {
 
-    this.gameService.GetGameType()
+    this.gameService.GetGameTypes()
       .subscribe(success => {
           //console.log(success);
         },
