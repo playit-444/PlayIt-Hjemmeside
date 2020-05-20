@@ -21,41 +21,59 @@ export class TableSelectionComponent implements OnInit {
   ngOnInit(): void {
     //this.GetTables();
 
+    this.GetGame();
+
+      const table: Table = {
+        roomID: '1',
+        name: 'string',
+        maxUsers: 2,
+        minUsers: 2,
+        currentUsers: 1,
+        private: false
+      }
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+      this.tables.push(table);
+
+  }
+
+  GetGame() {
     this.route
     .queryParams
     .subscribe(params => {
-      this.game = JSON.parse(params.game) as Game;
-      console.log(this.game);
+      const gameID = params.gameID;
+
+      if(gameID != null) {
+        this.gameService.GetGameType(gameID)
+        .subscribe(success => {
+          console.log(success)
+          this.game = success;
+        },
+        err => {
+          console.log(err.error);
+        });
+      }
     });
-
-
-    const table: Table = {
-      roomID: '1',
-      name: 'string',
-      maxUsers: 2,
-      minUsers: 2,
-      currentUsers: 1,
-      private: false
-    }
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
   }
+
+
+
+
 
   GetTables() {
     this.route
     .queryParams
     .subscribe(params => {
-      const gameID = params['game'];
+      const game = params.game;
 
-      if (gameID != null) {
-        this.gameService.GetTables(gameID)
+      if (game != null) {
+        this.gameService.GetTables(game)
           .subscribe(success => {
             console.log(success)
           },

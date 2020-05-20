@@ -1,5 +1,5 @@
 <div class="d-inline-block">
-  <div routerLink="game" [queryParams]="{game: game | json}" class="card game-card">
+  <div routerLink="game" [queryParams]="{gameID: game.gameTypeId}" class="card game-card">
       <img class="game-background" [src]="game.backgroundPath">
       <img class="game-logo" [src]="game.logoPath">
   </div>

@@ -32,7 +32,7 @@ export class HomePageComponent implements OnInit {
         }
       });
 
-    this.gameService.GetGameType()
+    this.gameService.GetGameTypes()
       .subscribe(data => {
         this.games = data.items;
       },
