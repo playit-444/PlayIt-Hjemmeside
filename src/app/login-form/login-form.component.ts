@@ -30,8 +30,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.verified);
-
     this.loginForm = this.fb.group({
       userName: [''],
       email: [''],
@@ -42,11 +40,14 @@ export class LoginFormComponent implements OnInit {
 
   Login() {
     let iPv4;
-    this.ipServiceService.getIPAddress().subscribe((res: any) => {
-      console.log(res);
-      iPv4 = res.ip;
-      this.MakeHttpRequest(iPv4);
-    });
+    this.ipServiceService.getIPAddress()
+      .subscribe(success => {
+        iPv4 = success.ip;
+        this.MakeHttpRequest(iPv4);
+        },
+        err => {
+          this.toastr.error("AdBlock er ikke velkommen på denne side", 'Der skete en fejl!');
+        });
   }
 
   MakeHttpRequest(iPv4) {
@@ -65,7 +66,6 @@ export class LoginFormComponent implements OnInit {
         },
         err => {
           this.toastr.error(err.error, 'Der skete en fejl!');
-          console.log(err);
         });
   }
 }
