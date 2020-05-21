@@ -1,9 +1,54 @@
 .table-overview-container {
   padding: 15px;
   text-align: center;
-  margin-right: -15px;
 }
 
 .chat-container {
-  margin-left: -15px;
+  height: calc(100% - 40px);
+  padding: 10px;
+}
+
+.chat-header {
+  height: 40px;
+  background-color: #F5F5F5;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.chat-message{
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  background-color: #F5F5F5;
+  font-size: 14px;
+}
+
+.player-image-chat {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.player-image-chat img{
+object-fit: cover;
+width: 100%;
+height: 100%;
+}
+
+.player-chat-name {
+  display: inline-block;
+  padding-left: 10px;
+  max-width: 85%;
+  overflow: auto;
+}
+
+.player-info {
+  display: block;
+  border-bottom: 1px solid darkgray;
+}
+
+.player-chat-message {
+  padding: 5px;
 }

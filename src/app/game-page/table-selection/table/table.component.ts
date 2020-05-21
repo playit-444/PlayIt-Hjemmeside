@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { Game } from 'src/app/models/game';
+import { Table } from 'src/app/models/table';
 
 @Component({
   selector: 'app-table',
@@ -7,13 +9,15 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() Logo: string;
+  @Input() game: Game;
+  @Input() table: Table;
+  @Input() tableID: number;
   faUsers = faUsers;
 
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }

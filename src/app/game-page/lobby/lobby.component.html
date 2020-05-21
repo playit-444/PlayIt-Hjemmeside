@@ -22,6 +22,14 @@
         </div>
     </div>
     <div class="col col-6">
-        <H1>//TODO: KLAR KNAP OG NEDTÆLLING</H1>
+      <div class="">
+        <a class="w-100 btn btn-success mb-5 mt-1" (click)="Ready()">KLAR</a>
+      </div>
+      <div *ngIf="counter" >
+        <H1 class="game-countdown">
+          <countdown [config]="{leftTime: seconds}">
+          </countdown>
+        </H1>
+      </div>
     </div>
 </div>

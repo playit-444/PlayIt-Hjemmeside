@@ -1,15 +1,15 @@
-<div class="table-comp" [routerLink]="['/game', 'lobby']" [queryParams]="{ tableID: 1}">
+<div class="table-comp" [routerLink]="['/game', 'lobby']" [queryParams]="{gameID: game.gameTypeId, tableID: table.roomID}">
   <div class="table-container">
     <div class="table-comp-image-div">
-        <img [src]="Logo"/>
+        <img [src]="game.logoPath"/>
     </div>
     <div class="table-comp-num-div">
-      <span>Bord 1</span>
+      <span>{{tableID}}</span>
     </div>
     <div class="table-comp-players-div">
       <div>
         <span>
-          <fa-icon [icon]="faUsers"></fa-icon> 3/4
+          <fa-icon [icon]="faUsers"></fa-icon>{{table.currentUsers}}/{{table.maxUsers}}
         </span>
     </div>
     </div>

@@ -14,7 +14,7 @@ export class AppComponent {
 
     this.gameService.GetGameTypes()
       .subscribe(success => {
-          //console.log(success);
+          // console.log(success);
         },
         err => {
           console.log(err);

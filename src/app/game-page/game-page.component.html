@@ -1,14 +1,30 @@
 <div class="row h-100">
-    <div class="col col-12 col-lg-8">
+    <div class="col col-12 col-lg-9">
         <div class="table-overview-container">
             <router-outlet></router-outlet>
         </div>
     </div>
 
-    <div class="col col-12 col-lg-4">
+    <div class="col col-12 col-lg-3">
         <div class="w-100 h-100">
-            <div class="bg-primary h-100 chat-container">
-                <span>Chat</span>
+            <div class="chat-header">
+                <span *ngIf="game !== undefined" >{{game.name}}</span>
+            </div>
+            <div class="bg-primary chat-container">
+              <div class="chat-message">
+                <div class="player-info">
+                  <div class="player-image-chat">
+                    <img src="https://content.api.news/v3/images/bin/a6923adbc7bece73803221613f410782"/>
+                  </div>
+                  <div class="player-chat-name">
+                    <span>Greta Thunberg</span>
+                  </div>
+                </div>
+                <div class="player-chat-message">
+                  <span>This is a Message, This is a Message, This is a Message</span>
+                </div>
+              </div>
+
             </div>
         </div>
     </div>

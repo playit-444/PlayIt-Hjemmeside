@@ -1,5 +1,5 @@
 <div>
-  <ng-template ngFor let-table [ngForOf]="tables">
-    <app-table [Logo]="game.logoPath" ></app-table>
+  <ng-template *ngFor="let table of tables; let i = index">
+    <app-table [game]="game" [table]="table" [tableID]="i"></app-table>
   </ng-template>
 </div>

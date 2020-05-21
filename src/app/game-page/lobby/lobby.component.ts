@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-lobby',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LobbyComponent implements OnInit {
 
-  constructor() { }
+  counter: boolean;
+  seconds = 120;
+
+  constructor(
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.counter);
   }
 
+  Ready() {
+    this.counter = true;
+    this.cdr.detectChanges();
+  }
 }
