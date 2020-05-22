@@ -28,7 +28,6 @@ export class TableSelectionComponent implements OnInit {
         roomID: '1',
         name: 'string',
         maxUsers: 2,
-        minUsers: 2,
         currentUsers: 1,
         private: false
       }

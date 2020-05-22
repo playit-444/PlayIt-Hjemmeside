@@ -12,12 +12,13 @@ export class TableComponent implements OnInit {
   @Input() game: Game;
   @Input() table: Table;
   @Input() tableID: number;
+
   faUsers = faUsers;
 
   constructor() { }
 
   ngOnInit(): void {
-
+    console.log(this.tableID);
   }
 
 }
