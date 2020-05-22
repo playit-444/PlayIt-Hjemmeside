@@ -9,6 +9,11 @@
   margin: 0 10px 20px 10px;
 }
 
+.card.game-card:hover {
+  transform: scale(1.03);
+  transition: transform .5s;
+}
+
 .game-card img{
   transition: transform .5s;
 }
