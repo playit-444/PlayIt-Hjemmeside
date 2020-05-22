@@ -19,10 +19,6 @@ export class AppComponent {
         err => {
           console.log(err);
         });
-
-    this.webSocketService.listen('test event').subscribe((data) => {
-      console.log(data);
-    });
   }
 }
 

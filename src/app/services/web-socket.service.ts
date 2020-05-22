@@ -1,30 +1,20 @@
 import {Injectable} from '@angular/core';
-import * as io from 'socket.io-client';
-import {Observable} from 'rxjs';
+import {webSocket} from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
-  socket: any;
-  // URI to server
-  // readonly uri: string = 'https://api.444.dk:8080';
-  readonly uri: string = '';
+  subject: any;
 
   constructor() {
-    this.socket = io(this.uri);
+    this.subject = webSocket('wss://localhost:5001/ws');
   }
 
-  listen(eventName: string) {
-    return new Observable((subscriber) => {
-      this.socket.on(eventName, (data) => {
-        subscriber.next(data);
-      });
-    });
-  }
-
-  emit(eventName: string, data: any) {
-    this.socket.emit(eventName, data);
+  public sendToServer() {
+    this.subject.subscribe();
+    this.subject.next('Hejsa');
+    this.subject.complete();
   }
 
 }
