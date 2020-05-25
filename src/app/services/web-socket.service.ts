@@ -19,7 +19,7 @@ export class WebSocketService {
   constructor(private cookieService: CookieService) {
 
     this.subject = webSocket('wss://localhost:5001/ws');
-    //this.subject = webSocket('wss://echo.websocket.org');
+    // this.subject = webSocket('wss://echo.websocket.org');
 
     this.sendMessage(this.cookieService.get('session-token'));
 

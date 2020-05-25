@@ -1,5 +1,5 @@
 import { GameService } from '../services/game.service';
-import { Game } from './../models/game';
+import { Game } from '../models/game';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
@@ -20,7 +20,6 @@ export class HomePageComponent implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private toastr: ToastrService,
-    private webSocketService: WebSocketService
     ) { }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import {MatDialog} from '@angular/material/dialog';
-import {SignupFormComponent} from './../signup-form/signup-form.component';
+import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, Input} from '@angular/core';
 import {faUser, faKey} from '@fortawesome/free-solid-svg-icons';
@@ -43,7 +43,8 @@ export class LoginFormComponent implements OnInit {
 
     this.ipServiceService.getIPAddress()
       .subscribe(success => {
-          this.ipv4 = success.ip;
+          this.ipv4 = success;
+          // this.ipv4 = success.ip;
         },
         err => {
           this.toastr.error('AdBlock er ikke Tilladt på denne side', 'Der skete en fejl!');

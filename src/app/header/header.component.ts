@@ -1,10 +1,9 @@
-import {SignupFormComponent} from './../signup-form/signup-form.component';
+import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginFormComponent} from '../login-form/login-form.component';
 
