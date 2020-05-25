@@ -9,9 +9,11 @@ export class WebSocketService {
   socket: any;
   // URI to server
   // readonly uri: string = 'https://api.444.dk:8080';
-  readonly uri: string = '';
+   readonly uri: string = 'wss://localhost:5001/ws';
+  //readonly uri: string = '';
 
   constructor() {
+    console.log("Opening!");
     this.socket = io(this.uri);
   }
 

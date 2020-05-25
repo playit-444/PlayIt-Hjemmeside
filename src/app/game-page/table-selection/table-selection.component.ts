@@ -56,7 +56,7 @@ export class TableSelectionComponent implements OnInit {
           this.GetTables(success.gameTypeId);
         },
         err => {
-          console.log(err.error);
+          //console.log(err.error);
         });
       }
     });
@@ -70,10 +70,10 @@ export class TableSelectionComponent implements OnInit {
       if (id != null) {
         this.gameService.GetTables(id)
           .subscribe(success => {
-            console.log(success);
+            //console.log(success);
           },
           err => {
-            console.log(err.error);
+            //console.log(err.error);
           });
       }
   }
