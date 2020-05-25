@@ -54,7 +54,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.cookieService.set('session-token', success.token);
           },
           err => {
-            console.log(err);
+            //console.log(err);
           });
     }
   }

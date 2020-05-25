@@ -17,7 +17,7 @@ export class AppComponent {
           // console.log(success);
         },
         err => {
-          console.log(err);
+          //console.log(err);
         });
   }
 }

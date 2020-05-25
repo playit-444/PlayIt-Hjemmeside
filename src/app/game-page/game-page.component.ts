@@ -18,7 +18,7 @@ export class GamePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.game);
+    //console.log(this.game);
     this.GetGame();
   }
 
@@ -35,7 +35,7 @@ export class GamePageComponent implements OnInit {
           this.game = success;
         },
         err => {
-          console.log(err.error);
+          //console.log(err.error);
         });
       }
     });
