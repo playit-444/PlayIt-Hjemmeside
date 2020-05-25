@@ -13,8 +13,7 @@ export class WebSocketService {
 
   public sendToServer() {
     this.subject.subscribe();
-    this.subject.next('Hejsa');
+    this.subject.next('hejsa');
     this.subject.complete();
   }
-
 }
