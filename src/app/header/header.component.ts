@@ -1,4 +1,4 @@
-import { SignupFormComponent } from './../signup-form/signup-form.component';
+import {SignupFormComponent} from './../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
@@ -6,7 +6,7 @@ import {UserService} from '../services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import { LoginFormComponent } from '../login-form/login-form.component';
+import {LoginFormComponent} from '../login-form/login-form.component';
 
 @Component({
   selector: 'app-header',
@@ -17,8 +17,6 @@ export class HeaderComponent implements OnInit {
 
   closeResult = '';
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
-  verified = false;
-  loggedIn: boolean;
   dialogRef;
 
 
@@ -27,8 +25,7 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     public cookieService: CookieService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {
   }
 
@@ -65,7 +62,5 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.cookieService.delete('session-token');
-
-    //this.router.navigateByUrl('tableSelection');
   }
 }

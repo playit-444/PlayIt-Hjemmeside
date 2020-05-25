@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Automatic include token in all http calls
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.cookieService.get('session-token') !== undefined && this.cookieService.get('session-token') !== '' && this.cookieService.get('session-token') !== 'undefined'){
+    if (this.cookieService.get('session-token') !== undefined && this.cookieService.get('session-token') !== '' && this.cookieService.get('session-token') !== 'undefined') {
       const jwtToken = this.cookieService.get('session-token');
       this.renewJwtToken(jwtToken);
       const clonedReq = req.clone({
@@ -49,7 +49,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const difference = this.convertMilliToHours((expiresDatetime.getTime() - currentDatetime.getTime()));
     // Check if difference token expires before 3 hours
     if (difference < 3) {
-      this.userService.Renew(jwt.EmployeeId)
+      this.userService.Renew(jwt.AccountId)
         .subscribe(success => {
             this.cookieService.set('session-token', success.token);
           },
