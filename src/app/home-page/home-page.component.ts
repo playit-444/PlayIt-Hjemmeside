@@ -4,6 +4,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import { WebSocketService } from '../services/web-socket.service';
 
 @Component({
   selector: 'app-home-page',
@@ -19,9 +20,13 @@ export class HomePageComponent implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private toastr: ToastrService,
+    private webSocketService: WebSocketService
     ) { }
 
   ngOnInit(): void {
+
+    this.webSocketService.sendToServer();
+
     this.route
       .queryParams
       .subscribe(params => {

@@ -65,7 +65,7 @@ export class SignupFormComponent implements OnInit {
       },
         err => {
           this.toastr.error(err.error, 'Der skete en fejl!');
-          console.log(err.error);
+          //console.log(err.error);
         });
     }
   }
