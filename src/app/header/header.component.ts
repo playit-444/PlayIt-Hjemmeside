@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
               },
               err => {
                 this.toastr.error(err.error, 'Der skete en fejl!');
-                //console.log(err);
               });
         }
       });
