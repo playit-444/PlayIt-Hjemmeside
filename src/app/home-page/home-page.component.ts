@@ -25,8 +25,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.webSocketService.sendToServer();
-
     this.route
       .queryParams
       .subscribe(params => {
