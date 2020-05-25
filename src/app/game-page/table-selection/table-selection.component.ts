@@ -1,29 +1,33 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from 'src/app/services/game.service';
 import {Table} from 'src/app/models/table';
 import {Game} from 'src/app/models/game';
-import {WebSocketService} from "../../services/web-socket.service";
+import {WebSocketService} from '../../services/web-socket.service';
+import { map, catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-table-selection',
   templateUrl: './table-selection.component.html',
-  styleUrls: ['./table-selection.component.css']
+  styleUrls: ['./table-selection.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableSelectionComponent implements OnInit {
-  game: Game;
-  tables: Array<Table> = [];
 
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    private webSocketService: WebSocketService
-  ) {
-  }
+    private webSocketService: WebSocketService,
+  ) {}
+
+  game: Game;
+  tables: Array<Table> = [];
 
   ngOnInit(): void {
+
+    //this.webSocketService.sendMessage('HALLO');
+
     this.GetGame();
-    this.webSocketService.sendToServer();
 
     const table: Table = {
       roomID: '1',

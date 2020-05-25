@@ -1,20 +1,39 @@
-import {Injectable} from '@angular/core';
-import {webSocket} from 'rxjs/webSocket';
+import { Injectable } from '@angular/core';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { environment } from '../../environments/environment';
+import { catchError, tap, switchAll, retryWhen, delayWhen } from 'rxjs/operators';
+import { EMPTY, Subject, timer, Observable } from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
-  subject: any;
+
+  private subject: WebSocketSubject<any>;
+  private messagesSubject$ = new Subject();
+  public messages$ = this.messagesSubject$.pipe(switchAll(), catchError(e => { throw e }));
+
+
 
   constructor(private cookieService: CookieService) {
+
     this.subject = webSocket('wss://localhost:5001/ws');
+    //this.subject = webSocket('wss://echo.websocket.org');
+
+
+    this.subject.subscribe(
+      msg => console.log('message received: ' + msg), // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
   }
 
-  public sendToServer() {
-    this.subject.subscribe();
-    this.subject.next(this.cookieService.get('session-token'));
+  sendMessage(msg: any) {
+    this.subject.next(msg);
+  }
+
+  close() {
     this.subject.complete();
   }
 }

@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog} from '@angular/material/dialog';
 import { LoginFormComponent } from '../login-form/login-form.component';
 
 @Component({
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-        const urlParmToken = params['token'];
+        const urlParmToken = params.token;
 
         if (urlParmToken != null) {
           this.userService.Verify(urlParmToken)
