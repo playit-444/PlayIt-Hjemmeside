@@ -1,5 +1,5 @@
 export interface JwtToken {
-  EmployeeId: number;
+  AccountId: number;
   UserName: string;
   Email: string;
   Expires: Date;

@@ -1,5 +1,5 @@
-import { MatDialog } from '@angular/material/dialog';
-import { SignupFormComponent } from './../signup-form/signup-form.component';
+import {MatDialog} from '@angular/material/dialog';
+import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, Input} from '@angular/core';
 import {faUser, faKey} from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +20,7 @@ export class LoginFormComponent implements OnInit {
   faUser = faUser;
   faKey = faKey;
   loginForm: FormGroup;
+  ipv4;
 
   constructor(
     private userService: UserService,
@@ -39,6 +40,15 @@ export class LoginFormComponent implements OnInit {
       password: [''],
       ipv4: ['']
     });
+
+    this.ipServiceService.getIPAddress()
+      .subscribe(success => {
+          this.ipv4 = success;
+          // this.ipv4 = success.ip;
+        },
+        err => {
+          this.toastr.error("AdBlock er ikke tilladt på denne side", 'Der skete en fejl!');
+        });
   }
 
   create() {
@@ -47,23 +57,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   Login() {
-    let iPv4;
-    this.ipServiceService.getIPAddress()
-      .subscribe(success => {
-        iPv4 = success.ip;
-        this.MakeHttpRequest(iPv4);
-        },
-        err => {
-          this.toastr.error("AdBlock er ikke tilladt på denne side", 'Der skete en fejl!');
-        });
-  }
-
-  MakeHttpRequest(iPv4) {
-
     const user: User = {
       userName: this.loginForm.value.userName,
       password: this.loginForm.value.password,
-      ipv4: iPv4
+      ipv4: this.ipv4
     };
 
     this.userService.Login(user)

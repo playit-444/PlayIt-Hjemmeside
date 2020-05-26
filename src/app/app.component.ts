@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {GameService} from './services/game.service';
-import {WebSocketService} from './services/web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +9,14 @@ import {WebSocketService} from './services/web-socket.service';
 export class AppComponent {
   title = 'PlayIt-Hjemmeside';
 
-  constructor(private gameService: GameService, private webSocketService: WebSocketService) {
+  constructor(private gameService: GameService) {
 
     this.gameService.GetGameTypes()
       .subscribe(success => {
           // console.log(success);
         },
         err => {
-          //console.log(err);
+          // console.log(err);
         });
   }
 }

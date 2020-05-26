@@ -19,13 +19,13 @@ export class WebSocketService {
   constructor(private cookieService: CookieService) {
 
     this.subject = webSocket('wss://localhost:5001/ws');
-    //this.subject = webSocket('wss://echo.websocket.org');
+    // this.subject = webSocket('wss://echo.websocket.org');
 
     this.sendMessage(this.cookieService.get('session-token'));
 
 
     this.subject.subscribe(
-      msg => console.log('message received: ' + msg), // Called whenever there is a message from the server.
+      msg => console.log(msg), // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('complete') // Called when connection is closed (for whatever reason).
     );

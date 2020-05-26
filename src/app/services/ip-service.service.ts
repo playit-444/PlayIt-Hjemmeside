@@ -11,11 +11,11 @@ export class IpServiceService {
   }
 
   public getIPAddress() {
-    return this.http.get('https://api.ipify.org/?format=json')
+    // return this.http.get('https://api.ipify.org/?format=json')
+    return this.http.get('https://backup.itoperators.dk/ip')
       .pipe(
         map((data: any) => {
           return data;
         }));
-    // return this.http.get('https://api.ipify.org/?format=json');
   }
 }
