@@ -47,7 +47,7 @@ export class LoginFormComponent implements OnInit {
           // this.ipv4 = success.ip;
         },
         err => {
-          this.toastr.error('AdBlock er ikke Tilladt på denne side', 'Der skete en fejl!');
+          this.toastr.error("AdBlock er ikke tilladt på denne side", 'Der skete en fejl!');
         });
   }
 
