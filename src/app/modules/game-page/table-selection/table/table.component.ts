@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit, Input} from '@angular/core';
+import {faUsers} from '@fortawesome/free-solid-svg-icons';
 import {Game} from '../../../../shared/models/game';
 import {Table} from '../../../../shared/models/table';
 
@@ -15,9 +15,9 @@ export class TableComponent implements OnInit {
 
   faUsers = faUsers;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

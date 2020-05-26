@@ -66,7 +66,7 @@ export class LoginFormComponent implements OnInit {
     this.userService.Login(user)
       .subscribe(success => {
           this.toastr.success('Du er nu logget ind', 'Succes!');
-          this.cookieService.set('session-token', success.token);
+          this.cookieService.set('session-token', success.jwtToken);
           this.dialogRef.close();
         },
         err => {

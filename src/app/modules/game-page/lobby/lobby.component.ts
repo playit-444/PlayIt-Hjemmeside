@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WebSocketService} from '../../../shared/services/web-socket.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-lobby',
@@ -7,19 +9,31 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 })
 export class LobbyComponent implements OnInit {
 
-  counter: boolean;
-  seconds = 120;
+  counter = 120;
+  tableId;
 
   constructor(
-    private cdr: ChangeDetectorRef
-  ) { }
+    private webSocketService: WebSocketService,
+    private route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit(): void {
-    // console.log(this.counter);
+    /*const intervalId = setInterval(() => {
+      this.counter = this.counter - 1;
+      console.log(this.counter)
+      if (this.counter === 0) clearInterval(intervalId)
+    }, 1000)*/
+
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.tableId = params.tableID;
+        this.webSocketService.sendMessage(this.tableId + '|JOIN');
+      });
   }
 
   Ready() {
-    this.counter = true;
-    this.cdr.detectChanges();
+    this.webSocketService.sendMessage(this.tableId + '|READY');
   }
 }

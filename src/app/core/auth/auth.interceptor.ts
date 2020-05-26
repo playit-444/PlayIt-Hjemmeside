@@ -1,4 +1,4 @@
-﻿import {UserService} from "../../shared/services/user.service";
+﻿import {UserService} from '../../shared/services/user.service';
 
 ﻿import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
-import {JwtToken} from "../../shared/models/jwtToken";
+import {JwtToken} from '../../shared/models/jwtToken';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -29,8 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
           },
           err => {
             if (err.status === 401) {
-              console.log('her?');
-              this.cookieService.delete('session-token');
+              console.log('delete session token');
+              this.cookieService.delete('session-token', '/');
               this.router.navigateByUrl('');
             }
           }

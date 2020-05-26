@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { catchError, switchAll} from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CookieService} from 'ngx-cookie-service';
+import {LobbyData} from '../models/lobbyData';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +9,13 @@ import {CookieService} from 'ngx-cookie-service';
 export class WebSocketService {
 
   private subject: WebSocketSubject<any>;
-  private messagesSubject$ = new Subject();
-  public messages$ = this.messagesSubject$.pipe(switchAll(), catchError(e => { throw e }));
-
-
 
   constructor(private cookieService: CookieService) {
-
     this.subject = webSocket('wss://localhost:5001/ws');
-    // this.subject = webSocket('wss://echo.websocket.org');
-
     this.sendMessage(this.cookieService.get('session-token'));
 
-
     this.subject.subscribe(
-      msg => console.log(msg), // Called whenever there is a message from the server.
+      msg => this.readMessage(msg), // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('complete') // Called when connection is closed (for whatever reason).
     );
@@ -36,5 +27,21 @@ export class WebSocketService {
 
   close() {
     this.subject.complete();
+  }
+
+  readMessage(msg: any) {
+    // Authentication check
+    if (msg?.Authentication) {
+      if (msg.Authentication === 'Success') {
+      } else {
+        this.cookieService.delete('session-token', '/');
+      }
+    } else if (msg as LobbyData) {
+      console.log(msg);
+    } else {
+      console.log("h");
+      console.log();
+      console.log("h");
+    }
   }
 }

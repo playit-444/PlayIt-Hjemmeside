@@ -1,47 +1,27 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../shared/services/game.service';
-import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {Game} from '../../../shared/models/game';
 import {Table} from '../../../shared/models/table';
 
 @Component({
   selector: 'app-table-selection',
   templateUrl: './table-selection.component.html',
-  styleUrls: ['./table-selection.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./table-selection.component.css']
 })
 export class TableSelectionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    private webSocketService: WebSocketService,
-  ) {}
+  ) {
+  }
 
   game: Game;
-  tables: Array<Table> = [];
+  public tables: Table[] = [];
 
   ngOnInit(): void {
     this.GetGame();
-
-    const table: Table = {
-      roomID: '1',
-      name: 'string',
-      maxUsers: 2,
-      currentUsers: 1,
-      private: false
-    }
-    /*this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);
-    this.tables.push(table);*/
-
   }
 
   GetGame() {
@@ -68,7 +48,7 @@ export class TableSelectionComponent implements OnInit {
     if (id != null) {
       this.gameService.GetTables(id)
         .subscribe(success => {
-            console.log(success);
+            this.tables = success;
           },
           err => {
             console.log(err.error);

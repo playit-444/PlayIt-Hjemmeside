@@ -54,6 +54,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.cookieService.delete('session-token');
+    this.cookieService.delete('session-token', '/');
   }
 }

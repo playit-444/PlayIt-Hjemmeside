@@ -1,5 +1,5 @@
 <div>
-  <ng-template *ngFor="let table of tables; let i = index">
-    <app-table [game]="game" [table]="table" [tableID]="i"></app-table>
+  <ng-template ngFor let-table let-i="index" [ngForOf]="tables">
+    <app-table [game]="game" [table]="table" [tableID]="i+1"></app-table>
   </ng-template>
 </div>
