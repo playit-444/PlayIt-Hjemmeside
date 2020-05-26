@@ -1,10 +1,9 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {GameService} from 'src/app/services/game.service';
-import {Table} from 'src/app/models/table';
-import {Game} from 'src/app/models/game';
-import {WebSocketService} from '../../services/web-socket.service';
-import { map, catchError, tap } from 'rxjs/operators';
+import {GameService} from '../../../shared/services/game.service';
+import {WebSocketService} from '../../../shared/services/web-socket.service';
+import {Game} from '../../../shared/models/game';
+import {Table} from '../../../shared/models/table';
 
 @Component({
   selector: 'app-table-selection',
@@ -24,9 +23,6 @@ export class TableSelectionComponent implements OnInit {
   tables: Array<Table> = [];
 
   ngOnInit(): void {
-
-    //this.webSocketService.sendMessage('HALLO');
-
     this.GetGame();
 
     const table: Table = {

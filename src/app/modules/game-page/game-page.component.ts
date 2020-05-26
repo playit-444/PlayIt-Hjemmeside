@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GameService } from '../services/game.service';
-import { Game } from '../models/game';
-
+import {Game} from '../../shared/models/game';
+import {GameService} from '../../shared/services/game.service';
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
@@ -18,7 +17,6 @@ export class GamePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //console.log(this.game);
     this.GetGame();
   }
 
@@ -33,9 +31,6 @@ export class GamePageComponent implements OnInit {
         this.gameService.GetGameType(gameID)
         .subscribe(success => {
           this.game = success;
-        },
-        err => {
-          //console.log(err.error);
         });
       }
     });

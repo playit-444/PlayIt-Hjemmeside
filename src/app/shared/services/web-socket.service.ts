@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { environment } from '../../environments/environment';
-import { catchError, tap, switchAll, retryWhen, delayWhen } from 'rxjs/operators';
-import { EMPTY, Subject, timer, Observable } from 'rxjs';
+import { catchError, switchAll} from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({

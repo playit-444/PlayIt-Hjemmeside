@@ -1,25 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FooterComponent } from './footer/footer.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import {HeaderComponent} from './core/header/header.component';
+import {FooterComponent} from './core/footer/footer.component';
+import {CheckboxComponent} from './shared/modules/checkbox/checkbox.component';
+import {SignupFormComponent} from './modules/signup-form/signup-form.component';
+import {LoginFormComponent} from './modules/login-form/login-form.component';
+import {GameComponent} from './modules/game/game.component';
+import {HomePageComponent} from './modules/home-page/home-page.component';
+import {CarouselComponent} from './shared/modules/carousel/carousel.component';
+import {GamePageComponent} from './modules/game-page/game-page.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor} from './auth/auth.interceptor';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { CookieService } from 'ngx-cookie-service';
-import { ToastrModule } from 'ngx-toastr';
-import { GameComponent } from './game/game.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { GamePageComponent } from './game-page/game-page.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
+import {CookieService} from 'ngx-cookie-service';
+import {AuthInterceptor} from './core/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,4 +55,5 @@ import {MatDialogModule} from '@angular/material/dialog';
     }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

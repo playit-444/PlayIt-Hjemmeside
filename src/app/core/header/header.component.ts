@@ -1,11 +1,11 @@
-import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
-import {LoginFormComponent} from '../login-form/login-form.component';
+import {UserService} from '../../shared/services/user.service';
+import {LoginFormComponent} from '../../modules/login-form/login-form.component';
+import {SignupFormComponent} from '../../modules/signup-form/signup-form.component';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +13,6 @@ import {LoginFormComponent} from '../login-form/login-form.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  closeResult = '';
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
   dialogRef;
 
@@ -30,14 +28,10 @@ export class HeaderComponent implements OnInit {
 
   login() {
     this.dialogRef = this.dialog.open(LoginFormComponent);
-    this.dialogRef.afterClosed().subscribe(result => {
-    })
   }
 
   create() {
     this.dialogRef = this.dialog.open(SignupFormComponent);
-    this.dialogRef.afterClosed().subscribe(result => {
-    })
   }
 
   ngOnInit(): void {

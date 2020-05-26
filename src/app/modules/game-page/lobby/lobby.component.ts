@@ -15,7 +15,7 @@ export class LobbyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //console.log(this.counter);
+    // console.log(this.counter);
   }
 
   Ready() {

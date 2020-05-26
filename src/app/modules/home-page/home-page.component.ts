@@ -1,10 +1,9 @@
-import { GameService } from '../services/game.service';
-import { Game } from '../models/game';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import { WebSocketService } from '../services/web-socket.service';
+import {Game} from '../../shared/models/game';
+import {GameService} from '../../shared/services/game.service';
 
 @Component({
   selector: 'app-home-page',

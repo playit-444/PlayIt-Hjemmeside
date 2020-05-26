@@ -1,14 +1,14 @@
 import {MatDialog} from '@angular/material/dialog';
 import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faUser, faKey} from '@fortawesome/free-solid-svg-icons';
-import {User} from '../models/user';
 import {FormGroup, FormBuilder} from '@angular/forms';
-import {IpServiceService} from '../services/ip-service.service';
 import {ToastrService} from 'ngx-toastr';
-import {UserService} from '../services/user.service';
 import {MatDialogRef} from '@angular/material/dialog';
+import {UserService} from '../../shared/services/user.service';
+import {IpServiceService} from '../../shared/services/ip-service.service';
+import {User} from '../../shared/models/user';
 
 
 @Component({

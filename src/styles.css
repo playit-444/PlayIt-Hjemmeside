@@ -1,27 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* If you is scrolled down on a site and click Log ind header and footer diapers */
+.cdk-global-scrollblock {
+  position: static;
+}
+
 body {
-    background-color: #10004d;
+  background-color: #10004d;
 }
 
 .input-group input {
-    border-color: #10004d;
+  border-color: #10004d;
 }
 
 .input-group .input-group-text {
-    border-color: #1E035C;
-    color: #fff;
-    background-color: #1E035C;
+  border-color: #1E035C;
+  color: #fff;
+  background-color: #1E035C;
 }
 
 .modal-title {
-    color: #1E035C;
-    font-weight: 800;
-    text-align: center;
+  color: #1E035C;
+  font-weight: 800;
+  text-align: center;
 }
 
 .modal-content {
-    border-radius: 0.5rem;
-    border-color: #1E035C;
+  border-radius: 0.5rem;
+  border-color: #1E035C;
 }
 
 
@@ -53,21 +58,21 @@ ngb-carousel {
   z-index: -1;
 }
 
-.carousel-item.active{
+.carousel-item.active {
   opacity: 1;
   visibility: visible;
   z-index: 10;
 }
 
 .carousel-control-prev {
-   z-index: 20;
+  z-index: 20;
 }
 
 .carousel-control-next {
-   z-index: 20;
+  z-index: 20;
 }
 
-.carousel-indicators{
+.carousel-indicators {
   z-index: 20;
 }
 
@@ -75,9 +80,14 @@ ngb-carousel {
   width: 5%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 /* Modal Design */
