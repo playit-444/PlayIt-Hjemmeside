@@ -14,7 +14,10 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 })
 export class LobbyComponent implements OnInit {
 
-  counter = 120;
+  timeLeft = 60;
+  interval: any;
+  timerStarted = false;
+
   tableId: any;
   game: Game;
   lobby: LobbyData;
@@ -25,7 +28,7 @@ export class LobbyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private gameService: GameService,
+    private gameService: GameService
   ) {
     // Check if user change page then leave lobby
     //TODO add game endpoint
@@ -74,8 +77,19 @@ export class LobbyComponent implements OnInit {
               count++;
           });
 
-          if(count > this.game.minimumPlayers)
+          if(count === this.game.maxPlayers)
+          {
+            // This.StartGame();
+            if(this.timerStarted)
+              this.stopTimer();
+          }
+          else if(count >= this.game.minimumPlayers) {
             this.StartTimer();
+          }
+          else {
+            if (this.timerStarted)
+              this.stopTimer();
+          }
         }
 
         if(this.players.length < this.lobby.MaxUsers)
@@ -99,10 +113,20 @@ export class LobbyComponent implements OnInit {
   }
 
   StartTimer() {
-    const intervalId = setInterval(() => {
-      this.counter = this.counter - 1;
-      console.log(this.counter)
-      if (this.counter === 0) clearInterval(intervalId)
-    }, 1000)
+    console.log('timer started!')
+    this.timerStarted = true;
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.timeLeft = 60;
+      }
+    },1000)
+  }
+
+  stopTimer() {
+    clearInterval(this.interval);
+    this.timerStarted = false;
+    this.timeLeft = 60;
   }
 }

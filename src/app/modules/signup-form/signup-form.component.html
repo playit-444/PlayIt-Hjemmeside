@@ -1,7 +1,7 @@
 <div class="modal-body">
     <h4 class="modal-title center">Opret Mig</h4>
     <div class="text-center">
-      <span>Allerede oprettet? <a href="javascript:void();" (click)="login()" >Log ind</a></span>
+      <span>Allerede oprettet? <a href="javascript:void();" (click)="login()"  tabindex="-1" >Log ind</a></span>
     </div>
     <form [formGroup]="signUpForm">
         <div class="form-group">
@@ -11,7 +11,7 @@
                         <fa-icon [icon]="faUser"></fa-icon>
                     </span>
                 </div>
-                <input name="username" ng-model="username" type="text" class="form-control" placeholder="Brugernavn" formControlName="userName" required minlength="4">
+                <input name="username" ng-model="username" type="text" class="form-control" placeholder="Brugernavn" formControlName="userName" required minlength="4" tabindex="1">
             </div>
             <!--span class="text-danger" ng-show="signUpForm.username.$error.required">Brugernavn er påkrævet</-span-->
             <div class="input-group mb-3">
@@ -20,7 +20,7 @@
                         <fa-icon [icon]="faAt"></fa-icon>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                <input type="text" class="form-control" placeholder="Email" formControlName="email" tabindex="2">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -28,7 +28,7 @@
                         <fa-icon [icon]="faKey"></fa-icon>
                     </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
+                <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password" tabindex="3">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -36,12 +36,12 @@
                         <fa-icon [icon]="faKey"></fa-icon>
                     </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Gentag adgangskode" formControlName="confirmPassword">
+                <input type="password" class="form-control" placeholder="Gentag adgangskode" formControlName="confirmPassword" tabindex="4">
             </div>
 
-            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
+            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"  tabindex="5"></app-checkbox>
 
-            <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret"/>
+            <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret" tabindex="6"/>
         </div>
     </form>
 </div>

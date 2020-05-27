@@ -9,8 +9,27 @@
       </ng-template>
     </div>
     <div class="col col-6">
-      <div class="">
+      <div>
         <a class="w-100 btn btn-success mb-5 mt-1" (click)="Ready()">KLAR</a>
+      </div>
+      <div *ngIf="timerStarted">
+        <div class="timer-group">
+          <div class="timer hour">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+          </div>
+          <div class="timer minute">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+          </div>
+          <div class="timer second">
+            <div class="hand"><span></span></div>
+            <div class="hand"><span></span></div>
+          </div>
+          <div class="face">
+            <p id="lazy">Spillet starter om: {{timeLeft}}</p>
+          </div>
+        </div>
       </div>
     </div>
 </div>

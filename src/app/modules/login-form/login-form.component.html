@@ -1,7 +1,7 @@
 <div class="modal-body">
     <h4 class="modal-title center">Log Ind</h4>
     <div class="text-center">
-      <span>Har du ikke en konto? <a href="javascript:void();" (click)="create()" >opret bruger</a></span>
+      <span>Har du ikke en konto? <a href="javascript:void();" (click)="create()" tabindex="-1" >opret bruger</a></span>
     </div>
     <form [formGroup]="loginForm">
         <div class="form-group">
@@ -11,7 +11,7 @@
                         <fa-icon [icon]="faUser"></fa-icon>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Brugernavn / Email" formControlName="userName">
+                <input type="text" class="form-control" placeholder="Brugernavn / Email" formControlName="userName" tabindex="1">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -19,10 +19,10 @@
                         <fa-icon [icon]="faKey"></fa-icon>
                     </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password">
+                <input type="password" class="form-control" placeholder="Adgangskode" formControlName="password" tabindex="2">
             </div>
 
-            <input type="submit" class="btn btn-lg btn-success mb-3" (click)="Login()" value="Log Ind"/>
+            <input type="submit" class="btn btn-lg btn-success mb-3" (click)="Login()" value="Log Ind" tabindex="3"/>
         </div>
     </form>
 </div>
