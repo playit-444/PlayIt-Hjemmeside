@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {HeaderComponent} from './core/header/header.component';
 import {FooterComponent} from './core/footer/footer.component';
 import {CheckboxComponent} from './shared/modules/checkbox/checkbox.component';
@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthInterceptor} from './core/auth/auth.interceptor';
+import {WebSocketService} from "./shared/services/web-socket.service";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {AuthInterceptor} from './core/auth/auth.interceptor';
     MatDialogModule,
   ],
   providers: [
+    WebSocketService,
     CookieService,
     {
       provide: HTTP_INTERCEPTORS,

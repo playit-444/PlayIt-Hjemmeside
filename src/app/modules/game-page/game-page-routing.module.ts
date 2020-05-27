@@ -9,13 +9,13 @@ const routes: Routes = [
   {
     path: '', component: GamePageComponent, children: [
       {
+        path: '', redirectTo: 'table-selection', pathMatch: 'full'
+      },
+      {
         path: 'table-selection', component: TableSelectionComponent
       },
       {
         path: 'lobby', component: LobbyComponent
-      },
-      {
-        path: '', redirectTo: 'table-selection', pathMatch: 'full'
       }
     ]
   }

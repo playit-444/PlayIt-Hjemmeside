@@ -47,7 +47,7 @@ export class LoginFormComponent implements OnInit {
           // this.ipv4 = success.ip;
         },
         err => {
-          this.toastr.error("AdBlock er ikke tilladt på denne side", 'Der skete en fejl!');
+          this.toastr.error('AdBlock er ikke tilladt på denne side', 'Der skete en fejl!');
         });
   }
 
@@ -66,7 +66,7 @@ export class LoginFormComponent implements OnInit {
     this.userService.Login(user)
       .subscribe(success => {
           this.toastr.success('Du er nu logget ind', 'Succes!');
-          this.cookieService.set('session-token', success.jwtToken);
+          this.cookieService.set('session-token', success.jwtToken, 1,'/');
           this.dialogRef.close();
         },
         err => {
