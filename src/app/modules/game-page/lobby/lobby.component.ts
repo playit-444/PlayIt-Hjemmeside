@@ -1,6 +1,9 @@
+import { GameService } from './../../../shared/services/game.service';
+import { Game } from './../../../shared/models/game';
+import { UserService } from './../../../shared/services/user.service';
 import { PlayerData } from './../../../shared/models/playerData';
 import { LobbyData } from './../../../shared/models/lobbyData';
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
@@ -9,19 +12,21 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css']
 })
-export class LobbyComponent implements OnInit, OnDestroy {
+export class LobbyComponent implements OnInit {
 
   counter = 120;
   tableId: any;
+  game: Game;
   lobby: LobbyData;
   players: PlayerData[] = [];
 
   constructor(
     private webSocketService: WebSocketService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private gameService: GameService,
   ) {
-
     // Check if user change page then leave lobby
     //TODO add game endpoint
     const subscription = this.router.events.subscribe((event) => {
@@ -32,43 +37,52 @@ export class LobbyComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+
   }
 
   ngOnInit(): void {
-    /*const intervalId = setInterval(() => {
-      this.counter = this.counter - 1;
-      console.log(this.counter)
-      if (this.counter === 0) clearInterval(intervalId)
-    }, 1000)*/
 
     this.route
       .queryParams
       .subscribe(params => {
         this.tableId = params.tableID;
         this.webSocketService.sendMessage(this.tableId + '|JOIN');
+        this.getGame(params.gameID);
       });
+  }
 
-      this.webSocketService.GetLobbyData().subscribe((value: any) => {
-        console.log('value: ', value);
-        if(value != null) {
-          if(value?.ReadyState)
-          {
-            const playerindex = this.players.findIndex(a => a.PlayerId === value.PlayerID)
-            console.log(this.players[playerindex].Name);
-            this.players[playerindex].Ready = true;
-          }
-          else {
-            this.lobby = value;
-            this.players = value.Players;
-            console.log(this.players.length);
-            console.log(this.lobby.MaxUsers);
-            if(this.players.length < this.lobby.MaxUsers)
-            {
-              this.fillEmptySlots();
-            }
-          }
+  getGame(gameID: number) {
+    return this.gameService.GetGameType(gameID)
+    .subscribe(success => {
+      this.game = success;
+      this.getLobbyData();
+    });
+  }
+
+  getLobbyData() {
+    this.webSocketService.GetLobbyData().subscribe((value) => {
+      if(value != null) {
+        this.lobby = value;
+        this.players = value.Players;
+
+        if(this.players.length > 0)
+        {
+          let count = 0;
+          this.players.forEach(player => {
+            if(player.Ready)
+              count++;
+          });
+
+          if(count > this.game.minimumPlayers)
+            this.StartTimer();
         }
-      });
+
+        if(this.players.length < this.lobby.MaxUsers)
+          this.fillEmptySlots();
+
+      }
+    });
   }
 
   fillEmptySlots() {
@@ -76,16 +90,19 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
     for(let i = this.players.length; i < this.lobby.MaxUsers; i++)
     {
-      console.log('HIT');
       this.players.push(emptyPlayer);
     }
   }
 
-  ngOnDestroy(): void {
-    //this.webSocketService.sendMessage(this.tableId + '|LEAVE');
-  }
-
   Ready() {
     this.webSocketService.sendMessage(this.tableId + '|READY');
+  }
+
+  StartTimer() {
+    const intervalId = setInterval(() => {
+      this.counter = this.counter - 1;
+      console.log(this.counter)
+      if (this.counter === 0) clearInterval(intervalId)
+    }, 1000)
   }
 }

@@ -1,17 +1,36 @@
-<div class="card user-card">
-    <div class="player-container">
-        <div class="player-image-div">
-            <div>
-                <img src="https://content.api.news/v3/images/bin/a6923adbc7bece73803221613f410782"/>
-            </div>
-        </div>
-        <div class="player-name-div">
-            <h2>{{player.Name}}</h2>
-        </div>
-        <div class="player-ready-div">
-          <div *ngIf="player.Ready">
-            <fa-icon [icon]="FaCheck" size="3x" [styles]="{'color': '#218838'}"></fa-icon>
+<div *ngIf="done | async" class="card user-card">
+  <div *ngIf="playerID !== 0" class="player-container">
+      <div class="player-image-div">
+          <div>
+              <img [src]="player.avatarFilePath"/>
           </div>
+      </div>
+      <div class="player-name-div">
+          <h2>{{player.userName}}</h2>
+      </div>
+      <div class="player-ready-div">
+        <div *ngIf="readyState">
+          <fa-icon [icon]="FaCheck" size="3x" [styles]="{'color': '#218838'}"></fa-icon>
         </div>
+      </div>
+  </div>
+
+  <div *ngIf="playerID === 0" class="player-container">
+    <div class="player-image-div">
+      <div class="empty-seat" >
+        <fa-icon [icon]="FaUser" size="3x"></fa-icon>
+      </div>
     </div>
+    <div class="player-name-div">
+        <h2>Ledig</h2>
+    </div>
+    <div class="player-ready-div">
+      <div *ngIf="readyState">
+        <fa-icon [icon]="FaCheck" size="3x" [styles]="{'color': '#218838'}"></fa-icon>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+

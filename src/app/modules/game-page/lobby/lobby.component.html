@@ -3,7 +3,7 @@
       <ng-template ngFor let-player [ngForOf]="players">
         <div class="row">
           <div class="col col-12">
-              <app-player [player]="player"></app-player>
+              <app-player [playerID]="player.PlayerId" [readyState]="player.Ready"></app-player>
           </div>
       </div>
       </ng-template>

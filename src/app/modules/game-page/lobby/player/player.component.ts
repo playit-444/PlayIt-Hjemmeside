@@ -1,6 +1,8 @@
+import { PlayerInfo } from './../../../../shared/models/playerInfo';
 import { PlayerData } from './../../../../shared/models/playerData';
 import { Component, OnInit, Input } from '@angular/core';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faUser} from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-player',
@@ -9,15 +11,32 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
 })
 export class PlayerComponent implements OnInit {
   FaCheck = faCheck;
+  FaUser = faUser;
 
-  @Input() player: PlayerData;
+  player: PlayerInfo;
+  done: Promise<boolean>;
 
-  constructor() { }
+  @Input() playerID: number;
+  @Input() readyState: boolean;
+
+  constructor(
+    private userService: UserService
+    ) { }
 
   ngOnInit(): void {
 
-    console.log(this.player);
-    console.log(this.player.Name);
-  }
+    console.log('Ready State!: ', this.readyState)
 
+    if(this.playerID !== 0)
+    {
+      this.userService.GetUser(this.playerID)
+      .subscribe(success => {
+        this.player = success;
+        this.done = Promise.resolve(true);
+      });
+    }
+    else {
+      this.done = Promise.resolve(true);
+    }
+  }
 }

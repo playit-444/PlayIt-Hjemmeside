@@ -27,6 +27,14 @@ export class UserService {
         }));
   }
 
+  GetUser(userID: number) {
+    return this.http.get('https://api.444.dk/api/Account/' + userID)
+      .pipe(
+        map((data: any) => {
+          return data;
+        }));
+  }
+
   Verify(token: string) {
     return this.http.get('https://api.444.dk/api/Account/verify/' + token);
   }
