@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-lobby',
@@ -15,7 +15,19 @@ export class LobbyComponent implements OnInit {
   constructor(
     private webSocketService: WebSocketService,
     private route: ActivatedRoute,
+    private router: Router
   ) {
+
+    // Check if user change page then leave lobby
+    //TODO add game endpoint
+    const subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (!event.url.includes('/game/lobby?')) {
+          webSocketService.sendMessage(this.tableId + '|LEAVE');
+          subscription.unsubscribe();
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
