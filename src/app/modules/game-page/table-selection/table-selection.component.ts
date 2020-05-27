@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {GameService} from '../../../shared/services/game.service';
 import {Game} from '../../../shared/models/game';
 import {Table} from '../../../shared/models/table';

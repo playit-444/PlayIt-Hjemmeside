@@ -1,4 +1,4 @@
-﻿import {UserService} from '../../shared/services/user.service';
+﻿import {UserService} from "../../shared/services/user.service";
 
 ﻿import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
@@ -29,7 +29,6 @@ export class AuthInterceptor implements HttpInterceptor {
           },
           err => {
             if (err.status === 401) {
-              console.log('delete session token');
               this.cookieService.delete('session-token', '/');
               this.router.navigateByUrl('');
             }
@@ -53,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (difference < 3) {
       this.userService.Renew(jwt.AccountId)
         .subscribe(success => {
-          this.cookieService.set('session-token', success.token);
+          this.cookieService.set('session-token', success.token, 1, '/');
         });
     }
   }
