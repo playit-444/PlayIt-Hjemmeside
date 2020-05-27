@@ -1,5 +1,5 @@
 ﻿export interface PlayerData {
-  playerId: number;
-  name: string;
-  ready: boolean;
+  PlayerId: number;
+  Name: string;
+  Ready: boolean;
 }

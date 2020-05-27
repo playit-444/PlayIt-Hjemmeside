@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { PlayerData } from './../../../shared/models/playerData';
+import { LobbyData } from './../../../shared/models/lobbyData';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -7,10 +9,12 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css']
 })
-export class LobbyComponent implements OnInit {
+export class LobbyComponent implements OnInit, OnDestroy {
 
   counter = 120;
-  tableId;
+  tableId: any;
+  lobby: LobbyData;
+  players: PlayerData[] = [];
 
   constructor(
     private webSocketService: WebSocketService,
@@ -31,6 +35,42 @@ export class LobbyComponent implements OnInit {
         this.tableId = params.tableID;
         this.webSocketService.sendMessage(this.tableId + '|JOIN');
       });
+
+      this.webSocketService.GetLobbyData().subscribe((value: any) => {
+        console.log('value: ', value);
+        if(value != null) {
+          if(value?.ReadyState)
+          {
+            const playerindex = this.players.findIndex(a => a.PlayerId === value.PlayerID)
+            console.log(this.players[playerindex].Name);
+            this.players[playerindex].Ready = true;
+          }
+          else {
+            this.lobby = value;
+            this.players = value.Players;
+            console.log(this.players.length);
+            console.log(this.lobby.MaxUsers);
+            if(this.players.length < this.lobby.MaxUsers)
+            {
+              this.fillEmptySlots();
+            }
+          }
+        }
+      });
+  }
+
+  fillEmptySlots() {
+    const emptyPlayer: PlayerData = {PlayerId: 0, Name: 'empty', Ready: false};
+
+    for(let i = this.players.length; i < this.lobby.MaxUsers; i++)
+    {
+      console.log('HIT');
+      this.players.push(emptyPlayer);
+    }
+  }
+
+  ngOnDestroy(): void {
+    //this.webSocketService.sendMessage(this.tableId + '|LEAVE');
   }
 
   Ready() {

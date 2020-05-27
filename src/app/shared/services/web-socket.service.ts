@@ -1,7 +1,8 @@
+import { LobbyData } from './../models/lobbyData';
 import {Injectable} from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CookieService} from 'ngx-cookie-service';
-import {LobbyData} from '../models/lobbyData';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,10 @@ import {LobbyData} from '../models/lobbyData';
 export class WebSocketService {
 
   private subject: WebSocketSubject<any>;
+  private lobbyMessage: BehaviorSubject<LobbyData>;
 
   constructor(private cookieService: CookieService) {
+    this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
     this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
@@ -22,6 +25,7 @@ export class WebSocketService {
   }
 
   sendMessage(msg: any) {
+    console.log('Sending message: ', msg)
     this.subject.next(msg);
   }
 
@@ -31,17 +35,25 @@ export class WebSocketService {
 
   readMessage(msg: any) {
     // Authentication check
+    console.log('Message!: ', msg);
     if (msg?.Authentication) {
       if (msg.Authentication === 'Success') {
       } else {
         this.cookieService.delete('session-token', '/');
       }
     } else if (msg as LobbyData) {
-      console.log(msg);
-    } else {
-      console.log("h");
-      console.log();
-      console.log("h");
+      console.log('recieved message: ', msg);
+      this.lobbyMessage.next(msg);
     }
+    else {
+      console.log('h');
+      console.log();
+      console.log('h');
+    }
+  }
+
+  public GetLobbyData(): Observable<LobbyData>{
+    console.log('GetLobbyData');
+    return this.lobbyMessage.asObservable();
   }
 }
