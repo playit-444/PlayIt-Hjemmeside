@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GamePageRoutingModule } from './game-page-routing.module';
 import { PlayerComponent } from './lobby/player/player.component';
 import { CountdownModule } from 'ngx-countdown';
+import { GameComponent } from './game/game.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CountdownModule } from 'ngx-countdown';
     LobbyComponent,
     TableComponent,
     PlayerComponent,
+    GameComponent,
   ],
   imports: [
     CommonModule,
