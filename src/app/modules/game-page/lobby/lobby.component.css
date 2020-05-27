@@ -5,7 +5,7 @@
 }
 
 html {
-  background: #111 url(https://codepen.io/images/classy_fabric.png);
+  background: #111;
   color: #fff;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
@@ -30,7 +30,7 @@ body {
 }
 
 .timer:after {
-  background: #111 url(https://codepen.io/images/classy_fabric.png);
+  background: #111;
   border-radius: 50%;
   content: "";
   display: block;
@@ -135,8 +135,8 @@ body {
 
 .timer.second .hand span {
   animation-duration: 1s;
-  border-top-color: rgba(255, 255, 255, .15);
-  border-right-color: rgba(255, 255, 255, .15);
+  border-top-color: rgba(255, 255, 255);
+  border-right-color: rgba(255, 255, 255);
   border-width: 150px;
 }
 

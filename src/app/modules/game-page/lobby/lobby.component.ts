@@ -45,7 +45,6 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route
       .queryParams
       .subscribe(params => {
@@ -119,7 +118,7 @@ export class LobbyComponent implements OnInit {
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.timeLeft = 60;
+        this.router.navigate(['game/game']);
       }
     },1000)
   }
