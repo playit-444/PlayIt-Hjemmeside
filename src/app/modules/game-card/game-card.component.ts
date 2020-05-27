@@ -3,11 +3,11 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import {Game} from '../../shared/models/game';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  selector: 'app-game-card',
+  templateUrl: './game-card.component.html',
+  styleUrls: ['./game-card.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameCardComponent implements OnInit {
   @Input() game: Game;
   faUsers = faUsers;
 
