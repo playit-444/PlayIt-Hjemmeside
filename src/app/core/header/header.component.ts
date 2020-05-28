@@ -48,18 +48,20 @@ export class HeaderComponent implements OnInit {
 
       if(this.cookieService.check('session-token'))
       {
-        this.getUserFromjtw();
+        this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
       }
   }
 
-  getUserFromjtw() {
-    const token = this.cookieService.get('session-token');
-    if(token !== undefined)
-    {
-      this.userService.GetUserFromJWT(token).subscribe( success => {
+  parseJwt (token: string) {
+    const base64Url = token.split('.')[1];
+    return JSON.parse(atob(base64Url));
+};
+
+  getUser(accountID: number) {
+      this.userService.GetUser(accountID).subscribe( success => {
+        console.log(success);
         this.user = success;
       });
-    }
   }
 
   login() {
