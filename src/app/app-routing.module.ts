@@ -1,3 +1,4 @@
+import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
 import { TermsComponent } from './modules/terms/terms.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
@@ -7,6 +8,7 @@ import {AuthGuard} from './core/auth/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
+  {path: 'games', component: GamesPageComponent},
   {
     path: 'game',
     loadChildren: () => import('./modules/game-page/game-page.module').then(m => m.GamePageModule),

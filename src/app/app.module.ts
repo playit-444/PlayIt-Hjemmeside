@@ -1,3 +1,4 @@
+import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -36,6 +37,7 @@ import { TermsComponent } from './modules/terms/terms.component';
     CarouselComponent,
     GamePageComponent,
     TermsComponent,
+    GamesPageComponent,
   ],
   imports: [
     BrowserModule,
