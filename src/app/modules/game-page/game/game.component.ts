@@ -41,6 +41,10 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  EnableFullscreen() {
+    this.myFirstGameInstance.SetFullscreen(1);
+  }
+
   public SendMsgToUnity(message) {
     this.myFirstGameInstance.SendMessage("JSUnityBridge", "HandleMessageFromJS", message);
   }
