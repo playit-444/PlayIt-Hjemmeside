@@ -20,7 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthInterceptor} from './core/auth/auth.interceptor';
-import {WebSocketService} from "./shared/services/web-socket.service";
+import {WebSocketService} from './shared/services/web-socket.service';
+import { TermsComponent } from './modules/terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {WebSocketService} from "./shared/services/web-socket.service";
     HomePageComponent,
     CarouselComponent,
     GamePageComponent,
+    TermsComponent,
   ],
   imports: [
     BrowserModule,

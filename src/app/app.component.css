@@ -4,10 +4,13 @@
   right: 0;
   padding: 0;
   z-index:999;
+  margin-top: -96px;
 }
 
 #site-content {
   background-color: azure;
+  margin-top: 96px;
+  min-height: calc(100vh - 400px);
 }
 
 #footer {

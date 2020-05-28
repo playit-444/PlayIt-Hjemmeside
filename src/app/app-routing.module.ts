@@ -1,3 +1,4 @@
+import { TermsComponent } from './modules/terms/terms.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomePageComponent} from './modules/home-page/home-page.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/game-page/game-page.module').then(m => m.GamePageModule),
     canActivate: [AuthGuard]
   },
+  {path: 'terms', component: TermsComponent}
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { PlayerInfo } from './../../shared/models/playerInfo';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
@@ -15,6 +16,7 @@ import {SignupFormComponent} from '../../modules/signup-form/signup-form.compone
 export class HeaderComponent implements OnInit {
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
   dialogRef;
+  user: PlayerInfo;
 
 
   constructor(
@@ -24,14 +26,6 @@ export class HeaderComponent implements OnInit {
     public cookieService: CookieService,
     private toastr: ToastrService
   ) {
-  }
-
-  login() {
-    this.dialogRef = this.dialog.open(LoginFormComponent);
-  }
-
-  create() {
-    this.dialogRef = this.dialog.open(SignupFormComponent);
   }
 
   ngOnInit(): void {
@@ -51,6 +45,23 @@ export class HeaderComponent implements OnInit {
               });
         }
       });
+
+    /* const token = this.cookieService.get('session-token');
+    if(token !== undefined && this.user === undefined)
+    {
+      this.userService.GetUserFromJWT(token).subscribe(success => {
+        console.log(success);
+        this.user = success;
+      });
+    }*/
+  }
+
+  login() {
+    this.dialogRef = this.dialog.open(LoginFormComponent);
+  }
+
+  create() {
+    this.dialogRef = this.dialog.open(SignupFormComponent);
   }
 
   logout() {

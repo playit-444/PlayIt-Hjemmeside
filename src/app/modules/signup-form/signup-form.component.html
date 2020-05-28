@@ -39,9 +39,11 @@
                 <input type="password" class="form-control" placeholder="Gentag adgangskode" formControlName="confirmPassword" tabindex="4">
             </div>
 
-            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"  tabindex="5"></app-checkbox>
+            <app-checkbox cbId="emails" cbText="Jeg vil gerne modtage e-mails fra 444.dk"></app-checkbox>
 
-            <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret" tabindex="6"/>
+            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
+
+            <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret" tabindex="5"/>
         </div>
     </form>
 </div>

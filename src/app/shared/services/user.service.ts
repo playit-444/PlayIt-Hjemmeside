@@ -35,6 +35,15 @@ export class UserService {
         }));
   }
 
+  /*GetUserFromJWT(token: string) {
+    console.log(token);
+    return this.http.get('https://localhost:5002/api/Account/token/' + token)
+      .pipe(
+        map((data: any) => {
+          return data;
+        }));
+  }*/
+
   Verify(token: string) {
     return this.http.get('https://api.444.dk/api/Account/verify/' + token);
   }
