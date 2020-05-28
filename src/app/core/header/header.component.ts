@@ -45,6 +45,21 @@ export class HeaderComponent implements OnInit {
               });
         }
       });
+
+      if(this.cookieService.check('session-token'))
+      {
+        this.getUserFromjtw();
+      }
+  }
+
+  getUserFromjtw() {
+    const token = this.cookieService.get('session-token');
+    if(token !== undefined)
+    {
+      this.userService.GetUserFromJWT(token).subscribe( success => {
+        this.user = success;
+      });
+    }
   }
 
   login() {

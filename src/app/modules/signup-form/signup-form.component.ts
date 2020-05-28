@@ -1,5 +1,6 @@
 import {MatDialog} from '@angular/material/dialog';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {faSquare, faCheckSquare} from '@fortawesome/free-regular-svg-icons';
 import {faUser, faAt, faKey} from '@fortawesome/free-solid-svg-icons';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialogRef} from '@angular/material/dialog';
@@ -15,6 +16,12 @@ import {UserService} from '../../shared/services/user.service';
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent implements OnInit {
+  faSquare = faSquare;
+  faCheckSquare = faCheckSquare;
+
+  terms = false;
+  newsletter = false;
+
   faUser = faUser;
   faAt = faAt;
   faKey = faKey;
@@ -45,11 +52,22 @@ export class SignupFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  changeCheckbox(caller) {
+    if (caller === 'newsletter') {
+      this.newsletter = !this.newsletter;
+    } else {
+      this.terms = !this.terms;
+    }
+  }
+
   CreateUser() {
 
     if (this.signUpForm.value.password !== this.signUpForm.value.confirmPassword) {
       this.toastr.error('Password og Gentag Password skal matche', 'Fejl!');
-    } else {
+    } else if(!this.terms){
+      this.toastr.error('Du skal godkende vores betingelser for at kunne fortsætte', 'Fejl!');
+    }
+    else {
       const user: User = {
         userName: this.signUpForm.value.userName,
         email: this.signUpForm.value.email,
@@ -65,5 +83,10 @@ export class SignupFormComponent implements OnInit {
             this.toastr.error(err.error, 'Der skete en fejl!');
           });
     }
+  }
+
+
+  closeModal() {
+    this.dialogRef.close();
   }
 }

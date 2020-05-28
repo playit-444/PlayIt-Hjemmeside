@@ -1,7 +1,7 @@
 <div class="modal-body">
     <h4 class="modal-title center">Opret Mig</h4>
     <div class="text-center">
-      <span>Allerede oprettet? <a href="javascript:void();" (click)="login()"  tabindex="-1" >Log ind</a></span>
+      <span>Allerede oprettet? <a href="javascript:void(0);" (click)="login()"  tabindex="-1" >Log ind</a></span>
     </div>
     <form [formGroup]="signUpForm">
         <div class="form-group">
@@ -39,9 +39,22 @@
                 <input type="password" class="form-control" placeholder="Gentag adgangskode" formControlName="confirmPassword" tabindex="4">
             </div>
 
-            <app-checkbox cbId="emails" cbText="Jeg vil gerne modtage e-mails fra 444.dk"></app-checkbox>
+            <div class="d-block" (click)="changeCheckbox('newsletter')">
+              <label [for]="newsletter" class="cb-label">
+                  <fa-icon [icon]="faSquare" style="font-size: 24px;" *ngIf="!newsletter"></fa-icon>
+                  <fa-icon [icon]="faCheckSquare" style="font-size: 24px;" *ngIf="newsletter"></fa-icon>
+                  <span class="ml-2">Jeg vil gerne modtage e-mails fra 444.dk</span>
+              </label>
+            </div>
 
-            <app-checkbox cbId="terms" cbText="Jeg acceptere betingelserne"></app-checkbox>
+            <div class="d-block" (click)="changeCheckbox('terms')">
+              <label [for]="terms" class="cb-label">
+                  <fa-icon [icon]="faSquare" style="font-size: 24px;" *ngIf="!terms"></fa-icon>
+                  <fa-icon [icon]="faCheckSquare" style="font-size: 24px;" *ngIf="terms"></fa-icon>
+                  <span class="ml-2">Jeg acceptere betingelserne</span>
+                  <div><span class="pl-1 pr-1">-</span><a class="btn-link" routerLink="/terms" (click)="closeModal()">Læs Betingelser</a></div>
+              </label>
+            </div>
 
             <input type="submit" class="btn btn-lg btn-success float-right" (click)="CreateUser()" value="Opret" tabindex="5"/>
         </div>

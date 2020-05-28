@@ -17,7 +17,11 @@
         <a *ngIf="!cookieService.check('session-token')" href="javascript:void(0);" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="login()">Log ind</a>
         <a *ngIf="!cookieService.check('session-token')" href="javascript:void(0);" class="btn btn-success text-uppercase ml-2" (click)="create()">Opret dig</a>
         <a *ngIf="cookieService.check('session-token')" href="javascript:void(0);" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
-        <img *ngIf="cookieService.check('session-token')" src="https://image.444.dk/user-alt-512.png" class="user-image"/>
+      </div>
+      <div *ngIf="cookieService.check('session-token') && user !== undefined" class="user-image-div">
+        <div>
+          <img [src]="user.avatarFilePath"/>
+        </div>
       </div>
     </div>
   </nav>
