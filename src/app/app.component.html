@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="container" id="header">
+  <div [ngClass]="{'container': ingame === false, 'container-fluid': ingame}" id="header">
     <div class="row">
       <div class="col col-12">
         <!-- Header -->
@@ -7,15 +7,15 @@
       </div>
     </div>
   </div>
-  <div class="container" id="site-content">
+  <div [ngClass]="{'container': ingame === false, 'container-fluid': ingame}" id="site-content">
     <div class="row">
-      <div class="col col-12 p-0" >
+      <div class="col col-12 p-0" style="margin-top: 56px; min-height: calc(100vh - 354px);">
         <!-- Content -->
         <router-outlet></router-outlet>
       </div>
     </div>
   </div>
-  <div class="container" id="footer">
+  <div *ngIf="ingame === false" class="container" id="footer">
     <div class="row">
       <div class="col col-12">
         <!-- Footer -->

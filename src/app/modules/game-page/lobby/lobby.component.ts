@@ -14,7 +14,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 })
 export class LobbyComponent implements OnInit {
 
-  timeLeft = 60;
+  timeLeft = 5;
   interval: any;
   timerStarted = false;
 
@@ -118,7 +118,7 @@ export class LobbyComponent implements OnInit {
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.router.navigate(['game/game']);
+        this.router.navigate(['game/game'], {queryParams: {ingame: true}});
       }
     },1000)
   }

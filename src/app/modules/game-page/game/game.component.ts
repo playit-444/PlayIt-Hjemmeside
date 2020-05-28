@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { DataSharingService } from 'src/app/shared/services/dataSharingService';
 declare const UnityLoader: any;
 
 @Component({
@@ -6,21 +7,29 @@ declare const UnityLoader: any;
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit, AfterViewInit {
+export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   private myFirstGameInstance;
   myFirstGameScripts = [
     '../../assets/games/MyFirstGame/TemplateData/UnityProgress.js',
     '../../assets/games/MyFirstGame/Build/UnityLoader.js'
   ];
 
-  constructor() {
+  constructor(
+    private dataSharingService: DataSharingService
+  ) {
+    this.dataSharingService.isIngame.next(true);
     this.loadScripts(this.myFirstGameScripts);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
     this.myFirstGameInstance = UnityLoader.instantiate("gameContainer", "assets/games/MyFirstGame/Build/MyFirstGame.json");
+  }
+
+  ngOnDestroy(): void {
+    this.dataSharingService.isIngame.next(false);
   }
 
   loadScripts(scripts: string[]) {
