@@ -20,11 +20,6 @@ export class AppComponent {
 
     this.dataSharingService.isIngame.subscribe(value => {
       this.ingame = value;
-      console.log("############################################ " + this.ingame);
-      console.log("############################################ " + this.ingame);
-      console.log("############################################ " + this.ingame);
-      console.log("############################################ " + this.ingame);
-      console.log("############################################ " + this.ingame);
     })
         
   }
