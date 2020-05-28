@@ -118,7 +118,7 @@ export class LobbyComponent implements OnInit {
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.router.navigate(['/game/ingame'], {queryParams: {ingame: true}});
+        this.router.navigate(['game/ingame'], {queryParams: {ingame: true}});
       }
     },1000)
   }
