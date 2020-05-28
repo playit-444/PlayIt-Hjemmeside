@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {UserService} from '../../shared/services/user.service';
 import {LoginFormComponent} from '../../modules/login-form/login-form.component';
 import {SignupFormComponent} from '../../modules/signup-form/signup-form.component';
+import {faChevronDown, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
   dialogRef;
   user: PlayerInfo;
+  faChevronDown = faChevronDown;
+  faSignOutAlt = faSignOutAlt;
 
 
   constructor(
