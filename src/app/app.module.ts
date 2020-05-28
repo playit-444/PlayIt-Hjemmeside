@@ -10,7 +10,7 @@ import {CheckboxComponent} from './shared/modules/checkbox/checkbox.component';
 import {SignupFormComponent} from './modules/signup-form/signup-form.component';
 import {LoginFormComponent} from './modules/login-form/login-form.component';
 import {GameCardComponent} from './modules/game-card/game-card.component';
-import {HomePageComponent} from './modules/home-page/home-page.component';
+import {HomePageComponent} from './modules/main pages/home-page/home-page.component';
 import {CarouselComponent} from './shared/modules/carousel/carousel.component';
 import {GamePageComponent} from './modules/game-page/game-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';

@@ -1,7 +1,7 @@
 import { TermsComponent } from './modules/terms/terms.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {HomePageComponent} from './modules/home-page/home-page.component';
+import {HomePageComponent} from './modules/main pages/home-page/home-page.component';
 import {AuthGuard} from './core/auth/auth.guard';
 
 
