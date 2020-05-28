@@ -23,6 +23,13 @@ import {CookieService} from 'ngx-cookie-service';
 import {AuthInterceptor} from './core/auth/auth.interceptor';
 import {WebSocketService} from './shared/services/web-socket.service';
 import { TermsComponent } from './modules/terms/terms.component';
+import { TableSelectionComponent } from './modules/game-page/table-selection/table-selection.component';
+import { LobbyComponent } from './modules/game-page/lobby/lobby.component';
+import { TableComponent } from './modules/game-page/table-selection/table/table.component';
+import { PlayerComponent } from './modules/game-page/lobby/player/player.component';
+import { GameComponent } from './modules/game-page/game/game.component';
+import { CommonModule } from '@angular/common';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -38,6 +45,11 @@ import { TermsComponent } from './modules/terms/terms.component';
     GamePageComponent,
     TermsComponent,
     GamesPageComponent,
+    TableSelectionComponent,
+    LobbyComponent,
+    TableComponent,
+    PlayerComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +62,9 @@ import { TermsComponent } from './modules/terms/terms.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatDialogModule,
+    CommonModule,
+    FontAwesomeModule,
+    CountdownModule,
   ],
   providers: [
     WebSocketService,
