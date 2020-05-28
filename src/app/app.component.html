@@ -1,4 +1,4 @@
-<div class="container" id="header">
+<div [ngClass]="{'container': ingame === false, 'container-fluid': ingame}" id="header">
   <div class="row">
     <div class="col col-12">
       <!-- Header -->
@@ -6,7 +6,7 @@
     </div>
   </div>
 </div>
-<div class="container" id="site-content">
+<div [ngClass]="{'container': ingame === false, 'container-fluid': ingame}" id="site-content">
   <div class="row">
     <div class="col col-12 p-0" style="margin-top: 56px; min-height: calc(100vh - 354px);">
       <!-- Content -->
@@ -14,7 +14,7 @@
     </div>
   </div>
 </div>
-<div class="container" id="footer">
+<div [ngClass]="{'container': ingame === false, 'container-fluid': ingame}" id="footer">
   <div class="row">
     <div class="col col-12">
       <!-- Footer -->

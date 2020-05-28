@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {GameService} from './shared/services/game.service';
+import { DataSharingService } from './shared/services/dataSharingService';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +9,24 @@ import {GameService} from './shared/services/game.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  ingame = false;
   title = 'PlayIt-Hjemmeside';
 
-  constructor(private gameService: GameService) {
+  constructor(
+    private route: ActivatedRoute,
+    private gameService: GameService,
+    private dataSharingService: DataSharingService
+    ) {
 
-    this.gameService.GetGameTypes()
-      .subscribe(success => {
-          // console.log(success);
-        },
-        err => {
-          // console.log(err);
-        });
+    this.dataSharingService.isIngame.subscribe(value => {
+      this.ingame = value;
+      console.log("############################################ " + this.ingame);
+      console.log("############################################ " + this.ingame);
+      console.log("############################################ " + this.ingame);
+      console.log("############################################ " + this.ingame);
+      console.log("############################################ " + this.ingame);
+    })
+        
   }
 }
 

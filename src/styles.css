@@ -7,7 +7,16 @@
 body {
   background-color: #10004d;
 }
-
+/*
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.col {
+  padding-right: 0;
+  padding-left: 0;
+}
+*/
 .input-group input {
   border-color: #10004d;
 }
