@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from './shared/services/game.service';
-import { DataSharingService } from './shared/services/dataSharingService';
+import {DataSharingService} from './shared/services/dataSharingService';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +16,11 @@ export class AppComponent {
     private route: ActivatedRoute,
     private gameService: GameService,
     private dataSharingService: DataSharingService
-    ) {
+  ) {
 
     this.dataSharingService.isIngame.subscribe(value => {
       this.ingame = value;
     })
-        
   }
 }
 

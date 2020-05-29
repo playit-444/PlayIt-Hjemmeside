@@ -14,7 +14,7 @@ export class WebSocketService {
 
   constructor(private cookieService: CookieService) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
-    this.subject = webSocket('wss://localhost:5001/ws');
+    this.subject = webSocket('wss://ws.444.dk/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
     this.subject.subscribe(

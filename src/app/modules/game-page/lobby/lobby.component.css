@@ -197,3 +197,79 @@ body {
     transform: rotate(405deg);
   }
 }
+
+
+
+/* BTN TWO */
+.btn-idle::before, .btn-idle::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+	height: 100%;
+  bottom: 0;
+	left: 0;
+	z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-idle:hover::after {
+  animation-name: rotatecw;
+  animation-duration: 2s;
+}
+.btn-idle:hover::before {
+  animation-name: rotateccw;
+  animation-duration: 3s;
+}
+.btn-idle:hover::after, .btn-idle:hover::before {
+  left: 96px;
+  width: 64px;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotatecw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes rotateccw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
+}
+
+div[class*=container-button] {
+  text-align: center;
+  width: 100%;
+  height: 33%;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  position: relative;
+  color: white;
+  width: 95%;
+  height: 64px;
+  line-height: 64px;
+  transition: all 0.3s;
+  background-color: forestgreen;
+}
+
+.button span {
+  transition: all 0.3s;
+  transform: scale(1, 1);
+}
+
+.button::before, .button::after {
+  content: '';
+  position: absolute;
+  transition: all 0.3s;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}

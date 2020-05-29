@@ -30,6 +30,7 @@ import { PlayerComponent } from './modules/game-page/lobby/player/player.compone
 import { GameComponent } from './modules/game-page/game/game.component';
 import { CommonModule } from '@angular/common';
 import { CountdownModule } from 'ngx-countdown';
+import { ErrorPageComponent } from './modules/main pages/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CountdownModule } from 'ngx-countdown';
     TableComponent,
     PlayerComponent,
     GameComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
