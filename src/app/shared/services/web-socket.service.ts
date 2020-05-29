@@ -14,11 +14,13 @@ export class WebSocketService {
   private lobbyMessage: BehaviorSubject<LobbyData>;
   private ingameMessage: BehaviorSubject<GameMessage>;
   private lobbyChatMessage: BehaviorSubject<GameMessage>;
+  private tableChatMessage: BehaviorSubject<GameMessage>;
 
   constructor(private cookieService: CookieService) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
     this.lobbyChatMessage = new BehaviorSubject<GameMessage>(null);
-     this.subject = webSocket('wss://ws.444.dk/ws');
+    this.tableChatMessage = new BehaviorSubject<GameMessage>(null);
+    this.subject = webSocket('wss://ws.444.dk/ws');
     // this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
@@ -52,8 +54,12 @@ export class WebSocketService {
           this.ingameMessage.next(msg);
           break;
         }
-        case 'MSG': {
+        case 'MSG|LOBBY': {
           this.lobbyChatMessage.next(msg);
+          break;
+        }
+        case 'MSG|TABLE': {
+          this.tableChatMessage.next(msg);
           break;
         }
         default:
@@ -82,5 +88,11 @@ export class WebSocketService {
     :
     Observable<GameMessage> {
     return this.lobbyChatMessage.asObservable();
+  }
+
+  public GetTableChatMessage()
+    :
+    Observable<GameMessage> {
+    return this.tableChatMessage.asObservable();
   }
 }
