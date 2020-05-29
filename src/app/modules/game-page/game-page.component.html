@@ -4,9 +4,13 @@
             <router-outlet></router-outlet>
         </div>
     </div>
-    <app-chat class="chat-box" [gameName]="game.name" [tableID]="0"></app-chat>
+    <div class="h-100" style="width: calc(30% - 15px)">
+      <div class="chat-header border-bottom">
+        <a class="btn" (click)="showLobby(true)">Lobby</a>
+        <a class="btn" (click)="showLobby(false)">Table</a>
+        <app-chat *ngIf="lobbyChat" class="chat-box" [gameId]="game?.gameTypeId"></app-chat>
+        <app-chat *ngIf="!lobbyChat" class="chat-box" [gameId]="game?.gameTypeId"></app-chat>
+      </div>
+    </div>
 
-    <div *ngFor="let c of chat">{{c?.Args[0]}}</div>
-
-        <input (keyup.enter)="sendMessage($event)">
 </div>

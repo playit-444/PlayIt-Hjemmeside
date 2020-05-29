@@ -14,6 +14,7 @@
 
 .chat-box {
   display: inline-block;
-  width: calc(30% - 15px);
+  width: 90%;
   border-left: 1px solid black;
+  text-align: center;
 }

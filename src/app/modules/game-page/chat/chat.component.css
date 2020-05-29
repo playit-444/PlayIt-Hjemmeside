@@ -17,6 +17,7 @@
   padding: 5px;
   background-color: azure;
   font-size: 14px;
+  text-align: start;
 }
 
 .player-image-chat {
@@ -46,4 +47,9 @@ height: 100%;
 
 .player-chat-message {
   padding: 5px;
+}
+
+.chat-input {
+  width:100%;
+  border: 1px solid;
 }

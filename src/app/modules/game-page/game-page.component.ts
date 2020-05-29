@@ -14,6 +14,7 @@ export class GamePageComponent implements OnInit {
 
   game: Game;
   chat: GameMessage[] = [];
+  lobbyChat: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,9 +36,6 @@ export class GamePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetGame();
-    this.webSocketService.GetLobbyChatMessage().subscribe((value) => {
-      this.chat.push(value);
-    });
   }
 
   GetGame() {
@@ -54,6 +52,10 @@ export class GamePageComponent implements OnInit {
             });
         }
       });
+  }
+
+  showLobby(bool) {
+    this.lobbyChat = bool;
   }
 
   // Send message to all
