@@ -32,7 +32,6 @@ export class LobbyComponent implements OnInit {
     private gameService: GameService
   ) {
     // Check if user change page then leave lobby
-    //TODO add game endpoint
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (!event.url.includes('/game/lobby?')) {
