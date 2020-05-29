@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CookieService} from 'ngx-cookie-service';
 import {BehaviorSubject, Observable} from 'rxjs';
+import { GameMessage } from '../models/gameMessage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class WebSocketService {
 
   private subject: WebSocketSubject<any>;
   private lobbyMessage: BehaviorSubject<LobbyData>;
+  private ingameMessage: BehaviorSubject<GameMessage>;
 
   constructor(private cookieService: CookieService) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
@@ -49,7 +51,10 @@ export class WebSocketService {
   }
 
   public GetLobbyData(): Observable<LobbyData>{
-    console.log('GetLobbyData');
     return this.lobbyMessage.asObservable();
+  }
+
+  public GetSocketMessage(): Observable<GameMessage> {
+    return this.ingameMessage.asObservable();
   }
 }

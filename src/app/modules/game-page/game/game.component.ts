@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { DataSharingService } from 'src/app/shared/services/dataSharingService';
+import {WebSocketService} from '../../../shared/services/web-socket.service';
+import { GameMessage } from 'src/app/shared/models/gameMessage';
 declare const UnityLoader: any;
 
 @Component({
@@ -15,10 +17,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   constructor(
+    private webSocketService: WebSocketService,
     private dataSharingService: DataSharingService
   ) {
     this.dataSharingService.isIngame.next(true);
     this.loadScripts(this.myFirstGameScripts);
+
+    webSocketService.GetSocketMessage().subscribe(value => {
+      this.SendMsgToUnity(value);
+    });
   }
 
   ngOnInit(): void {
@@ -50,11 +57,10 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public HandleUnityMessage(element) {
-    var message = element.target.attributes['data-message'].value
+    var message: GameMessage = element.target.attributes['data-message'].value;
 
     // Do stuff with message
-    console.log(message);
-    window.alert(message);
+    this.webSocketService.sendMessage(message);
   }
 
 }
