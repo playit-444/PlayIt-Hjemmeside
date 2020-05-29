@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'games', component: GamesPageComponent},
   {
-    path: 'game', component: GamePageComponent, children: [
+    path: 'game', component: GamePageComponent, canActivate: [AuthGuard], children: [
       {
         path: '', redirectTo: 'table-selection', pathMatch: 'full'
       },
