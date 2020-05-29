@@ -5,4 +5,8 @@
         </div>
     </div>
     <app-chat class="chat-box" [gameName]="game.name" [tableID]="0"></app-chat>
+
+    <div *ngFor="let c of chat">{{c?.Args[0]}}</div>
+
+        <input (keyup.enter)="sendMessage($event)">
 </div>
