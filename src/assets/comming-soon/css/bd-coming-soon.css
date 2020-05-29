@@ -1,10 +1,10 @@
-.body {
+body {
   font-family: 'Karla', sans-serif;
   background-color: #4c0459;
   color: #ffffff;
-  padding: 75px 0; }
+  padding-bottom: 75px; }
   @media (max-width: 767px) {
-    .body {
+    body {
       padding-bottom: 30px; } }
 
 @media (max-width: 991px) {

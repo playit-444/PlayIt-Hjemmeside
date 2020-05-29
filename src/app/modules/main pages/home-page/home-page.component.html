@@ -8,6 +8,8 @@
     <div class="content-container">
       <ng-template ngFor let-game [ngForOf]="games">
         <app-game-card [game]="game"></app-game-card>
+
+        <!--<div *ngIf="game.gameTypeId === ">        </div>-->
       </ng-template>
     </div>
   </div>

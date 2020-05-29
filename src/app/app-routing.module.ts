@@ -1,3 +1,6 @@
+import { ErrorPageComponent } from './modules/main pages/error-page/error-page.component';
+import { AwardsPageComponent } from './modules/main pages/awards-page/awards-page.component';
+import { TournamentsPageComponent } from './modules/main pages/tournaments-page/tournaments-page.component';
 import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
 import { TermsComponent } from './modules/terms/terms.component';
 import {NgModule} from '@angular/core';
@@ -13,6 +16,8 @@ import { GameComponent } from './modules/game-page/game/game.component';
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'games', component: GamesPageComponent},
+  {path: 'tournaments', component: TournamentsPageComponent},
+  {path: 'awards', component: AwardsPageComponent},
   {
     path: 'game', component: GamePageComponent, canActivate: [AuthGuard], children: [
       {
@@ -29,7 +34,8 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'terms', component: TermsComponent}
+  {path: 'terms', component: TermsComponent},
+  {path: '**', component: ErrorPageComponent}
 ];
 
   /*

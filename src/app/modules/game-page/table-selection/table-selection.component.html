@@ -1,4 +1,7 @@
 <div>
+  <div class="text-center pb-3 pt-3">
+    <h3>Vælg et bord</h3>
+  </div>
   <ng-template ngFor let-table let-i="index" [ngForOf]="tables">
     <app-table [game]="game" [table]="table" [tableID]="i+1"></app-table>
   </ng-template>

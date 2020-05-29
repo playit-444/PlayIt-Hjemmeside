@@ -17,6 +17,7 @@ export class LobbyComponent implements OnInit {
   timeLeft = 5;
   interval: any;
   timerStarted = false;
+  count: number;
 
   tableId: any;
   game: Game;
@@ -70,19 +71,20 @@ export class LobbyComponent implements OnInit {
 
         if(this.players.length > 0)
         {
-          let count = 0;
+         this.count = 0;
           this.players.forEach(player => {
             if(player.Ready)
-              count++;
+            this.count++;
           });
 
-          if(count === this.game.maxPlayers)
+          if(this.count === this.game.maxPlayers)
           {
-            // This.StartGame();
             if(this.timerStarted)
               this.stopTimer();
+
+              this.router.navigate(['game/ingame']);
           }
-          else if(count >= this.game.minimumPlayers) {
+          else if(this.count >= this.game.minimumPlayers) {
             this.StartTimer();
           }
           else {
