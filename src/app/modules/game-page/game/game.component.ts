@@ -25,7 +25,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.myFirstGameInstance = UnityLoader.instantiate("gameContainer", "assets/games/MyFirstGame/Build/MyFirstGame.json");
+    this.myFirstGameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/MyFirstGame/Build/MyFirstGame.json');
   }
 
   ngOnDestroy(): void {

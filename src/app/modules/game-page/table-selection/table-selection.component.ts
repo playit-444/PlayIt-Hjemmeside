@@ -15,7 +15,6 @@ export class TableSelectionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    private webSocketService: WebSocketService,
   ) {
   }
 

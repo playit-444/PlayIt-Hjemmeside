@@ -1,4 +1,4 @@
-import { LobbyData } from './../models/lobbyData';
+import {LobbyData} from '../models/lobbyData';
 import {Injectable} from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CookieService} from 'ngx-cookie-service';
@@ -14,7 +14,8 @@ export class WebSocketService {
 
   constructor(private cookieService: CookieService) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
-    this.subject = webSocket('wss://ws.444.dk/ws');
+    // this.subject = webSocket('wss://ws.444.dk/ws');
+    this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
     this.subject.subscribe(
@@ -41,18 +42,27 @@ export class WebSocketService {
       } else {
         this.cookieService.delete('session-token', '/');
       }
-    } else if (msg as LobbyData) {
+    } else if (msg?.) {
       console.log('recieved message: ', msg);
       this.lobbyMessage.next(msg);
-    }
-    else {
+    } else {
       console.log('h');
       console.log();
       console.log('h');
     }
   }
 
-  public GetLobbyData(): Observable<LobbyData>{
+  /*
+    Players?: PlayerData[];
+  GameType: number;
+  RoomID: string;
+  Name: string;
+  MaxUsers: number;
+  CurrentUsers: number;
+  PrivateRoom: boolean;
+   */
+
+  public GetLobbyData(): Observable<LobbyData> {
     console.log('GetLobbyData');
     return this.lobbyMessage.asObservable();
   }
