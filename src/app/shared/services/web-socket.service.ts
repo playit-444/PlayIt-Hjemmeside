@@ -42,13 +42,9 @@ export class WebSocketService {
         this.cookieService.delete('session-token', '/');
       }
     } else if (msg as LobbyData) {
-      console.log('recieved message: ', msg);
       this.lobbyMessage.next(msg);
     }
     else {
-      console.log('h');
-      console.log();
-      console.log('h');
     }
   }
 
