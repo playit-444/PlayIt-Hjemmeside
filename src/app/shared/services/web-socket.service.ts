@@ -37,7 +37,7 @@ export class WebSocketService {
 
   readMessage(msg: any) {
     // Authentication check
-    console.log('Message!: ', msg);
+    /*console.log('Message!: ', msg);
     if (msg?.Authentication) {
       if (msg.Authentication === 'Success') {
       } else {
@@ -47,7 +47,29 @@ export class WebSocketService {
       this.lobbyMessage.next(msg);
     }
     else {
-    }
+    }*/
+
+    switch(msg) {
+      case msg?.Authentication: {
+        if (msg.Authentication === 'Success') {
+        } else {
+          this.cookieService.delete('session-token', '/');
+        }
+         break;
+      }
+      case msg as LobbyData: {
+        this.lobbyMessage.next(msg);
+         break;
+      }
+      case msg as GameMessage: {
+        this.ingameMessage.next(msg);
+        break;
+      }
+      default: {
+         console.log('Someone Fucked Up...')
+         break;
+      }
+   }
   }
 
   public GetLobbyData(): Observable<LobbyData>{
