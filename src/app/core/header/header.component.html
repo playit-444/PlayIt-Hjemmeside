@@ -26,7 +26,7 @@
               <img *ngIf="user !== undefined" [src]="user.avatarFilePath"/>
             </div>
           </div>
-          <div class="name">{{user.userName}}</div>
+          <div class="name"><span *ngIf="user !== undefined">{{user.userName}}</span></div>
           <div class="dropdown-arrow">
             <fa-icon [icon]="faChevronDown"></fa-icon>
           </div>
