@@ -114,7 +114,6 @@ export class LobbyComponent implements OnInit {
   }
 
   StartTimer() {
-    console.log('timer started!')
     this.timerStarted = true;
     this.interval = setInterval(() => {
       if(this.timeLeft > 0) {

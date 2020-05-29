@@ -27,7 +27,6 @@ export class WebSocketService {
   }
 
   sendMessage(msg: any) {
-    console.log('Sending message: ', msg)
     this.subject.next(msg);
   }
 
