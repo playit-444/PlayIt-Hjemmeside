@@ -12,7 +12,7 @@ import {GameService} from '../../../shared/services/game.service';
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
-  games: Array<Game> = [];
+  games: Game[] = [];
 
   constructor(
     private modalService: NgbModal,
