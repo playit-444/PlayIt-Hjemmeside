@@ -13,15 +13,29 @@
           <a class="nav-link" routerLink="/awards" href="javascript:void(0);">Præmier</a>
         </li>
       </ul>
-      <div>
-        <a *ngIf="!cookieService.check('session-token')" href="javascript:void(0);" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="login()">Log ind</a>
-        <a *ngIf="!cookieService.check('session-token')" href="javascript:void(0);" class="btn btn-success text-uppercase ml-2" (click)="create()">Opret dig</a>
-        <a *ngIf="cookieService.check('session-token')" href="javascript:void(0);" class="btn btn-outline-danger text-uppercase" (click)="logout()">Log Ud</a>
+    </div>
+
+    <div *ngIf="!cookieService.check('session-token')">
+      <a href="javascript:void(0);" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="login()">Log ind</a>
+      <a href="javascript:void(0);" class="btn btn-success text-uppercase ml-2" (click)="create()">Opret dig</a>
+    </div>
+    <div *ngIf="cookieService.check('session-token')" ngbDropdown class="d-inline-block">
+      <div class="userbox" id="dropdownBasic1" ngbDropdownToggle>
+          <div class="avatar">
+            <div class="image">
+              <img [src]="user.avatarFilePath"/>
+            </div>
+          </div>
+          <div class="name">Mikkel Rasmussen</div>
+          <div class="dropdown-arrow">
+            <fa-icon [icon]="faChevronDown"></fa-icon>
+          </div>
       </div>
-      <div *ngIf="cookieService.check('session-token') && user !== undefined" class="user-image-div">
-        <div>
-          <img [src]="user.avatarFilePath"/>
-        </div>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <div class="dropdown-divider"></div>
+        <a ngbDropdownItem href="javascript:void(0);" (click)="logout()">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon> Log Ud
+        </a>
       </div>
     </div>
   </nav>
