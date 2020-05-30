@@ -14,6 +14,7 @@ export class GamePageComponent implements OnInit {
   game: Game;
   lobbyChat = true;
   lobbyId = '';
+  gameId = '';
 
 
   constructor(
@@ -29,14 +30,14 @@ export class GamePageComponent implements OnInit {
           webSocketService.sendMessage(this.game.gameTypeId + '|LEAVE');
           subscription.unsubscribe();
         }
-      }
-    });
-
-    const subscriptionLobbyChat = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (!event.url.includes('/tableID')) {
-          const splitted = event.url.split('tableID=');
-          this.lobbyId = splitted[1] + '-TABLECHAT';
+        if (event.url.includes('gameID=')) {
+          this.gameId = event.url.split('gameID=')[1];
+          if (this.gameId.includes('&table')) {
+            this.gameId = this.gameId.split('&tableID')[0];
+          }
+        }
+        if (event.url.includes('tableID=')) {
+          this.lobbyId = 'false';
         }
       }
     });

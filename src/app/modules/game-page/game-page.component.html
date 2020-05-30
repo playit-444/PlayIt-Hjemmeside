@@ -7,10 +7,13 @@
   <div class="h-100" style="width: calc(30% - 15px)">
     <div class="chat-header border-bottom">
       <a class="btn" (click)="showLobby(true)">Lobby</a>
-      <a class="btn" [class.disabled]="lobbyId ? null: true" (click)="showLobby(false)">Table</a>
-      <app-chat *ngIf="lobbyChat && game?.gameTypeId !== undefined && game?.gameTypeId !== null" class="chat-box"
-                [gameId]="game?.gameTypeId"></app-chat>
-      <app-chat *ngIf="!lobbyChat" class="chat-box" [gameId]="lobbyId"></app-chat>
+      <a class="btn" [class.disabled]="lobbyId ? lobbyId == null: true" (click)="showLobby(false)">Table</a>
+      <div [hidden]="!lobbyChat">
+        <app-chat class="chat-box" [gameId]="gameId"></app-chat>
+      </div>
+      <div [hidden]="lobbyChat">
+        <app-chat class="chat-box" [gameId]="'a'"></app-chat>
+      </div>
     </div>
   </div>
 </div>
