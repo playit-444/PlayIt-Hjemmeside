@@ -1,8 +1,8 @@
-import { GameService } from './../../../shared/services/game.service';
-import { Game } from './../../../shared/models/game';
-import { UserService } from './../../../shared/services/user.service';
-import { PlayerData } from './../../../shared/models/playerData';
-import { LobbyData } from './../../../shared/models/lobbyData';
+import {GameService} from '../../../shared/services/game.service';
+import {Game} from '../../../shared/models/game';
+import {UserService} from '../../../shared/services/user.service';
+import {PlayerData} from '../../../shared/models/playerData';
+import {LobbyData} from '../../../shared/models/lobbyData';
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
@@ -34,14 +34,12 @@ export class LobbyComponent implements OnInit {
     // Check if user change page then leave lobby
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (!event.url.includes('/game/lobby?')) {
+        if (!event.url.includes('/game/lobby?') || (!event.url.includes('/game/ingame?'))) {
           webSocketService.sendMessage(this.tableId + '|LEAVE');
           subscription.unsubscribe();
         }
       }
     });
-
-
   }
 
   ngOnInit(): void {
@@ -56,43 +54,38 @@ export class LobbyComponent implements OnInit {
 
   getGame(gameID: number) {
     return this.gameService.GetGameType(gameID)
-    .subscribe(success => {
-      this.game = success;
-      this.getLobbyData();
-    });
+      .subscribe(success => {
+        this.game = success;
+        this.getLobbyData();
+      });
   }
 
   getLobbyData() {
     this.webSocketService.GetLobbyData().subscribe((value) => {
-      if(value != null) {
+      if (value != null) {
         this.lobby = value;
         this.players = value.Players;
 
-        if(this.players.length > 0)
-        {
-         this.count = 0;
+        if (this.players.length > 0) {
+          this.count = 0;
           this.players.forEach(player => {
-            if(player.Ready)
-            this.count++;
+            if (player.Ready)
+              this.count++;
           });
 
-          if(this.count === this.game.maxPlayers)
-          {
-            if(this.timerStarted)
+          if (this.count === this.game.maxPlayers) {
+            if (this.timerStarted)
               this.stopTimer();
-
-              this.router.navigate(['game/ingame']);
-          }
-          else if(this.count >= this.game.minimumPlayers) {
+            this.router.navigate(['game/ingame'], {queryParamsHandling: 'merge'});
+          } else if (this.count >= this.game.minimumPlayers) {
             this.StartTimer();
-          }
-          else {
+          } else {
             if (this.timerStarted)
               this.stopTimer();
           }
         }
 
-        if(this.players.length < this.lobby.MaxUsers)
+        if (this.players.length < this.lobby.MaxUsers)
           this.fillEmptySlots();
 
       }
@@ -102,8 +95,7 @@ export class LobbyComponent implements OnInit {
   fillEmptySlots() {
     const emptyPlayer: PlayerData = {PlayerId: 0, Name: 'empty', Ready: false};
 
-    for(let i = this.players.length; i < this.lobby.MaxUsers; i++)
-    {
+    for (let i = this.players.length; i < this.lobby.MaxUsers; i++) {
       this.players.push(emptyPlayer);
     }
   }
@@ -115,13 +107,13 @@ export class LobbyComponent implements OnInit {
   StartTimer() {
     this.timerStarted = true;
     this.interval = setInterval(() => {
-      if(this.timeLeft > 0) {
+      if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.stopTimer();
-        this.router.navigate(['game/ingame']);
+        this.router.navigate(['game/ingame'], {queryParamsHandling: 'merge'});
       }
-    },1000)
+    }, 1000)
   }
 
   stopTimer() {

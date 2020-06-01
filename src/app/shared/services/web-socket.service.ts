@@ -34,6 +34,7 @@ export class WebSocketService {
   }
 
   sendMessage(msg: any) {
+    console.log(msg);
     this.subject.next(msg);
   }
 
@@ -50,7 +51,9 @@ export class WebSocketService {
       }
     } else if (msg?.GameType && msg?.RoomID) {
       this.lobbyMessage.next(msg);
-    } else if (msg?.Access == false) {
+    } else if (msg?.Access === false && msg?.PlayerId) {
+      console.log(msg.Access)
+      console.log(msg?.PlayerId)
       this.router.navigateByUrl('');
     } else if (msg?.Action) {
       switch (msg.Action) {
