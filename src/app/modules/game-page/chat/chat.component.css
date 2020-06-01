@@ -45,18 +45,19 @@ height: 100%;
 }
 
 .chat-input {
-  position: absolute;
   width: calc(100% - 30px);
-  bottom: 8px;
-  left: 15px;
   border: none;
   border-bottom: 1px solid;
   border-color: rgba(0,0,255,0.25);
   background-color: azure;
 }
 
+.chat-input-div {
+  display: block;
+  padding-top: 10px;
+}
 .vh-70 {
-  position: relative;
+  display: block;
   min-height: 70vh;
   overflow-y: scroll;
   padding: 15px 15px 0 15px;

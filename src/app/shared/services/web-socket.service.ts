@@ -23,7 +23,7 @@ export class WebSocketService {
     this.lobbyChatMessage = new BehaviorSubject<GameMessage>(null);
     this.tableChatMessage = new BehaviorSubject<GameMessage>(null);
     this.subject = webSocket('wss://ws.444.dk/ws');
-    //this.subject = webSocket('wss://localhost:5001/ws');
+    // this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
     this.subject.subscribe(
@@ -50,7 +50,7 @@ export class WebSocketService {
       }
     } else if (msg?.GameType && msg?.RoomID) {
       this.lobbyMessage.next(msg);
-    } else if (msg?.Access == false) {
+    } else if (msg?.Access === false) {
       this.router.navigateByUrl('');
     } else if (msg?.Action) {
       switch (msg.Action) {
