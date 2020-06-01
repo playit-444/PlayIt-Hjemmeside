@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { DataSharingService } from 'src/app/shared/services/dataSharingService';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import {DataSharingService} from 'src/app/shared/services/dataSharingService';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {GameMessage} from 'src/app/shared/models/gameMessage';
 import {ActivatedRoute} from '@angular/router';
@@ -12,12 +12,6 @@ declare const UnityLoader: any;
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
-  private gameInstance;
-  gameScripts = [
-    '../../assets/games/Ludo/Build/UnityLoader.js'
-  ];
-
-  tableId: any;
 
   constructor(
     private webSocketService: WebSocketService,
@@ -26,12 +20,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     this.dataSharingService.isIngame.next(true);
     this.loadScripts(this.gameScripts);
-
-    webSocketService.GetSocketMessage().subscribe(value => {
-      console.log(value);
-      this.SendMsgToUnity(value);
-    });
   }
+
+  static subscription;
+  private gameInstance;
+  gameScripts = [
+    '../../assets/games/Ludo/Build/UnityLoader.js'
+  ];
+
+  tableId: any;
 
   ngOnInit(): void {
     this.route
@@ -44,7 +41,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.gameInstance = UnityLoader.instantiate("gameContainer", "assets/games/Ludo/Build/Ludo.json");
+    this.gameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/Ludo/Build/Ludo.json');
+    if (!GameComponent.subscription)
+      GameComponent.subscription = this.webSocketService.GetSocketMessage().subscribe(value => {
+        console.log(value);
+        this.SendMsgToUnity(value);
+      });
   }
 
   ngOnDestroy(): void {
@@ -65,11 +67,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public SendMsgToUnity(message) {
-    this.gameInstance.SendMessage("JSUnityBridge", "HandleMessageFromJS", message);
+    this.gameInstance.SendMessage('GameManager', 'HandleMessageFromJS', message);
   }
 
   public HandleUnityMessage(element) {
-    var message: GameMessage = element.target.attributes['data-message'].value;
+    const message: GameMessage = element.target.attributes['data-message'].value;
     this.webSocketService.sendMessage(message);
   }
 
