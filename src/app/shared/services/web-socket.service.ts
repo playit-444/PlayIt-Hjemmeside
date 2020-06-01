@@ -4,6 +4,7 @@ import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CookieService} from 'ngx-cookie-service';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {GameMessage} from '../models/gameMessage';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class WebSocketService {
   private lobbyChatMessage: BehaviorSubject<GameMessage>;
   private tableChatMessage: BehaviorSubject<GameMessage>;
 
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService, private router: Router) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
     this.ingameMessage = new BehaviorSubject<GameMessage>(null);
     this.lobbyChatMessage = new BehaviorSubject<GameMessage>(null);
@@ -49,6 +50,8 @@ export class WebSocketService {
       }
     } else if (msg?.GameType && msg?.RoomID) {
       this.lobbyMessage.next(msg);
+    } else if (msg?.Access == false) {
+      this.router.navigateByUrl('');
     } else if (msg?.Action) {
       switch (msg.Action) {
         case 'ROLL' || 'MOVE' || 'INIT': {
@@ -68,8 +71,8 @@ export class WebSocketService {
           console.log(msg);
           break;
       }
-
-
+    } else {
+      console.log(msg);
     }
   }
 

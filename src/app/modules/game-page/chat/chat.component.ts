@@ -1,5 +1,5 @@
 import {WebSocketService} from '../../../shared/services/web-socket.service';
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked} from '@angular/core';
 import {GameMessage} from 'src/app/shared/models/gameMessage';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
@@ -8,20 +8,20 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-
-  constructor(private webSocketService: WebSocketService, private router: Router, private route: ActivatedRoute
-  ) {
-  }
-
+export class ChatComponent implements OnInit, AfterViewChecked {
   static subscribeLobby;
   static subscribeTable;
+  @ViewChild('scrollChat') private chatScrollContainer: ElementRef;
+
+  constructor(private webSocketService: WebSocketService, private router: Router, private route: ActivatedRoute
+  ) {}
 
   @Input() gameId: string;
   chat: GameMessage[] = [];
   gameMessageId: string;
 
   ngOnInit(): void {
+    this.scrollToBottom();
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (!event.url.includes('/lobby?') && !event.url.includes('game/ingame')) {
@@ -63,6 +63,16 @@ export class ChatComponent implements OnInit {
       }
     });
   }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+          this.chatScrollContainer.nativeElement.scrollTop = this.chatScrollContainer.nativeElement.scrollHeight;
+      } catch(err) { }
+    }
 
 // Send message to all
   sendMessage(event: any) {

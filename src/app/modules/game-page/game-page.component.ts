@@ -10,7 +10,6 @@ import {WebSocketService} from '../../shared/services/web-socket.service';
   styleUrls: ['./game-page.component.css']
 })
 export class GamePageComponent implements OnInit {
-
   game: Game;
   lobbyChat = true;
   lobbyId = '';

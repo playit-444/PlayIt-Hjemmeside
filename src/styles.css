@@ -96,5 +96,6 @@ body {
 }
 
 .active {
-  background-color: forestgreen;
+  border-bottom: none !important;
+  background-color: azure !important;
 }
