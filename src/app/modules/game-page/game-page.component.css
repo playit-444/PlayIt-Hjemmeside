@@ -24,7 +24,8 @@
 }
 
 .chat-tab {
-  width: calc(50% - 1px);
+  width: calc(50%);
   text-align: left;
   border: 1px solid;
+  border-radius: 0;
 }

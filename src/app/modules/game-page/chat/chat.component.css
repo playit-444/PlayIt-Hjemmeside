@@ -42,10 +42,6 @@ height: 100%;
   border-bottom: 1px solid darkgray;
 }
 
-.player-chat-message {
-  padding: 5px;
-}
-
 .chat-input {
   width:100%;
   border: 1px solid;

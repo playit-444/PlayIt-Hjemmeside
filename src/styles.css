@@ -94,3 +94,7 @@ body {
 .mat-dialog-container {
   background-color: #F5F5F5;
 }
+
+.active {
+  background-color: forestgreen;
+}

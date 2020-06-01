@@ -1,15 +1,16 @@
 
 <div class="vh-80">
 <div *ngFor="let c of chat" class="chat-message">
-  <div class="player-info">
+  <!--div class="player-info">
     <div class="player-image-chat">
       <img src="https://content.api.news/v3/images/bin/a6923adbc7bece73803221613f410782"/>
     </div>
     <div class="player-chat-name">
       <span>Greta Thunberg</span>
     </div>
-  </div>
+  </div-->
   <div class="player-chat-message">
+    <span>{{c?.Args[1]}}: </span>
     <span>{{c?.Args[0]}}</span>
   </div>
 </div>
