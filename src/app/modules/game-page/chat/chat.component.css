@@ -11,13 +11,10 @@
 }
 
 .chat-message{
-  border: 1px solid black;
-  border-radius: 10px;
-  width: 100%;
   padding: 5px;
-  background-color: azure;
-  font-size: 14px;
-  text-align: start;
+    background-color: azure;
+    font-size: 14px;
+    text-align: start;
 }
 
 .player-image-chat {
