@@ -1,7 +1,6 @@
 .chat-container {
   height: calc(100% - 40px);
   padding: 10px;
-  overflow-y: scroll;
 }
 
 .chat-header {
@@ -15,6 +14,9 @@
     background-color: azure;
     font-size: 14px;
     text-align: start;
+    border-bottom: 1px solid;
+    border-color: rgba(0,0,255,0.25);
+    word-wrap: break-word;
 }
 
 .player-image-chat {
@@ -43,10 +45,31 @@ height: 100%;
 }
 
 .chat-input {
-  width:100%;
-  border: 1px solid;
+  position: absolute;
+  width: calc(100% - 30px);
+  bottom: 8px;
+  left: 15px;
+  border: none;
+  border-bottom: 1px solid;
+  border-color: rgba(0,0,255,0.25);
+  background-color: azure;
 }
 
-.vh-80 {
-  min-height: 80vh;
+.vh-70 {
+  position: relative;
+  min-height: 70vh;
+  overflow-y: scroll;
+  padding: 15px 15px 0 15px;
+  max-height: 70vh;
+  border-bottom: 1px solid grey;
 }
+.vh-70::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-body {
+  width: 100%;
+  position: relative;
+  height: 75vh;
+}
+
