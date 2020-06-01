@@ -14,24 +14,25 @@ export class ChatComponent implements OnInit {
   ) {
   }
 
+  static subscribeLobby;
+  static subscribeTable;
+
   @Input() gameId: string;
   chat: GameMessage[] = [];
   gameMessageId: string;
-  subscribeLobby;
-  subscribeTable;
 
   ngOnInit(): void {
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (!event.url.includes('/lobby?') && !event.url.includes('game/ingame')) {
-          if (this.subscribeLobby) {
-            this.subscribeLobby.unsubscribe();
+          if (ChatComponent.subscribeLobby) {
+            ChatComponent.subscribeLobby.unsubscribe();
             subscription.unsubscribe();
           }
         }
         if (!event.url.includes('/game/')) {
-          if (this.subscribeTable)
-            this.subscribeTable.unsubscribe();
+          if (ChatComponent.subscribeTable)
+            ChatComponent.subscribeTable.unsubscribe();
         }
       }
     });
@@ -41,10 +42,12 @@ export class ChatComponent implements OnInit {
         if (Number(this.gameId)) {
           this.gameMessageId = this.gameId + '-LOBBYCHAT';
           this.webSocketService.sendMessage(this.gameMessageId + '|JOIN');
-          this.subscribeLobby = this.webSocketService.GetLobbyChatMessage().subscribe((value) => {
-            if (value !== null)
-              this.chat.push(value);
-          });
+          if (!ChatComponent.subscribeLobby) {
+            ChatComponent.subscribeLobby = this.webSocketService.GetLobbyChatMessage().subscribe((value) => {
+              if (value !== null)
+                this.chat.push(value);
+            });
+          }
         }
       }
 
@@ -52,7 +55,7 @@ export class ChatComponent implements OnInit {
         if (!Number(this.gameId)) {
           this.gameMessageId = queryParams.tableID + '-TABLECHAT';
           this.webSocketService.sendMessage(this.gameMessageId + '|JOIN');
-          this.subscribeTable = this.webSocketService.GetTableChatMessage().subscribe((value) => {
+          ChatComponent.subscribeTable = this.webSocketService.GetTableChatMessage().subscribe((value) => {
             if (value !== null)
               this.chat.push(value);
           });
