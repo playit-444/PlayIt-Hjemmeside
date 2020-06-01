@@ -6,7 +6,7 @@
   </div>
   <div class="h-100 border-left chat-comp">
     <div class="chat-header border-bottom">
-      <a class="btn chat-tab" [class.active]="lobbyChat ? true: false" (click)="showLobby(true)">Lobby</a>
+      <a class="btn chat-tab" [class.active]="lobbyChat ? true: false" [class.only-lobby]="lobbyId ? lobbyId == null: true" (click)="showLobby(true)">Lobby</a>
       <a class="btn chat-tab" [class.active]="lobbyChat ? false: true" [class.disabled]="lobbyId ? lobbyId == null: true" (click)="showLobby(false)">Table</a>
       <div [hidden]="!lobbyChat">
         <app-chat class="chat-box" [gameId]="gameId"></app-chat>
