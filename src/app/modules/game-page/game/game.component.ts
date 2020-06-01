@@ -1,5 +1,5 @@
-import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
-import {DataSharingService} from 'src/app/shared/services/dataSharingService';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { DataSharingService } from 'src/app/shared/services/dataSharingService';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {GameMessage} from 'src/app/shared/models/gameMessage';
 import {ActivatedRoute} from '@angular/router';
@@ -12,10 +12,9 @@ declare const UnityLoader: any;
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
-  private myFirstGameInstance;
-  myFirstGameScripts = [
-    '../../assets/games/MyFirstGame/TemplateData/UnityProgress.js',
-    '../../assets/games/MyFirstGame/Build/UnityLoader.js'
+  private gameInstance;
+  gameScripts = [
+    '../../assets/games/Ludo/Build/UnityLoader.js'
   ];
 
   tableId: any;
@@ -26,7 +25,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
   ) {
     this.dataSharingService.isIngame.next(true);
-    this.loadScripts(this.myFirstGameScripts);
+    this.loadScripts(this.gameScripts);
 
     webSocketService.GetSocketMessage().subscribe(value => {
       console.log(value);
@@ -45,7 +44,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.myFirstGameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/MyFirstGame/Build/MyFirstGame.json');
+    this.gameInstance = UnityLoader.instantiate("gameContainer", "assets/games/Ludo/Build/Ludo.json");
   }
 
   ngOnDestroy(): void {
@@ -62,18 +61,15 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   EnableFullscreen() {
-    this.myFirstGameInstance.SetFullscreen(1);
+    this.gameInstance.SetFullscreen(1);
   }
 
   public SendMsgToUnity(message) {
-    if (this.myFirstGameInstance)
-      this.myFirstGameInstance.SendMessage('JSUnityBridge', 'HandleMessageFromJS', message);
+    this.gameInstance.SendMessage("JSUnityBridge", "HandleMessageFromJS", message);
   }
 
   public HandleUnityMessage(element) {
-    const message: GameMessage = element.target.attributes['data-message'].value;
-
-    // Do stuff with message
+    var message: GameMessage = element.target.attributes['data-message'].value;
     this.webSocketService.sendMessage(message);
   }
 

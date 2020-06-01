@@ -22,8 +22,8 @@ export class WebSocketService {
     this.ingameMessage = new BehaviorSubject<GameMessage>(null);
     this.lobbyChatMessage = new BehaviorSubject<GameMessage>(null);
     this.tableChatMessage = new BehaviorSubject<GameMessage>(null);
-    // this.subject = webSocket('wss://ws.444.dk/ws');
-    this.subject = webSocket('wss://localhost:5001/ws');
+    this.subject = webSocket('wss://ws.444.dk/ws');
+    // this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
     this.subject.subscribe(
