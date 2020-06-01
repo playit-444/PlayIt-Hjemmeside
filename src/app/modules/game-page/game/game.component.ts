@@ -52,12 +52,14 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public SendMsgToUnity(message) {
-    this.gameInstance.SendMessage("JSUnityBridge", "HandleMessageFromJS", message);
+    this.gameInstance.SendMessage("GameManager", "HandleMessageFromJS", message);
+    console.log("JS: " + message);
   }
 
   public HandleUnityMessage(element) {
     var message: GameMessage = element.target.attributes['data-message'].value;
     this.webSocketService.sendMessage(message);
+    console.log("U3D: " + message);
   }
 
 }

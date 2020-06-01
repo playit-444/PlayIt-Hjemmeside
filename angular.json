@@ -31,8 +31,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "src/assets/Games/MyFirstGame/TemplateData/UnityProgress.js",
-              "src/assets/Games/MyFirstGame/Build/UnityLoader.js"
+              "src/assets/Games/Ludo/Build/UnityLoader.js"
             ]
           },
           "configurations": {
