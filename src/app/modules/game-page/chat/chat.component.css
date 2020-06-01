@@ -1,0 +1,52 @@
+.chat-container {
+  height: calc(100% - 40px);
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.chat-header {
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.chat-message{
+  padding: 5px;
+    background-color: azure;
+    font-size: 14px;
+    text-align: start;
+}
+
+.player-image-chat {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.player-image-chat img{
+object-fit: cover;
+width: 100%;
+height: 100%;
+}
+
+.player-chat-name {
+  display: inline-block;
+  padding-left: 10px;
+  max-width: 85%;
+  overflow: auto;
+}
+
+.player-info {
+  display: block;
+  border-bottom: 1px solid darkgray;
+}
+
+.chat-input {
+  width:100%;
+  border: 1px solid;
+}
+
+.vh-80 {
+  min-height: 80vh;
+}

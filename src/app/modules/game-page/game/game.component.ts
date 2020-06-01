@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { DataSharingService } from 'src/app/shared/services/dataSharingService';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import {DataSharingService} from 'src/app/shared/services/dataSharingService';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
-import { GameMessage } from 'src/app/shared/models/gameMessage';
+import {GameMessage} from 'src/app/shared/models/gameMessage';
+
 declare const UnityLoader: any;
 
 @Component({
@@ -32,7 +33,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.myFirstGameInstance = UnityLoader.instantiate("gameContainer", "assets/games/MyFirstGame/Build/MyFirstGame.json");
+    this.myFirstGameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/MyFirstGame/Build/MyFirstGame.json');
   }
 
   ngOnDestroy(): void {
@@ -53,11 +54,12 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public SendMsgToUnity(message) {
-    this.myFirstGameInstance.SendMessage("JSUnityBridge", "HandleMessageFromJS", message);
+    if (this.myFirstGameInstance)
+      this.myFirstGameInstance.SendMessage('JSUnityBridge', 'HandleMessageFromJS', message);
   }
 
   public HandleUnityMessage(element) {
-    var message: GameMessage = element.target.attributes['data-message'].value;
+    const message: GameMessage = element.target.attributes['data-message'].value;
 
     // Do stuff with message
     this.webSocketService.sendMessage(message);

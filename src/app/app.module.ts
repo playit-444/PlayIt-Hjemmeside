@@ -31,6 +31,7 @@ import { GameComponent } from './modules/game-page/game/game.component';
 import { CommonModule } from '@angular/common';
 import { CountdownModule } from 'ngx-countdown';
 import { ErrorPageComponent } from './modules/main pages/error-page/error-page.component';
+import { ChatComponent } from './modules/game-page/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ErrorPageComponent } from './modules/main pages/error-page/error-page.c
     PlayerComponent,
     GameComponent,
     ErrorPageComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

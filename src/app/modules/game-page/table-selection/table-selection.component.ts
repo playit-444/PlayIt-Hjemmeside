@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {GameService} from '../../../shared/services/game.service';
 import {Game} from '../../../shared/models/game';
 import {Table} from '../../../shared/models/table';
-import {WebSocketService} from '../../../shared/services/web-socket.service';
 
 @Component({
   selector: 'app-table-selection',
@@ -15,7 +14,6 @@ export class TableSelectionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    private webSocketService: WebSocketService,
   ) {
   }
 
