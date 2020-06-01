@@ -29,6 +29,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadScripts(this.myFirstGameScripts);
 
     webSocketService.GetSocketMessage().subscribe(value => {
+      console.log(value);
       this.SendMsgToUnity(value);
     });
   }
