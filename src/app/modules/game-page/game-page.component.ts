@@ -3,7 +3,6 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Game} from '../../shared/models/game';
 import {GameService} from '../../shared/services/game.service';
 import {WebSocketService} from '../../shared/services/web-socket.service';
-import {GameMessage} from '../../shared/models/gameMessage';
 
 @Component({
   selector: 'app-game-page',
@@ -13,8 +12,10 @@ import {GameMessage} from '../../shared/models/gameMessage';
 export class GamePageComponent implements OnInit {
 
   game: Game;
-  chat: GameMessage[] = [];
-  lobbyChat: boolean;
+  lobbyChat = true;
+  lobbyId = '';
+  gameId = '';
+
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +30,18 @@ export class GamePageComponent implements OnInit {
           webSocketService.sendMessage(this.game.gameTypeId + '|LEAVE');
           subscription.unsubscribe();
         }
+        if (event.url.includes('gameID=')) {
+          this.gameId = event.url.split('gameID=')[1];
+          if (this.gameId.includes('&table')) {
+            this.gameId = this.gameId.split('&tableID')[0];
+          }
+        }
+        if (event.url.includes('tableID=')) {
+          this.lobbyId = 'false';
+        }
       }
     });
   }
-
 
   ngOnInit(): void {
     this.GetGame();
@@ -47,7 +56,6 @@ export class GamePageComponent implements OnInit {
           this.gameService.GetGameType(gameID)
             .subscribe(success => {
               this.game = success;
-              this.webSocketService.sendMessage(this.game.gameTypeId + '|JOIN');
               routing.unsubscribe();
             });
         }
@@ -56,10 +64,5 @@ export class GamePageComponent implements OnInit {
 
   showLobby(bool) {
     this.lobbyChat = bool;
-  }
-
-  // Send message to all
-  sendMessage(event: any) {
-    this.webSocketService.sendMessage(this.game.gameTypeId + '|MSG|' + event.target.value);
   }
 }

@@ -1,16 +1,19 @@
 <div class="row h-100 vh-80">
-    <div class="table-selection">
-        <div class="table-overview-container">
-            <router-outlet></router-outlet>
-        </div>
+  <div class="table-selection">
+    <div class="table-overview-container">
+      <router-outlet></router-outlet>
     </div>
-    <div class="h-100 border-left chat-comp">
-      <div class="chat-header border-bottom">
-        <a class="btn chat-tab" (click)="showLobby(true)">Lobby</a>
-        <a class="btn chat-tab" (click)="showLobby(false)">Table</a>
-        <app-chat *ngIf="lobbyChat" class="chat-box" [gameId]="game?.gameTypeId"></app-chat>
-        <app-chat *ngIf="!lobbyChat" class="chat-box" [gameId]="game?.gameTypeId"></app-chat>
+  </div>
+  <div class="h-100" style="border-left chat-comp">
+    <div class="chat-header border-bottom">
+      <a class="btn chat-tab" (click)="showLobby(true)">Lobby</a>
+      <a class="btn chat-tab" [class.disabled]="lobbyId ? lobbyId == null: true" (click)="showLobby(false)">Table</a>
+      <div [hidden]="!lobbyChat">
+        <app-chat class="chat-box" [gameId]="gameId"></app-chat>
+      </div>
+      <div [hidden]="lobbyChat">
+        <app-chat class="chat-box" [gameId]="'a'"></app-chat>
       </div>
     </div>
-
+  </div>
 </div>
