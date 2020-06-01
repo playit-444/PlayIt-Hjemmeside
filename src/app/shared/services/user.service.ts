@@ -36,7 +36,6 @@ export class UserService {
   }
 
   GetUserFromJWT(token: string) {
-    console.log(token);
     return this.http.get('https://api.444.dk/api/Account/token/' + token)
       .pipe(
         map((data: any) => {

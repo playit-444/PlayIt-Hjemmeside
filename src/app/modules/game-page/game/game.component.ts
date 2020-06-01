@@ -2,7 +2,7 @@ import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {DataSharingService} from 'src/app/shared/services/dataSharingService';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {GameMessage} from 'src/app/shared/models/gameMessage';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 declare const UnityLoader: any;
 
@@ -17,13 +17,26 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private webSocketService: WebSocketService,
     private dataSharingService: DataSharingService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.dataSharingService.isIngame.next(true);
     this.loadScripts(this.gameScripts);
+
+    const subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (!event.url.includes('/game/ingame?')) {
+          webSocketService.sendMessage(this.tableId + '|LEAVE');
+          webSocketService.sendMessage(this.tableId + 'TABLECHAT|LEAVE');
+          subscription.unsubscribe();
+        }
+      }
+    });
   }
 
   static subscription;
   private gameInstance;
+  private waitingForResponse = true;
+  private que: any[] = [];
   gameScripts = [
     '../../assets/games/Ludo/Build/UnityLoader.js'
   ];
@@ -38,14 +51,17 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log(this.tableId + '|STARTGAME')
         this.webSocketService.sendMessage(this.tableId + '|STARTGAME');
       });
+    this.gameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/Ludo/Build/Ludo.json');
   }
 
   ngAfterViewInit(): void {
-    this.gameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/Ludo/Build/Ludo.json');
     if (!GameComponent.subscription)
       GameComponent.subscription = this.webSocketService.GetSocketMessage().subscribe(value => {
-        console.log(value);
-        this.SendMsgToUnity(value);
+        if (this.waitingForResponse) {
+          this.que.push(value);
+        } else {
+          this.SendMsgToUnity(JSON.stringify(value));
+        }
       });
   }
 
@@ -67,14 +83,23 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public SendMsgToUnity(message) {
-    this.gameInstance.SendMessage("GameManager", "HandleMessageFromJS", message);
-    console.log("JS: " + message);
+    this.gameInstance.SendMessage('GameManager', 'HandleMessageFromJS', message);
+    console.log('JS: ' + message);
   }
 
   public HandleUnityMessage(element) {
     const message: GameMessage = element.target.attributes['data-message'].value;
     this.webSocketService.sendMessage(message);
-    console.log("U3D: " + message);
+    if (message.Action === 'READY') {
+      if (this.que.length > 0) {
+        for (const item of this.que) {
+          this.SendMsgToUnity(JSON.stringify(item));
+        }
+        this.que = [];
+      }
+      this.waitingForResponse = false;
+    } else {
+      console.log('U3D: ' + message);
+    }
   }
-
 }

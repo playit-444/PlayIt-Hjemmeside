@@ -99,12 +99,10 @@ export class LobbyComponent implements OnInit {
   }
 
   private timerHandler(timer: any) {
-    console.log(timer);
     // Cancel timer
     if (timer === -1) {
       this.timerStarted = false;
     } else if (timer === 0) {
-      console.log("navigate?");
       this.router.navigate(['game/ingame'], {queryParamsHandling: 'merge'});
     } else {
       this.timerStarted = true;

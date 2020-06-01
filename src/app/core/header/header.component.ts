@@ -62,7 +62,6 @@ export class HeaderComponent implements OnInit {
 
   getUser(accountID: number) {
       this.userService.GetUser(accountID).subscribe( success => {
-        console.log(success);
         this.user = success;
       });
   }

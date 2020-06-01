@@ -75,6 +75,7 @@ export class WebSocketService {
           break;
       }
     } else {
+      console.log('SOCKET FEJL1!!');
       console.log(msg);
     }
   }
