@@ -6,8 +6,8 @@ import {ToastrService} from 'ngx-toastr';
 import {MatDialogRef} from '@angular/material/dialog';
 import {LoginFormComponent} from '../login-form/login-form.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {User} from '../../shared/models/user';
-import {UserService} from '../../shared/services/user.service';
+import {User} from '../../../shared/models/user';
+import {UserService} from '../../../shared/services/user.service';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
-import { TermsComponent } from './modules/terms/terms.component';
+import { TermsComponent } from './modules/main pages/terms/terms.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomePageComponent} from './modules/main pages/home-page/home-page.component';

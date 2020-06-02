@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {faSquare, faCheckSquare} from '@fortawesome/free-regular-svg-icons';
-import { SignupFormComponent } from 'src/app/modules/signup-form/signup-form.component';
+import { SignupFormComponent } from 'src/app/modules/Components/signup-form/signup-form.component';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({

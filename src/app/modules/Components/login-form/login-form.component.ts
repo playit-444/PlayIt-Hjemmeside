@@ -6,9 +6,9 @@ import {faUser, faKey} from '@fortawesome/free-solid-svg-icons';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialogRef} from '@angular/material/dialog';
-import {UserService} from '../../shared/services/user.service';
-import {IpServiceService} from '../../shared/services/ip-service.service';
-import {User} from '../../shared/models/user';
+import {UserService} from '../../../shared/services/user.service';
+import {IpServiceService} from '../../../shared/services/ip-service.service';
+import {User} from '../../../shared/models/user';
 
 
 @Component({

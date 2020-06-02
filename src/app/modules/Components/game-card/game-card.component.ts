@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import {Game} from '../../shared/models/game';
+import {Game} from '../../../shared/models/game';
 
 @Component({
   selector: 'app-game-card',

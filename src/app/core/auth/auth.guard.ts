@@ -1,4 +1,4 @@
-﻿import {LoginFormComponent} from '../../modules/login-form/login-form.component';
+﻿import {LoginFormComponent} from '../../modules/Components/login-form/login-form.component';
 
 ﻿import {MatDialog} from '@angular/material/dialog';
 import {CookieService} from 'ngx-cookie-service';

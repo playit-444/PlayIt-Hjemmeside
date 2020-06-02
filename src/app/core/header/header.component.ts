@@ -5,8 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import {UserService} from '../../shared/services/user.service';
-import {LoginFormComponent} from '../../modules/login-form/login-form.component';
-import {SignupFormComponent} from '../../modules/signup-form/signup-form.component';
+import {LoginFormComponent} from '../../modules/Components/login-form/login-form.component';
+import {SignupFormComponent} from '../../modules/Components/signup-form/signup-form.component';
 import {faChevronDown, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
