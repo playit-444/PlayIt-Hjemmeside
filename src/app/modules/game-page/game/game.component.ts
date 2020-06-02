@@ -88,7 +88,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public HandleUnityMessage(element) {
-    const message: GameMessage = element.target.attributes['data-message'].value;
+    const message: GameMessage = element.target.value;
     this.webSocketService.sendMessage(message);
     if (message.Action === 'READY') {
       if (this.que.length > 0) {
@@ -98,8 +98,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         this.que = [];
       }
       this.waitingForResponse = false;
-    } else {
-      console.log('U3D: ' + message);
     }
+    console.log('U3D: ' + message.Action);
+    console.log('U3D: ' + message);
   }
 }

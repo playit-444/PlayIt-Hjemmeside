@@ -6,7 +6,9 @@
       <div class="fullscreen" (click)="EnableFullscreen()"></div>
     </div>
 </div>
-<a id="SendMsgToJS" class="d-none" data-message="" (click)="HandleUnityMessage($event)"></a>
+
+<textarea id="SendMsgToJS" (click)="HandleUnityMessage($event)">Dette er min command</textarea>
+<!--a id="SendMsgToJS" class="d-none" data-message="" (click)="HandleUnityMessage($event)"></a-->
 
 <p (click)="SendMsgToUnity('test')">test</p>
 
