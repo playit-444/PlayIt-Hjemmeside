@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class WebSocketService {
 
   private subject: WebSocketSubject<any>;
-  private lobbyMessage: BehaviorSubject<LobbyData>;
+  private lobbyMessage: BehaviorSubject<any>;
   private ingameMessage: BehaviorSubject<GameMessage>;
   private lobbyChatMessage: BehaviorSubject<GameMessage>;
   private tableChatMessage: BehaviorSubject<GameMessage>;
@@ -50,14 +50,17 @@ export class WebSocketService {
       }
     } else if (msg?.GameType && msg?.RoomID) {
       this.lobbyMessage.next(msg);
-    } else if (msg?.Access === false) {
+    } else if (msg?.Timer || msg?.Timer === 0) {
+      this.lobbyMessage.next(msg);
+    } else if (msg?.Access === false && msg?.PlayerId) {
       this.router.navigateByUrl('');
     } else if (msg?.Action) {
       switch (msg.Action) {
-        case 'ROLL' || 'MOVE' || 'INIT': {
+        case 'ROLL':
+        case 'MOVE':
+        case 'INIT':
           this.ingameMessage.next(msg);
           break;
-        }
         case 'MSG|LOBBY': {
           this.lobbyChatMessage.next(msg);
           break;
@@ -72,13 +75,14 @@ export class WebSocketService {
           break;
       }
     } else {
+      console.log('SOCKET FEJL1!!');
       console.log(msg);
     }
   }
 
   public GetLobbyData()
     :
-    Observable<LobbyData> {
+    Observable<any> {
     return this.lobbyMessage.asObservable();
   }
 

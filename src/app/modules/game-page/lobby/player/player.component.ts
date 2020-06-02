@@ -24,9 +24,6 @@ export class PlayerComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
-    console.log('Ready State!: ', this.readyState)
-
     if(this.playerID !== 0)
     {
       this.userService.GetUser(this.playerID)

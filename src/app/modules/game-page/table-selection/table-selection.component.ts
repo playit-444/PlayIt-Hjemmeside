@@ -49,6 +49,7 @@ export class TableSelectionComponent implements OnInit {
       this.gameService.GetTables(id)
         .subscribe(success => {
             this.tables = success;
+            console.log(this.tables);
           },
           err => {
             console.log(err.error);
