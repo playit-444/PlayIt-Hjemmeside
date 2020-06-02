@@ -22,7 +22,7 @@
   grid-template-areas:
     "logo table-num players";
     padding-left: 3px;
-    color: azure;
+    color: #EBEAEA;
 }
 
 .table-comp-image-div{

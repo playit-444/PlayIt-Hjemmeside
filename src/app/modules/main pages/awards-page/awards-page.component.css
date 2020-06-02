@@ -110,4 +110,7 @@
         height: 30px;
         font-size: 14px; } }
 
-/*# sourceMappingURL=bd-coming-soon.css.map */
+.center {
+  align-items: center;
+  justify-content: center;
+}

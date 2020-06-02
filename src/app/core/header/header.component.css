@@ -8,7 +8,7 @@
 }
 .navbar-dark .navbar-nav .nav-link:hover {
   color: rgba(255,255,255,.9);
-  background-color: #2E136C;
+  background-color: rgba(7,81,145, .9);;
   border-radius: 10px;
 }
 /* .user-image {
