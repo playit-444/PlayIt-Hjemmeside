@@ -9,6 +9,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../../shared/services/user.service';
 import {IpServiceService} from '../../../shared/services/ip-service.service';
 import {User} from '../../../shared/models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class LoginFormComponent implements OnInit {
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<LoginFormComponent>,
     private signUpForm: MatDialog,
+    private router: Router,
   ) {
   }
 
@@ -68,6 +70,7 @@ export class LoginFormComponent implements OnInit {
           this.toastr.success('Du er nu logget ind', 'Succes!');
           this.cookieService.set('session-token', success.jwtToken, 1,'/');
           this.dialogRef.close();
+          this.router.navigate(['']);
         },
         err => {
           this.toastr.error(err.error, 'Der skete en fejl!');

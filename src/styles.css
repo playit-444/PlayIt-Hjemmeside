@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #10004d;
+  background-color: #1682DE;
 }
 
 .input-group input {
@@ -44,6 +44,10 @@ ngb-carousel img {
 ngb-carousel {
   width: inherit;
   height: inherit;
+}
+
+ngb-carousel:focus {
+  outline: none;
 }
 
 .carousel-inner {
@@ -94,4 +98,16 @@ body {
 .active {
   border-bottom: none !important;
   background-color: azure !important;
+}
+
+
+.btn-success {
+  background-color: #FF5715;
+  border-color: #FF5715;
+  color: #FFF;
+}
+
+.btn-success:hover {
+  background-color: #cc5715;
+    border-color: #cc7e34;
 }
