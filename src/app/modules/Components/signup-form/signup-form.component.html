@@ -13,6 +13,14 @@
                 </div>
                 <input name="username" ng-model="username" type="text" class="form-control" placeholder="Brugernavn" formControlName="userName" required minlength="4" tabindex="1">
             </div>
+            <div class="input-group mb-3 mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
+                </div>
+                <input name="avatar" ng-model="avatar" type="file" class="form-control" placeholder="Avatar" formControlName="avatar" required minlength="4" tabindex="-1" (change)="handleFileInput($event.target.files)">
+            </div>
             <!--span class="text-danger" ng-show="signUpForm.username.$error.required">Brugernavn er påkrævet</-span-->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">

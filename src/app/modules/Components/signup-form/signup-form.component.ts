@@ -71,9 +71,14 @@ export class SignupFormComponent implements OnInit {
       const user: User = {
         userName: this.signUpForm.value.userName,
         email: this.signUpForm.value.email,
-        password: this.signUpForm.value.password
+        password: this.signUpForm.value.password,
+        avatar: btoa(this.signUpForm.value.avatar)
       }
 
+
+      console.log(user);
+
+      
       this.userService.CreateUser(user)
         .subscribe(success => {
             this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
