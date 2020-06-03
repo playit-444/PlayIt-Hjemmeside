@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgb(22,130,222, .4);
+  background-color: rgb(7,81,145, .4);
 }
 .navbar-dark .navbar-nav .nav-link {
   text-transform: uppercase;
@@ -8,7 +8,7 @@
 }
 .navbar-dark .navbar-nav .nav-link:hover {
   color: rgba(255,255,255,.9);
-  background-color: rgba(7,81,145, .9);;
+  background-color: rgba(22,130,222, .9);;
   border-radius: 10px;
 }
 /* .user-image {
@@ -45,7 +45,7 @@
   grid-template-rows: 60px;
   grid-template-areas:
     "avatar name dropdown";
-  background-color: rgba(7,81,145, .9);
+  background-color: rgba(2,60,110, .9);
   border-radius: 7px;
   color: #fff;
 }
@@ -91,7 +91,7 @@
   margin-top: 0;
   width: 240px;
   border: none;
-  background-color: rgba(7,81,145, .9);
+  background-color: rgba(2,60,110, .9);
   color: #fff;
 }
 
