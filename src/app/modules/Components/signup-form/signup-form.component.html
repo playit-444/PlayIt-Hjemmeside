@@ -19,7 +19,7 @@
                         <fa-icon [icon]="faUser"></fa-icon>
                     </span>
                 </div>
-                <input name="avatar" ng-model="avatar" type="file" class="form-control" placeholder="Avatar" formControlName="avatar" required minlength="4" tabindex="-1">
+                <input name="avatar" ng-model="avatar" type="file" class="form-control" placeholder="Avatar" formControlName="avatar" required minlength="4" tabindex="-1" (change)="onFileChanged($event)">
             </div>
             <!--span class="text-danger" ng-show="signUpForm.username.$error.required">Brugernavn er påkrævet</-span-->
             <div class="input-group mb-3">
@@ -60,7 +60,7 @@
                   <fa-icon [icon]="faSquare" style="font-size: 24px;" *ngIf="!terms"></fa-icon>
                   <fa-icon [icon]="faCheckSquare" style="font-size: 24px;" *ngIf="terms"></fa-icon>
                   <span class="ml-2">Jeg acceptere betingelserne</span>
-                  <div><span class="pl-1 pr-1">-</span><a class="btn-link" routerLink="/terms" (click)="closeModal()">Læs Betingelser</a></div>
+                  <div><span class="pl-1 pr-1">-</span><a class="btn-link" routerLink="/terms" target="_blank">Læs betingelser</a></div>
               </label>
             </div>
 

@@ -22,6 +22,8 @@ export class SignupFormComponent implements OnInit {
   terms = false;
   newsletter = false;
 
+  avatar;
+
   faUser = faUser;
   faAt = faAt;
   faKey = faKey;
@@ -43,7 +45,8 @@ export class SignupFormComponent implements OnInit {
       userName: [''],
       email: [''],
       password: [''],
-      confirmPassword: ['']
+      confirmPassword: [''],
+      avatar: null
     });
   }
 
@@ -72,13 +75,12 @@ export class SignupFormComponent implements OnInit {
         userName: this.signUpForm.value.userName,
         email: this.signUpForm.value.email,
         password: this.signUpForm.value.password,
-        avatar: btoa(this.signUpForm.value.avatar)
+        avatar: this.avatar
       }
 
-
+      console.log(user.avatar);
       console.log(user);
 
-      
       this.userService.CreateUser(user)
         .subscribe(success => {
             this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
@@ -90,6 +92,17 @@ export class SignupFormComponent implements OnInit {
     }
   }
 
+  onFileChanged(event) {
+    const me = this;
+    const reader = new FileReader();
+   reader.readAsDataURL(event.target.files[0]);
+   reader.onload = () => {
+     me.avatar = reader.result;
+   };
+   reader.onerror = (error) => {
+     console.log(error)
+   };
+  }
 
   closeModal() {
     this.dialogRef.close();

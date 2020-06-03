@@ -8,9 +8,9 @@
 }
 
 #site-content {
-  background-color: azure;
+  background-color: #EBEAEA;
   margin-top: 96px;
-  min-height: calc(100vh - 400px);
+  min-height: calc(100vh - 390px);
 }
 
 #footer {
