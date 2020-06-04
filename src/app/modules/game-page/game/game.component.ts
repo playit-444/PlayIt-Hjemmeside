@@ -3,6 +3,7 @@ import {DataSharingService} from 'src/app/shared/services/dataSharingService';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {GameMessage} from 'src/app/shared/models/gameMessage';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 declare const UnityLoader: any;
 
@@ -18,6 +19,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private dataSharingService: DataSharingService,
     private route: ActivatedRoute,
     private router: Router,
+    private cookieService: CookieService
   ) {
     this.dataSharingService.isIngame.next(true);
     this.loadScripts(this.gameScripts);
@@ -25,6 +27,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (!event.url.includes('/game/ingame?')) {
+          this.cookieService.delete('inlobby');
+          this.cookieService.delete('ingame');
           webSocketService.sendMessage(this.tableId + '|LEAVE');
           webSocketService.sendMessage(this.tableId + 'TABLECHAT|LEAVE');
           subscription.unsubscribe();

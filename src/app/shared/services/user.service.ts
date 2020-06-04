@@ -2,13 +2,25 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {User} from '../models/user';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  loggedIn: BehaviorSubject<boolean>;
+
   constructor(private http: HttpClient) {
+    this.loggedIn = new BehaviorSubject<boolean>(false);
+  }
+
+  SetLoggedIn(bool: boolean) {
+    this.loggedIn.next(bool);
+  }
+
+  GetLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
   CreateUser(user: User) {

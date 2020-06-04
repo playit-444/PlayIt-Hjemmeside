@@ -22,7 +22,29 @@ export class AuthGuard implements CanActivate {
     if (!this.cookieService.check('session-token')) {
       this.dialog.open(LoginFormComponent);
       this.router.navigate(['']);
+      return false;
     }
+
+    if (window.location.pathname === "/game/lobby" && !this.cookieService.check('inlobby')) {
+      this.cookieService.delete('inlobby');
+      this.cookieService.delete('ingame');
+      this.router.navigate(['']);
+      return false;
+    }
+
+    if (window.location.pathname === "/game/ingame" && !this.cookieService.check('ingame')) {
+      this.cookieService.delete('inlobby');
+      this.cookieService.delete('ingame');
+      this.router.navigate(['']);
+      return false;
+    }
+
     return true;
   }
+
+  canDeactivate(): boolean {
+    return confirm('Du er ved at forlade spillet, er du sikker på at du vil forlade?');
+  }
+
+
 }

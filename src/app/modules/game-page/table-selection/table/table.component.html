@@ -1,5 +1,5 @@
 <div [ngClass]="{'table-full':  table.currentUsers === table.maxUsers, 'table-comp': true}" [routerLink]="table.currentUsers < table.maxUsers ? ['/game', 'lobby'] : []"
-                        [queryParams]=" table.currentUsers < table.maxUsers ? {gameID: game.gameTypeId, tableID: table.roomID} : {gameID: game.gameTypeId}">
+                        [queryParams]=" table.currentUsers < table.maxUsers ? {gameID: game.gameTypeId, tableID: table.roomID} : {gameID: game.gameTypeId}" (click)="SetIngameCookie()">
   <div class="table-container">
     <div class="table-comp-image-div">
         <img [src]="game.logoPath"/>
