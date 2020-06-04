@@ -30,7 +30,7 @@ const routes: Routes = [
         path: 'lobby', component: LobbyComponent
       },
       {
-        path: 'ingame', component: GameComponent, canActivate: [AuthGuard]
+        path: 'ingame', component: GameComponent
       }
     ]
   },
