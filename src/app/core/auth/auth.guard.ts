@@ -42,4 +42,9 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
+  canDeactivate(): boolean {
+    return confirm('Du er ved at forlade spillet, er du sikker på at du vil forlade?');
+  }
+
+
 }
