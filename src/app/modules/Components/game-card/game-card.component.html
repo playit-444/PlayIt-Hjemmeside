@@ -1,5 +1,5 @@
 <div class="d-inline-block">
-  <div routerLink="/game" [queryParams]="{gameID: game.gameTypeId}" class="card game-card">
+  <div [routerLink]="game.gameTypeId === 2 ? ['/game'] : []" [queryParams]="game.gameTypeId === 2 ? {gameID: game.gameTypeId} : {}" class="card game-card">
       <div class="game-comp-container">
         <div class="game-comp-logo-div">
           <img class="game-logo" [src]="game.logoPath">
@@ -7,7 +7,10 @@
         <div class="game-comp-background-div">
           <img class="game-background" [src]="game.backgroundPath">
         </div>
-        <div class="game-comp-players-div">
+        <div *ngIf="game.gameTypeId !== 2" class="comming-soon">
+          <span>Kommer snart</span>
+        </div>
+        <div *ngIf="game.gameTypeId === 2" class="game-comp-players-div">
           <span>
             <fa-icon [icon]="faUsers"></fa-icon> 23
           </span>
@@ -15,4 +18,3 @@
       </div>
   </div>
 </div>
-

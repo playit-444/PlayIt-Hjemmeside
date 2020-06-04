@@ -6,7 +6,8 @@
     <div class="carousel-caption">
       <h3>{{game.name.toUpperCase()}}</h3>
       <p>{{game.description}}</p>
-      <a routerLink="game" [queryParams]="{gameID: game.gameTypeId}" href="javascript:void();" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
+      <a *ngIf="game.gameTypeId === 2" routerLink="game" [queryParams]="{gameID: game.gameTypeId}" href="javascript:void(0);" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
+      <a *ngIf="game.gameTypeId !== 2" href="javascript:void(0);" class="btn btn-success font-weight-bold comming-soon">KOMMER SNART</a>
     </div>
     <div class="carousel-logo">
       <img [src]="Games[i].logoPath">

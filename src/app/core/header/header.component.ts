@@ -8,7 +8,6 @@ import {UserService} from '../../shared/services/user.service';
 import {LoginFormComponent} from '../../modules/Components/login-form/login-form.component';
 import {SignupFormComponent} from '../../modules/Components/signup-form/signup-form.component';
 import {faChevronDown, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-header',

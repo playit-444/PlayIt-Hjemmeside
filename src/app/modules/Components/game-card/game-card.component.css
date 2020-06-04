@@ -91,3 +91,18 @@
   border-left: 2px solid #999;
   border-top: 2px solid #999;
 }
+
+.comming-soon {
+  grid-area: image;
+  justify-self: start;
+  align-self: start;
+  z-index: 10;
+  width: 150px;
+  height: 40px;
+  background-color: rgba(235, 234, 234, 0.8);
+  font-size: 18px;
+  padding: 3px 10px;
+  border-bottom-right-radius: 11px;
+  border-right: 2px solid #999;
+  border-bottom: 2px solid #999;
+}
