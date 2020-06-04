@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {faUsers} from '@fortawesome/free-solid-svg-icons';
 import {Game} from '../../../../shared/models/game';
 import {Table} from '../../../../shared/models/table';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-table',
@@ -15,9 +16,13 @@ export class TableComponent implements OnInit {
 
   faUsers = faUsers;
 
-  constructor() {
+  constructor(private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
+  }
+
+  SetIngameCookie() {
+    this.cookieService.set('inlobby', 'true');
   }
 }

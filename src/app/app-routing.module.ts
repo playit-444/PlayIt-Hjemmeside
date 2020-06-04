@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'games', component: GamesPageComponent},
   {path: 'tournaments', component: TournamentsPageComponent},
-  {path: 'awards', component: AwardsPageComponent},
+  {path: 'awards', component: AwardsPageComponent, canActivate: [AuthGuard]},
   {
     path: 'game', component: GamePageComponent, canActivate: [AuthGuard], children: [
       {
@@ -30,7 +30,7 @@ const routes: Routes = [
         path: 'lobby', component: LobbyComponent
       },
       {
-        path: 'ingame', component: GameComponent
+        path: 'ingame', component: GameComponent, canActivate: [AuthGuard]
       }
     ]
   },

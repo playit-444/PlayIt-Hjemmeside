@@ -6,6 +6,7 @@ import {LobbyData} from '../../../shared/models/lobbyData';
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from '../../../shared/services/web-socket.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-lobby',
@@ -29,12 +30,15 @@ export class LobbyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private gameService: GameService
+    private gameService: GameService,
+    private cookieService: CookieService
   ) {
     // Check if user change page then leave lobby
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (!event.url.includes('/game/lobby?') || (!event.url.includes('/game/ingame?'))) {
+        if (!event.url.includes('/game/lobby?') && (!event.url.includes('/game/ingame?'))) {
+          this.cookieService.delete('inlobby');
+          this.cookieService.delete('ingame');
           webSocketService.sendMessage(this.tableId + '|LEAVE');
           subscription.unsubscribe();
         }
@@ -103,6 +107,8 @@ export class LobbyComponent implements OnInit {
     if (timer === -1) {
       this.timerStarted = false;
     } else if (timer === 0) {
+      this.cookieService.delete('inlobby');
+      this.cookieService.set('ingame', 'true');
       this.router.navigate(['game/ingame'], {queryParamsHandling: 'merge'});
     } else {
       this.timerStarted = true;
