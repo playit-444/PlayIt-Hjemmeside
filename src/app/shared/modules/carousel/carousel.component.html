@@ -3,7 +3,7 @@
     <div class="picsum-img-wrapper bg-dark">
       <img [src]="Games[i].coverPath" alt="Random slide" class="cover-image">
     </div>
-    <div class="carousel-caption">
+    <div class="carousel-caption" style="max-width: 600px;">
       <h3>{{game.name.toUpperCase()}}</h3>
       <p>{{game.description}}</p>
       <a *ngIf="game.gameTypeId === 2" routerLink="game" [queryParams]="{gameID: game.gameTypeId}" href="javascript:void(0);" class="btn btn-success font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>

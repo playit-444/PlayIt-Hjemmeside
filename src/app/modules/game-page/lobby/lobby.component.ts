@@ -108,7 +108,6 @@ export class LobbyComponent implements OnInit {
       this.timerStarted = false;
     } else if (timer === 0) {
       this.cookieService.set('ingame', 'true');
-      this.cookieService.delete('inlobby');
       this.router.navigate(['game/ingame'], {queryParamsHandling: 'merge'});
     } else {
       this.timerStarted = true;

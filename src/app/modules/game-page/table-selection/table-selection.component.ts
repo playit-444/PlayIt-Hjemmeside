@@ -43,7 +43,6 @@ export class TableSelectionComponent implements OnInit {
       });
   }
 
-
   GetTables(id: number) {
     if (id != null) {
       this.gameService.GetTables(id)

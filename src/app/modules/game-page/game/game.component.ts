@@ -48,6 +48,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   tableId: any;
 
   ngOnInit(): void {
+    this.cookieService.delete('inlobby');
     this.route
       .queryParams
       .subscribe(params => {
