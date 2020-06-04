@@ -2,14 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PlayItHjemmeside</title>
+  <title>PlayIt!</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 </head>
 <body>
+	<div id="cookieconsent"></div>
+
+  <script>
+    window.cookieconsent.initialise({
+      container: document.getElementById("cookieconsent"),
+      palette:{
+       popup: {background: "#1682DE"},
+       button: {background: "#FF5715"},
+      },
+      revokable: true,
+      onStatusChange: function(status) {
+       console.log(this.hasConsented() ?
+        'enable cookies' : 'disable cookies');
+      },
+      "position": "bottom-left",
+      "theme": "classic",
+      "domain": "https://i71n4.csb.app/",
+      "secure": true,
+      "content": {
+        "header": 'Der bliver brugt Cookies på denne side!',
+        "message": 'Denne hjemmeside bruger cookies til at forbedre brugeroplevelsen.',
+        "dismiss": 'Modtaget!',
+        "allow": 'Tillad cookies',
+        "deny": 'Afvis',
+        "link": 'Lær mere',
+        "href": 'https://localhost:4200/cookie-policy',
+        "close": '&#x274c;',
+        "policy": 'Cookie Politik',
+        "target": '_blank',
+        }
+     });
+
+  </script>
+
   <app-root></app-root>
 </body>
 </html>

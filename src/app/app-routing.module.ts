@@ -10,6 +10,7 @@ import { GamePageComponent } from './modules/game-page/game-page.component';
 import { TableSelectionComponent } from './modules/game-page/table-selection/table-selection.component';
 import { LobbyComponent } from './modules/game-page/lobby/lobby.component';
 import { GameComponent } from './modules/game-page/game/game.component';
+import { CookiePolicyComponent } from './modules/main pages/cookie-policy/cookie-policy.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'terms', component: TermsComponent}
+  {path: 'terms', component: TermsComponent},
+  {path: 'cookie-policy', component: CookiePolicyComponent}
 ];
 
 @NgModule({
