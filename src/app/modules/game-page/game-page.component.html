@@ -6,8 +6,8 @@
   </div>
   <div class="h-100 border-left chat-comp">
     <div class="chat-header border-bottom">
-      <a class="btn chat-tab" [class.active]="lobbyChat ? true: false" [class.only-lobby]="lobbyId ? lobbyId == null: true" (click)="showLobby(true)">{{game.name}}</a>
-      <a class="btn chat-tab" [class.active]="lobbyChat ? false: true" [class.disabled]="lobbyId ? lobbyId == null: true" (click)="showLobby(false)">Bord</a>
+      <a class="btn chat-tab" [class.active]="lobbyChat" [class.only-lobby]="lobbyId ? lobbyId == null: true" (click)="showLobby(true)">{{game?.name}}</a>
+      <a class="btn chat-tab" [class.active]="!lobbyChat" [class.disabled]="lobbyId ? lobbyId == null: true" (click)="showLobby(false)">Bord</a>
       <div [hidden]="!lobbyChat">
         <app-chat class="chat-box" [gameId]="gameId"></app-chat>
       </div>

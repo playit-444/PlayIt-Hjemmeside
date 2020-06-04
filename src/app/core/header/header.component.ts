@@ -1,4 +1,4 @@
-import { PlayerInfo } from './../../shared/models/playerInfo';
+import { PlayerInfo } from '../../shared/models/playerInfo';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';

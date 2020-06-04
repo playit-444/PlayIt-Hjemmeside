@@ -57,10 +57,14 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!GameComponent.subscription)
       GameComponent.subscription = this.webSocketService.GetSocketMessage().subscribe(value => {
-        if (this.waitingForResponse) {
-          this.que.push(value);
-        } else {
-          this.SendMsgToUnity(JSON.stringify(value));
+        if (value != null) {
+          console.log('ToUnity');
+          console.log(value);
+          if (this.waitingForResponse) {
+            this.que.push(value);
+          } else {
+            this.SendMsgToUnity(value);
+          }
         }
       });
   }
@@ -83,23 +87,24 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public SendMsgToUnity(message) {
-    this.gameInstance.SendMessage('GameManager', 'HandleMessageFromJS', message);
-    console.log('JS: ' + message);
+    this.gameInstance.SendMessage('GameManager', 'HandleMessageFromJS', JSON.stringify(message));
   }
 
   public HandleUnityMessage(element) {
-    const message: GameMessage = element.target.value;
-    this.webSocketService.sendMessage(message);
+    // const message: GameMessage = element.target.value;
+    const message: GameMessage = JSON.parse(element.target.value);
     if (message.Action === 'READY') {
       if (this.que.length > 0) {
         for (const item of this.que) {
-          this.SendMsgToUnity(JSON.stringify(item));
+          this.SendMsgToUnity(item);
         }
         this.que = [];
       }
       this.waitingForResponse = false;
+    } else {
+      console.log('ToSocket');
+      console.log(message);
+      this.webSocketService.sendMessage(message.RoomId+'|'+message.Action+'|'+message.Args);
     }
-    console.log('U3D: ' + message.Action);
-    console.log('U3D: ' + message);
   }
 }

@@ -1,5 +1,5 @@
 export interface GameMessage {
-    RoomID: string;
+    RoomId: string;
     Action: string;
     Args: [];
 }
