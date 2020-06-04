@@ -8,6 +8,7 @@ import {UserService} from '../../shared/services/user.service';
 import {LoginFormComponent} from '../../modules/Components/login-form/login-form.component';
 import {SignupFormComponent} from '../../modules/Components/signup-form/signup-form.component';
 import {faChevronDown, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-header',
@@ -49,7 +50,13 @@ export class HeaderComponent implements OnInit {
         }
       });
 
-      if(this.cookieService.check('session-token'))
+      this.userService.GetLoggedIn().subscribe(loggedin => {
+        if(loggedin)
+          if(this.cookieService.check('session-token'))
+            this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
+      });
+
+      if(this.cookieService.check('session-token') && this.user === undefined)
       {
         this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
       }

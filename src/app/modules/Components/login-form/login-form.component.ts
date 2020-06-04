@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
@@ -69,6 +70,7 @@ export class LoginFormComponent implements OnInit {
       .subscribe(success => {
           this.toastr.success('Du er nu logget ind', 'Succes!');
           this.cookieService.set('session-token', success.jwtToken, 1,'/');
+          this.userService.SetLoggedIn(true);
           this.dialogRef.close();
           this.router.navigate(['']);
         },
