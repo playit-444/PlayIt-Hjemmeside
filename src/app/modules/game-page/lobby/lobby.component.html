@@ -18,7 +18,7 @@
         <span *ngIf="game !== undefined">Mangler {{game.minimumPlayers - count}} før at spillet kan starte</span>
       </div>
       <div>
-        <a class="w-100 btn btn-success mb-5 mt-1 text-white" (click)="Ready()">KLAR</a>
+        <a class="w-100 btn btn-orange mb-5 mt-1 text-white" (click)="Ready()">KLAR</a>
       </div>
       <div *ngIf="timerStarted">
         <div class="timer-group">

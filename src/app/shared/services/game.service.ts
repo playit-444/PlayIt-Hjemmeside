@@ -33,4 +33,13 @@ export class GameService {
           return data;
         }));
   }
+
+  GetPlayerCount() {
+    return this.http.get('https://api.444.dk/api/Game/CountPlayers')
+      .pipe(
+        map((data: any) => {
+          console.log('data: ',data)
+          return data;
+        }));
+  }
 }

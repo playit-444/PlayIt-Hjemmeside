@@ -9,10 +9,15 @@ import {Game} from '../../../shared/models/game';
 })
 export class GameCardComponent implements OnInit {
   @Input() game: Game;
+  @Input() gameCount: any[] = [];
+  amount: number;
   faUsers = faUsers;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.gameCount);
+    if(this.gameCount !== undefined)
+      this.amount = this.gameCount.find(a => a.gameTypeId === this.game.gameTypeId).amount;
   }
 }

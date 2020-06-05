@@ -13,6 +13,7 @@ import {GameService} from '../../../shared/services/game.service';
 export class HomePageComponent implements OnInit {
   @ViewChild('loginContent') loginContent: TemplateRef<any>;
   games: Game[] = [];
+  gameCounts: any[] = [];
 
   constructor(
     private modalService: NgbModal,
@@ -39,6 +40,15 @@ export class HomePageComponent implements OnInit {
       },
       err => {
         this.toastr.error(err.error, 'Der skete en fejl!');
+        console.log(err);
+      });
+
+    this.gameService.GetPlayerCount()
+      .subscribe(data => {
+        console.log(data);
+        this.gameCounts = data.items;
+      },
+      err => {
         console.log(err);
       });
   }

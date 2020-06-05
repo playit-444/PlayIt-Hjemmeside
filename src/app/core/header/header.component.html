@@ -17,7 +17,7 @@
 
     <div *ngIf="!cookieService.check('session-token')">
       <a href="javascript:void(0);" id="loginBtn" class="btn btn-outline-light text-uppercase" (click)="login()">Log ind</a>
-      <a href="javascript:void(0);" class="btn btn-success text-uppercase ml-2" (click)="create()">Opret dig</a>
+      <a href="javascript:void(0);" class="btn btn-orange text-uppercase ml-2" (click)="create()">Opret dig</a>
     </div>
     <div *ngIf="cookieService.check('session-token')" ngbDropdown class="d-inline-block">
       <div class="userbox" id="dropdownBasic1" ngbDropdownToggle>

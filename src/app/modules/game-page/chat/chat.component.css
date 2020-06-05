@@ -62,6 +62,7 @@ height: 100%;
 .chat-input-div {
   display: block;
   padding-top: 10px;
+  border-top: 1px solid #333;
 }
 .vh-70 {
   display: block;
