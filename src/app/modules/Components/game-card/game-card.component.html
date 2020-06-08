@@ -11,8 +11,11 @@
           <span>Kommer snart</span>
         </div>
         <div *ngIf="game.gameTypeId === 2" class="game-comp-players-div">
-          <span>
+          <span *ngIf="amount !== undefined">
             <fa-icon [icon]="faUsers"></fa-icon> {{amount}}
+          </span>
+          <span *ngIf="amount === undefined">
+            <fa-icon [icon]="faUsers"></fa-icon> 0
           </span>
         </div>
       </div>
