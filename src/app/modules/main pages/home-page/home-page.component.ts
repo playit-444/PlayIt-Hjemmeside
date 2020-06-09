@@ -45,7 +45,6 @@ export class HomePageComponent implements OnInit {
 
     this.gameService.GetPlayerCount()
       .subscribe(data => {
-        console.log(data);
         this.gameCounts = data.items;
       },
       err => {

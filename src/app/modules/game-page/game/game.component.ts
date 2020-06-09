@@ -32,6 +32,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
           webSocketService.sendMessage(this.tableId + '|LEAVE');
           webSocketService.sendMessage(this.tableId + 'TABLECHAT|LEAVE');
           subscription.unsubscribe();
+          this.waitingForResponse = true;
+          // TODO Quick fix there is something wrong with unity so the browser need to fully reload
+          location.reload();
         }
       }
     });
@@ -53,7 +56,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       .queryParams
       .subscribe(params => {
         this.tableId = params.tableID;
-        console.log(this.tableId + '|STARTGAME')
         this.webSocketService.sendMessage(this.tableId + '|STARTGAME');
       });
     this.gameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/Ludo/Build/Ludo.json');
@@ -63,8 +65,8 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!GameComponent.subscription)
       GameComponent.subscription = this.webSocketService.GetSocketMessage().subscribe(value => {
         if (value != null) {
-          console.log('ToUnity');
-          console.log(value);
+          //console.log('ToUnity');
+          //console.log(value);
           if (this.waitingForResponse) {
             this.que.push(value);
           } else {
@@ -107,9 +109,9 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.waitingForResponse = false;
     } else {
-      console.log('ToSocket');
-      console.log(message);
-      this.webSocketService.sendMessage(message.RoomId+'|'+message.Action+'|'+message.Args);
+      //console.log('ToSocket');
+      //console.log(message);
+      this.webSocketService.sendMessage(message.RoomId + '|' + message.Action + '|' + message.Args);
     }
   }
 }
