@@ -29,7 +29,7 @@ export class WebSocketService {
     this.subject.subscribe(
       msg => this.readMessage(msg), // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      () => console.log('complete') // Called when connection is closed (for whatever reason).
+      () =>    this.router.navigateByUrl('')// Called when connection is closed (for whatever reason).
     );
   }
 
