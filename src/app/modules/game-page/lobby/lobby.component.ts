@@ -67,7 +67,6 @@ export class LobbyComponent implements OnInit {
   getLobbyData() {
     this.webSocketService.GetLobbyData().subscribe((value) => {
         if (value != null) {
-          console.log(value);
           if (value.Timer || value.Timer === 0) {
             this.timerHandler(value.Timer);
           } else {
