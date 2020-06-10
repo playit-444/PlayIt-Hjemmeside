@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { GameService } from 'src/app/shared/services/game.service';
-import { ToastrService } from 'ngx-toastr';
-import { Game } from 'src/app/shared/models/game';
+import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import {GameService} from 'src/app/shared/services/game.service';
+import {ToastrService} from 'ngx-toastr';
+import {Game} from 'src/app/shared/models/game';
 
 @Component({
   selector: 'app-games-page',
@@ -15,16 +15,18 @@ export class GamesPageComponent implements OnInit {
   constructor(
     private gameService: GameService,
     private toastr: ToastrService,
-    ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+    // Get gameTypes
     this.gameService.GetGameTypes()
       .subscribe(data => {
-        this.games = data.items;
-      },
-      err => {
-        this.toastr.error(err.error, 'Der skete en fejl!');
-        console.log(err);
-      });
+          this.games = data.items;
+        },
+        err => {
+          this.toastr.error(err.error, 'Der skete en fejl!');
+          console.log(err);
+        });
   }
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {User} from '../models/user';
-import { Observable, BehaviorSubject } from 'rxjs';
+import {Observable, BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,14 +41,6 @@ export class UserService {
 
   GetUser(userID: number) {
     return this.http.get('https://api.444.dk/api/Account/' + userID)
-      .pipe(
-        map((data: any) => {
-          return data;
-        }));
-  }
-
-  GetUserFromJWT(token: string) {
-    return this.http.get('https://api.444.dk/api/Account/token/' + token)
       .pipe(
         map((data: any) => {
           return data;

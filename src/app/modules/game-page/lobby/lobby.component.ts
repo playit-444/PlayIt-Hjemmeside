@@ -16,7 +16,6 @@ import {CookieService} from 'ngx-cookie-service';
 export class LobbyComponent implements OnInit {
 
   timeLeft = 60;
-  interval: any;
   timerStarted = false;
   count: number;
 
@@ -50,13 +49,15 @@ export class LobbyComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
+        // Join lobby
         this.tableId = params.tableID;
         this.webSocketService.sendMessage(this.tableId + '|JOIN');
-        this.getGame(params.gameID);
+        this.getGameType(params.gameID);
       });
   }
 
-  getGame(gameID: number) {
+  // Get gameType
+  getGameType(gameID: number) {
     return this.gameService.GetGameType(gameID)
       .subscribe(success => {
         this.game = success;
@@ -64,6 +65,7 @@ export class LobbyComponent implements OnInit {
       });
   }
 
+  // Get information about the lobby
   getLobbyData() {
     this.webSocketService.GetLobbyData().subscribe((value) => {
         if (value != null) {
@@ -90,18 +92,20 @@ export class LobbyComponent implements OnInit {
     );
   }
 
+  // If there is empty slots fill with empty player
   fillEmptySlots() {
     const emptyPlayer: PlayerData = {PlayerId: 0, Name: 'empty', Ready: false};
-
     for (let i = this.players.length; i < this.lobby.MaxUsers; i++) {
       this.players.push(emptyPlayer);
     }
   }
 
+  // Send the player is ready to gameServer
   Ready() {
     this.webSocketService.sendMessage(this.tableId + '|READY');
   }
 
+  // Handle timer information from gameServer
   private timerHandler(timer: any) {
     // Cancel timer
     if (timer === -1) {

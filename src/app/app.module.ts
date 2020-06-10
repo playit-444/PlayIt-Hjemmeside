@@ -1,4 +1,4 @@
-import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
+import {GamesPageComponent} from './modules/main pages/games-page/games-page.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,17 +22,19 @@ import {ToastrModule} from 'ngx-toastr';
 import {CookieService} from 'ngx-cookie-service';
 import {AuthInterceptor} from './core/auth/auth.interceptor';
 import {WebSocketService} from './shared/services/web-socket.service';
-import { TermsComponent } from './modules/main pages/terms/terms.component';
-import { TableSelectionComponent } from './modules/game-page/table-selection/table-selection.component';
-import { LobbyComponent } from './modules/game-page/lobby/lobby.component';
-import { TableComponent } from './modules/game-page/table-selection/table/table.component';
-import { PlayerComponent } from './modules/game-page/lobby/player/player.component';
-import { GameComponent } from './modules/game-page/game/game.component';
-import { CommonModule } from '@angular/common';
-import { CountdownModule } from 'ngx-countdown';
-import { ErrorPageComponent } from './modules/main pages/error-page/error-page.component';
-import { ChatComponent } from './modules/game-page/chat/chat.component';
-import { CookiePolicyComponent } from './modules/main pages/cookie-policy/cookie-policy.component';
+import {TermsComponent} from './modules/main pages/terms/terms.component';
+import {TableSelectionComponent} from './modules/game-page/table-selection/table-selection.component';
+import {LobbyComponent} from './modules/game-page/lobby/lobby.component';
+import {TableComponent} from './modules/game-page/table-selection/table/table.component';
+import {PlayerComponent} from './modules/game-page/lobby/player/player.component';
+import {GameComponent} from './modules/game-page/game/game.component';
+import {CommonModule} from '@angular/common';
+import {CountdownModule} from 'ngx-countdown';
+import {ErrorPageComponent} from './modules/main pages/error-page/error-page.component';
+import {ChatComponent} from './modules/game-page/chat/chat.component';
+import {CookiePolicyComponent} from './modules/main pages/cookie-policy/cookie-policy.component';
+import {AwardsPageComponent} from './modules/main pages/awards-page/awards-page.component';
+import {TournamentsPageComponent} from './modules/main pages/tournaments-page/tournaments-page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { CookiePolicyComponent } from './modules/main pages/cookie-policy/cookie
     ErrorPageComponent,
     ChatComponent,
     CookiePolicyComponent,
+    AwardsPageComponent,
+    TournamentsPageComponent
   ],
   imports: [
     BrowserModule,

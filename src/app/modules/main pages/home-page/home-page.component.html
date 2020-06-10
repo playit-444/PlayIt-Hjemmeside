@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col col-12">
-    <app-carousel [Games]="games" ></app-carousel>
+    <app-carousel [Games]="games"></app-carousel>
   </div>
 </div>
 <div class="row">
@@ -10,7 +10,7 @@
         <h3>Populære</h3>
       </div>
       <ng-template ngFor let-game [ngForOf]="games">
-          <app-game-card *ngIf="game.gameTypeId === 1 || game.gameTypeId === 2 || game.gameTypeId === 3 || game.gameTypeId === 4 || game.gameTypeId === 5 || game.gameTypeId === 6 ||
+        <app-game-card *ngIf="game.gameTypeId === 1 || game.gameTypeId === 2 || game.gameTypeId === 3 || game.gameTypeId === 4 || game.gameTypeId === 5 || game.gameTypeId === 6 ||
               game.gameTypeId === 11 || game.gameTypeId === 12" [game]="game" [gameCount]="gameCounts"></app-game-card>
       </ng-template>
     </div>

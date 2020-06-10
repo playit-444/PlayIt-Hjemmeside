@@ -22,21 +22,33 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   gameMessageId: string;
 
   ngOnInit(): void {
+    // Scroll to bottom of chat
     this.scrollToBottom();
+    // Subscription when user changes route
+    // is used for handling when a user leave chat section
     const subscription = this.router.events.subscribe((event) => {
+      // Get the specific event
       if (event instanceof NavigationEnd) {
+        // Check if user change route and not land on lobby or ingame
         if (!event.url.includes('/lobby?') && !event.url.includes('game/ingame')) {
+          // Check if subscription is set
           if (ChatComponent.subscribeLobby) {
+            // Unsubscribe and set to null
             ChatComponent.subscribeLobby.unsubscribe();
             ChatComponent.subscribeLobby = null;
             subscription.unsubscribe();
+            // Clear chat
             this.chat = [];
           }
         }
+        // Check if user leaves game endpoint
         if (!event.url.includes('/game/')) {
+          // Check if subscription is set
           if (ChatComponent.subscribeTable) {
+            // Unsubscribe and set to null
             ChatComponent.subscribeTable.unsubscribe();
             ChatComponent.subscribeTable = null;
+            // Clear chat
             this.chat = [];
           }
         }

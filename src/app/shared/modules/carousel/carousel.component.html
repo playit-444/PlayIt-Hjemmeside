@@ -1,4 +1,5 @@
-<ngb-carousel *ngIf="Games" [showNavigationArrows]="true" [showNavigationIndicators]="false" [pauseOnHover]="true" interval="5000">
+<ngb-carousel *ngIf="Games" [showNavigationArrows]="true" [showNavigationIndicators]="false" [pauseOnHover]="true"
+              interval="5000">
   <ng-template ngbSlide *ngFor="let game of Games; index as i;">
     <div class="picsum-img-wrapper bg-dark">
       <img [src]="Games[i].coverPath" alt="Random slide" class="cover-image">
@@ -6,8 +7,12 @@
     <div class="carousel-caption" style="max-width: 600px;">
       <h3>{{game.name.toUpperCase()}}</h3>
       <p>{{game.description}}</p>
-      <a *ngIf="game.gameTypeId === 2" routerLink="game" [queryParams]="{gameID: game.gameTypeId}" href="javascript:void(0);" class="btn btn-orange font-weight-bold">SPIL NU <fa-icon [icon]="faPlay"></fa-icon></a>
-      <a *ngIf="game.gameTypeId !== 2" href="javascript:void(0);" class="btn btn-orange font-weight-bold comming-soon">KOMMER SNART</a>
+      <a *ngIf="game.gameTypeId === 2" routerLink="game" [queryParams]="{gameID: game.gameTypeId}"
+         href="javascript:void(0);" class="btn btn-orange font-weight-bold">SPIL NU
+        <fa-icon [icon]="faPlay"></fa-icon>
+      </a>
+      <a *ngIf="game.gameTypeId !== 2" href="javascript:void(0);" class="btn btn-orange font-weight-bold comming-soon">KOMMER
+        SNART</a>
     </div>
     <div class="carousel-logo">
       <img [src]="Games[i].logoPath">

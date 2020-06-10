@@ -21,18 +21,19 @@
   grid-template-rows: auto;
   grid-template-areas:
     "logo table-num players";
-    padding-left: 3px;
-    color: #EBEAEA;
+  padding-left: 3px;
+  color: #EBEAEA;
 }
 
-.table-comp-image-div{
+.table-comp-image-div {
   grid-area: logo;
   justify-self: start;
   align-self: center;
 }
+
 .table-comp-image-div img {
-    max-height: 70px;
-    max-width: 85px;
+  max-height: 70px;
+  max-width: 85px;
 }
 
 .table-comp-num-div {
@@ -47,7 +48,7 @@
   align-self: end;
 }
 
-.table-comp-players-div > div{
+.table-comp-players-div > div {
   padding: 3px;
   border-top-left-radius: 11px;
   border-left: 2px solid #999;
@@ -63,5 +64,5 @@
 }
 
 .table-full:hover {
-  top:0;
+  top: 0;
 }

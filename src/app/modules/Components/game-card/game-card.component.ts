@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import {faUsers} from '@fortawesome/free-solid-svg-icons';
 import {Game} from '../../../shared/models/game';
 
 @Component({
@@ -13,10 +13,11 @@ export class GameCardComponent implements OnInit {
   amount: number;
   faUsers = faUsers;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    if(this.gameCount !== undefined)
+    if (this.gameCount !== undefined)
       this.amount = this.gameCount.find(a => a.gameTypeId === this.game.gameTypeId);
   }
 }

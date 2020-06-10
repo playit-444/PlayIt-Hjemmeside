@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -20,7 +20,8 @@ export class HomePageComponent implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private toastr: ToastrService,
-    ) { }
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -34,21 +35,23 @@ export class HomePageComponent implements OnInit {
         }
       });
 
+    // Get gameTypes information
     this.gameService.GetGameTypes()
       .subscribe(data => {
-        this.games = data.items;
-      },
-      err => {
-        this.toastr.error(err.error, 'Der skete en fejl!');
-        console.log(err);
-      });
+          this.games = data.items;
+        },
+        err => {
+          this.toastr.error(err.error, 'Der skete en fejl!');
+          console.log(err);
+        });
 
+    // Get player count for each game
     this.gameService.GetPlayerCount()
       .subscribe(data => {
-        this.gameCounts = data.items;
-      },
-      err => {
-        console.log(err);
-      });
+          this.gameCounts = data.items;
+        },
+        err => {
+          console.log(err);
+        });
   }
 }

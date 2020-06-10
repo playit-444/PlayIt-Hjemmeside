@@ -21,19 +21,26 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private cookieService: CookieService
   ) {
+    // Update isIngame value so width of page changes so there is more space to the game
     this.dataSharingService.isIngame.next(true);
+
+    // Load Unity scripts
     this.loadScripts(this.gameScripts);
 
     const subscription = this.router.events.subscribe((event) => {
+      // Check instance of event
       if (event instanceof NavigationEnd) {
+        // Check if url don't include game
         if (!event.url.includes('/game/ingame?')) {
+          // Delete cookies
           this.cookieService.delete('inlobby');
           this.cookieService.delete('ingame');
+          // Leave table and tableChat
           webSocketService.sendMessage(this.tableId + '|LEAVE');
           webSocketService.sendMessage(this.tableId + 'TABLECHAT|LEAVE');
           subscription.unsubscribe();
           this.waitingForResponse = true;
-          // TODO Quick fix there is something wrong with unity so the browser need to fully reload
+          // TODO Quick fix there is something wrong with unity so the browser need to fully reload after each game
           location.reload();
         }
       }
@@ -55,9 +62,11 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route
       .queryParams
       .subscribe(params => {
+        // StartGame
         this.tableId = params.tableID;
         this.webSocketService.sendMessage(this.tableId + '|STARTGAME');
       });
+    // Create gameInstance
     this.gameInstance = UnityLoader.instantiate('gameContainer', 'assets/games/Ludo/Build/Ludo.json');
   }
 
@@ -65,8 +74,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!GameComponent.subscription)
       GameComponent.subscription = this.webSocketService.GetSocketMessage().subscribe(value => {
         if (value != null) {
-          //console.log('ToUnity');
-          //console.log(value);
+          // Check if unity have send the first request else que message
           if (this.waitingForResponse) {
             this.que.push(value);
           } else {
@@ -81,6 +89,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadScripts(scripts: string[]) {
+    // Loop all scripts
     for (let i = 0; i < scripts.length; i++) {
       const node = document.createElement('script');
       node.src = scripts[i];
@@ -93,13 +102,17 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gameInstance.SetFullscreen(1);
   }
 
+  // Send a message to unity
   public SendMsgToUnity(message) {
     this.gameInstance.SendMessage('GameManager', 'HandleMessageFromJS', JSON.stringify(message));
   }
 
+  // Handle message from unity
   public HandleUnityMessage(element) {
-    // const message: GameMessage = element.target.value;
+
+    // Parse json to GameMessage
     const message: GameMessage = JSON.parse(element.target.value);
+    // Check if action is Ready and send que to unity and clear after
     if (message.Action === 'READY') {
       if (this.que.length > 0) {
         for (const item of this.que) {
@@ -109,8 +122,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.waitingForResponse = false;
     } else {
-      //console.log('ToSocket');
-      //console.log(message);
+      // Send message to unity
       this.webSocketService.sendMessage(message.RoomId + '|' + message.Action + '|' + message.Args);
     }
   }

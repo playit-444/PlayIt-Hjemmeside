@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {SignupFormComponent} from '../signup-form/signup-form.component';
 import {CookieService} from 'ngx-cookie-service';
@@ -10,8 +9,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../../shared/services/user.service';
 import {IpServiceService} from '../../../shared/services/ip-service.service';
 import {User} from '../../../shared/models/user';
-import { Router } from '@angular/router';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -44,21 +42,23 @@ export class LoginFormComponent implements OnInit {
       ipv4: ['']
     });
 
+    // Get Ipv4 address for the logged in user
     this.ipServiceService.getIPAddress()
       .subscribe(success => {
           this.ipv4 = success;
-          // this.ipv4 = success.ip;
         },
         err => {
           this.toastr.error('AdBlock er ikke tilladt på denne side', 'Der skete en fejl!');
         });
   }
 
+  // Open Signup component
   create() {
     this.signUpForm.open(SignupFormComponent);
     this.dialogRef.close();
   }
 
+  // Login User
   Login() {
     const user: User = {
       userName: this.loginForm.value.userName,
@@ -69,7 +69,9 @@ export class LoginFormComponent implements OnInit {
     this.userService.Login(user)
       .subscribe(success => {
           this.toastr.success('Du er nu logget ind', 'Succes!');
-          this.cookieService.set('session-token', success.jwtToken, 1,'/');
+          // Set cookie for user with jwt
+          this.cookieService.set('session-token', success.jwtToken, 1, '/');
+          // Update observable
           this.userService.SetLoggedIn(true);
           this.dialogRef.close();
           this.router.navigate(['']);

@@ -1,8 +1,10 @@
-<div [ngClass]="{'table-full':  table.currentUsers === table.maxUsers, 'table-comp': true}" [routerLink]="table.currentUsers < table.maxUsers ? ['/game', 'lobby'] : []"
-                        [queryParams]=" table.currentUsers < table.maxUsers ? {gameID: game.gameTypeId, tableID: table.roomID} : {gameID: game.gameTypeId}" (click)="SetIngameCookie()">
+<div [ngClass]="{'table-full':  table.currentUsers === table.maxUsers, 'table-comp': true}"
+     [routerLink]="table.currentUsers < table.maxUsers ? ['/game', 'lobby'] : []"
+     [queryParams]=" table.currentUsers < table.maxUsers ? {gameID: game.gameTypeId, tableID: table.roomID} : {gameID: game.gameTypeId}"
+     (click)="SetIngameCookie()">
   <div class="table-container">
     <div class="table-comp-image-div">
-        <img [src]="game.logoPath"/>
+      <img [src]="game.logoPath"/>
     </div>
     <div class="table-comp-num-div">
       <span>Bord {{tableID}}</span>
@@ -10,9 +12,10 @@
     <div class="table-comp-players-div">
       <div>
         <span>
-          <fa-icon [icon]="faUsers"></fa-icon>{{table.currentUsers}}/{{table.maxUsers}}
+          <fa-icon [icon]="faUsers"></fa-icon>
+          {{table.currentUsers}}/{{table.maxUsers}}
         </span>
-    </div>
+      </div>
     </div>
   </div>
 </div>

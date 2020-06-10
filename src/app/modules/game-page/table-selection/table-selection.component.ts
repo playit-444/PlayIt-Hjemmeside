@@ -9,7 +9,7 @@ import {Table} from '../../../shared/models/table';
   templateUrl: './table-selection.component.html',
   styleUrls: ['./table-selection.component.css']
 })
-export class TableSelectionComponent implements OnInit  {
+export class TableSelectionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -22,19 +22,20 @@ export class TableSelectionComponent implements OnInit  {
   public _reload = true;
 
   ngOnInit(): void {
-    this.GetGame();
+    this.GetGameType();
   }
 
-  GetGame() {
+  GetGameType() {
     this.route
       .queryParams
       .subscribe(params => {
         const gameID = params.gameID;
-
         if (gameID != null) {
+          // GameType information
           this.gameService.GetGameType(gameID)
             .subscribe(success => {
                 this.game = success;
+                // Get all tables for the specific gameType
                 this.GetTables(success.gameTypeId);
               },
               err => {
@@ -46,6 +47,7 @@ export class TableSelectionComponent implements OnInit  {
 
   GetTables(id: number) {
     if (id != null) {
+      // Get tables from API
       this.gameService.GetTables(id)
         .subscribe(success => {
             this.tables = success;

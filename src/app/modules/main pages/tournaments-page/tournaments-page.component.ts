@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-tournaments-page',
@@ -15,7 +15,8 @@ export class TournamentsPageComponent implements OnInit {
   secondsRemaining: number;
   interval: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
 
@@ -28,18 +29,18 @@ export class TournamentsPageComponent implements OnInit {
       this.timeRemaining = this.endDate.getTime() - this.now;
 
       this.daysRemaining = Math.floor(this.timeRemaining / (1000 * 60 * 60 * 24));
-      this.hoursRemaining = Math.floor((this.timeRemaining % (1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+      this.hoursRemaining = Math.floor((this.timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutesRemaining = Math.floor((this.timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
       this.secondsRemaining = Math.floor((this.timeRemaining % (1000 * 60)) / (1000));
 
       if (this.timeRemaining < 0) {
-          clearInterval(this.interval);
+        clearInterval(this.interval);
       }
-    },1000);
+    }, 1000);
   }
 
   @HostListener('window:beforeunload', ['$event'])
   public onPageUnload($event: BeforeUnloadEvent) {
-      $event.returnValue = true;
+    $event.returnValue = true;
   }
 }

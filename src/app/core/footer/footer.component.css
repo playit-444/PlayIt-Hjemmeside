@@ -1,4 +1,3 @@
-
 /*FOOTER*/
 
 footer {
@@ -49,6 +48,7 @@ footer a:hover {
 .support span {
   font-size: 0.8rem;
 }
+
 .support span.badge {
   font-size: 1.0rem;
 }
@@ -60,9 +60,11 @@ footer a:hover {
 .sub-badge {
   padding: 0 .4rem;
 }
+
 .support-info {
   margin-left: 10px;
 }
+
 .circled-icon {
   padding: 10px;
   border: 2px solid white;

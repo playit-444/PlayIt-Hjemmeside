@@ -199,16 +199,15 @@ body {
 }
 
 
-
 /* BTN TWO */
 .btn-idle::before, .btn-idle::after {
   content: '';
   position: absolute;
   width: 100%;
-	height: 100%;
+  height: 100%;
   bottom: 0;
-	left: 0;
-	z-index: 1;
+  left: 0;
+  z-index: 1;
   transition: all 0.3s;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
@@ -217,10 +216,12 @@ body {
   animation-name: rotatecw;
   animation-duration: 2s;
 }
+
 .btn-idle:hover::before {
   animation-name: rotateccw;
   animation-duration: 3s;
 }
+
 .btn-idle:hover::after, .btn-idle:hover::before {
   left: 96px;
   width: 64px;
@@ -230,13 +231,21 @@ body {
 }
 
 @keyframes rotatecw {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotateccw {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(-360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 div[class*=container-button] {

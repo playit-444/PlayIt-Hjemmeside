@@ -1,4 +1,4 @@
-import { PlayerInfo } from '../../shared/models/playerInfo';
+import {PlayerInfo} from '../../shared/models/playerInfo';
 import {CookieService} from 'ngx-cookie-service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
@@ -36,10 +36,11 @@ export class HeaderComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         const urlParmToken = params.token;
-
+        // Check if token is not null
         if (urlParmToken != null) {
+          // Verify token through api
           this.userService.Verify(urlParmToken)
-            .subscribe(success => {
+            .subscribe(() => {
                 this.toastr.success('Du er nu blevet verificeret! du kan nu logge ind', 'Succes!');
                 this.login();
               },
@@ -49,37 +50,44 @@ export class HeaderComponent implements OnInit {
         }
       });
 
-      this.userService.GetLoggedIn().subscribe(loggedin => {
-        if(loggedin)
-          if(this.cookieService.check('session-token'))
-            this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
-      });
+    // Check if user is loggedIn
+    // Subscribe to observable and wait for the user to login
+    this.userService.GetLoggedIn().subscribe(loggedin => {
+      if (loggedin)
+        if (this.cookieService.check('session-token'))
+          this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
+    });
 
-      if(this.cookieService.check('session-token') && this.user === undefined)
-      {
-        this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
-      }
+    // Try to login
+    if (this.cookieService.check('session-token') && this.user === undefined) {
+      this.getUser(this.parseJwt(this.cookieService.get('session-token')).AccountId);
+    }
   }
 
-  parseJwt (token: string) {
+  // Get token information from JWT
+  parseJwt(token: string) {
     const base64Url = token.split('.')[1];
     return JSON.parse(atob(base64Url));
-};
+  };
 
+  // Get user information
   getUser(accountID: number) {
-      this.userService.GetUser(accountID).subscribe( success => {
-        this.user = success;
-      });
+    this.userService.GetUser(accountID).subscribe(success => {
+      this.user = success;
+    });
   }
 
+  // Open Login component
   login() {
     this.dialogRef = this.dialog.open(LoginFormComponent);
   }
 
+  // Open Create component
   create() {
     this.dialogRef = this.dialog.open(SignupFormComponent);
   }
 
+  // Open Logout component
   logout() {
     this.cookieService.delete('session-token', '/');
   }

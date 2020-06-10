@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GameService} from './shared/services/game.service';
 import {DataSharingService} from './shared/services/dataSharingService';

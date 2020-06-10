@@ -30,11 +30,14 @@ export class GamePageComponent implements OnInit {
           subscription.unsubscribe();
         }
         if (event.url.includes('gameID=')) {
+          // set gameId to gameId
           this.gameId = event.url.split('gameID=')[1];
           if (this.gameId.includes('&table')) {
+            // set gameId to tableId
             this.gameId = this.gameId.split('&tableID')[0];
           }
         }
+        // Check if inside table
         if (event.url.includes('tableID=')) {
           this.lobbyId = 'false';
         }
@@ -43,10 +46,11 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetGame();
+    this.GetGameType();
   }
 
-  GetGame() {
+  // GameType informations
+  GetGameType() {
     const routing = this.route
       .queryParams
       .subscribe(params => {

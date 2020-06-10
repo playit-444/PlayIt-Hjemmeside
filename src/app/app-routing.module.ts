@@ -1,18 +1,19 @@
-import { AwardsPageComponent } from './modules/main pages/awards-page/awards-page.component';
-import { TournamentsPageComponent } from './modules/main pages/tournaments-page/tournaments-page.component';
-import { GamesPageComponent } from './modules/main pages/games-page/games-page.component';
-import { TermsComponent } from './modules/main pages/terms/terms.component';
+import {AwardsPageComponent} from './modules/main pages/awards-page/awards-page.component';
+import {TournamentsPageComponent} from './modules/main pages/tournaments-page/tournaments-page.component';
+import {GamesPageComponent} from './modules/main pages/games-page/games-page.component';
+import {TermsComponent} from './modules/main pages/terms/terms.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomePageComponent} from './modules/main pages/home-page/home-page.component';
 import {AuthGuard} from './core/auth/auth.guard';
-import { GamePageComponent } from './modules/game-page/game-page.component';
-import { TableSelectionComponent } from './modules/game-page/table-selection/table-selection.component';
-import { LobbyComponent } from './modules/game-page/lobby/lobby.component';
-import { GameComponent } from './modules/game-page/game/game.component';
-import { CookiePolicyComponent } from './modules/main pages/cookie-policy/cookie-policy.component';
+import {GamePageComponent} from './modules/game-page/game-page.component';
+import {TableSelectionComponent} from './modules/game-page/table-selection/table-selection.component';
+import {LobbyComponent} from './modules/game-page/lobby/lobby.component';
+import {GameComponent} from './modules/game-page/game/game.component';
+import {CookiePolicyComponent} from './modules/main pages/cookie-policy/cookie-policy.component';
 
 
+// Route handler in angular, responsible for all urls handling and what component to load.
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'games', component: GamesPageComponent},

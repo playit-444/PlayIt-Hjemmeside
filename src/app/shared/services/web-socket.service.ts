@@ -50,25 +50,32 @@ export class WebSocketService {
         this.cookieService.delete('session-token', '/');
       }
     } else if (msg?.GameType && msg?.RoomID) {
+      // Send message to lobby
       this.lobbyMessage.next(msg);
     } else if (msg?.Timer || msg?.Timer === 0) {
+      // Send timer message to lobby
       this.lobbyMessage.next(msg);
     } else if (msg?.Access === false && msg?.PlayerId) {
+      // If socket response with no access redirect to home page
       this.router.navigateByUrl('');
     } else if (msg?.Action) {
+      // Game action
       switch (msg.Action) {
         case 'ROLL':
         case 'MOVE':
         case 'INIT':
         case 'NEXTTURN':
         case 'GOAL':
+          // Send message to unity
           this.ingameMessage.next(msg);
           break;
         case 'MSG|LOBBY': {
+          // Send message to lobby
           this.lobbyChatMessage.next(msg);
           break;
         }
         case 'MSG|TABLE': {
+          // Send message to table
           this.tableChatMessage.next(msg);
           break;
         }
@@ -83,26 +90,22 @@ export class WebSocketService {
     }
   }
 
-  public GetLobbyData()
-    :
+  public GetLobbyData():
     Observable<any> {
     return this.lobbyMessage.asObservable();
   }
 
-  public GetSocketMessage()
-    :
+  public GetSocketMessage():
     Observable<GameMessage> {
     return this.ingameMessage.asObservable();
   }
 
-  public GetLobbyChatMessage()
-    :
+  public GetLobbyChatMessage():
     Observable<GameMessage> {
     return this.lobbyChatMessage.asObservable();
   }
 
-  public GetTableChatMessage()
-    :
+  public GetTableChatMessage():
     Observable<GameMessage> {
     return this.tableChatMessage.asObservable();
   }
