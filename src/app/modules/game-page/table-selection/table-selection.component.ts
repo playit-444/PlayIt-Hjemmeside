@@ -52,7 +52,7 @@ export class TableSelectionComponent implements OnInit  {
           },
           err => {
             console.log(err.error);
-            this.GetTables(id);
+            setTimeout(() => this.GetTables(id), 1000);
           });
     }
   }
