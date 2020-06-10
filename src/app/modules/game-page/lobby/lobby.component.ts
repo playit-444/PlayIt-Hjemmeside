@@ -15,7 +15,7 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class LobbyComponent implements OnInit {
 
-  timeLeft = 5;
+  timeLeft = 60;
   interval: any;
   timerStarted = false;
   count: number;
@@ -67,6 +67,7 @@ export class LobbyComponent implements OnInit {
   getLobbyData() {
     this.webSocketService.GetLobbyData().subscribe((value) => {
         if (value != null) {
+          console.log(value);
           if (value.Timer || value.Timer === 0) {
             this.timerHandler(value.Timer);
           } else {

@@ -9,7 +9,7 @@ import {Table} from '../../../shared/models/table';
   templateUrl: './table-selection.component.html',
   styleUrls: ['./table-selection.component.css']
 })
-export class TableSelectionComponent implements OnInit {
+export class TableSelectionComponent implements OnInit  {
 
   constructor(
     private route: ActivatedRoute,
@@ -19,6 +19,7 @@ export class TableSelectionComponent implements OnInit {
 
   game: Game;
   public tables: Table[] = [];
+  public _reload = true;
 
   ngOnInit(): void {
     this.GetGame();
@@ -48,10 +49,14 @@ export class TableSelectionComponent implements OnInit {
       this.gameService.GetTables(id)
         .subscribe(success => {
             this.tables = success;
-            console.log(this.tables);
+            console.log('tables: ',this.tables);
+            this._reload = false;
+            this._reload = true;
           },
           err => {
             console.log(err.error);
+            this._reload = false;
+            this._reload = true;
           });
     }
   }
