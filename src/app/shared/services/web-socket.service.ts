@@ -16,6 +16,7 @@ export class WebSocketService {
   private ingameMessage: BehaviorSubject<GameMessage>;
   private lobbyChatMessage: BehaviorSubject<GameMessage>;
   private tableChatMessage: BehaviorSubject<GameMessage>;
+  private subscribeSocket;
 
   constructor(private cookieService: CookieService, private router: Router) {
     this.lobbyMessage = new BehaviorSubject<LobbyData>(null);
@@ -23,13 +24,12 @@ export class WebSocketService {
     this.lobbyChatMessage = new BehaviorSubject<GameMessage>(null);
     this.tableChatMessage = new BehaviorSubject<GameMessage>(null);
     this.subject = webSocket('wss://ws.444.dk/ws');
-    // this.subject = webSocket('wss://localhost:5001/ws');
     this.sendMessage(this.cookieService.get('session-token'));
 
-    this.subject.subscribe(
+    this.subscribeSocket = this.subject.subscribe(
       msg => this.readMessage(msg), // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      () =>    this.router.navigateByUrl('')// Called when connection is closed (for whatever reason).
+      () => this.router.navigateByUrl('')// Called when connection is closed (for whatever reason).
     );
   }
 
@@ -42,6 +42,7 @@ export class WebSocketService {
   }
 
   readMessage(msg: any) {
+    console.log(msg);
     // Authentication check
     if (msg?.Authentication) {
       if (msg.Authentication === 'Success') {

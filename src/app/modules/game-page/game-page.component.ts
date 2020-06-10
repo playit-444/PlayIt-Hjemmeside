@@ -22,8 +22,6 @@ export class GamePageComponent implements OnInit {
     private webSocketService: WebSocketService,
     private router: Router
   ) {
-    console.log(webSocketService);
-
     // Check if user change page then leave lobby
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

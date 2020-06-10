@@ -14,7 +14,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollChat') private chatScrollContainer: ElementRef;
 
   constructor(private webSocketService: WebSocketService, private router: Router, private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   @Input() gameId: string;
   chat: GameMessage[] = [];
@@ -27,12 +28,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         if (!event.url.includes('/lobby?') && !event.url.includes('game/ingame')) {
           if (ChatComponent.subscribeLobby) {
             ChatComponent.subscribeLobby.unsubscribe();
+            ChatComponent.subscribeLobby = null;
             subscription.unsubscribe();
+            this.chat = [];
           }
         }
         if (!event.url.includes('/game/')) {
-          if (ChatComponent.subscribeTable)
+          if (ChatComponent.subscribeTable) {
             ChatComponent.subscribeTable.unsubscribe();
+            ChatComponent.subscribeTable = null;
+            this.chat = [];
+          }
         }
       }
     });
@@ -70,9 +76,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   scrollToBottom(): void {
     try {
-          this.chatScrollContainer.nativeElement.scrollTop = this.chatScrollContainer.nativeElement.scrollHeight;
-      } catch(err) { }
+      this.chatScrollContainer.nativeElement.scrollTop = this.chatScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
     }
+  }
 
 // Send message to all
   sendMessage(event: any) {

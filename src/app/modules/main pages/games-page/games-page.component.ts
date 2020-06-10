@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
 import { GameService } from 'src/app/shared/services/game.service';
 import { ToastrService } from 'ngx-toastr';
 import { Game } from 'src/app/shared/models/game';
