@@ -15,7 +15,7 @@
         </div>
       </div-->
       <div>
-        <span *ngIf="game !== undefined">Mangler {{game.minimumPlayers - count}} før at spillet kan starte</span>
+        <span *ngIf="game !== undefined && count <= game.minimumPlayers">Mangler {{game.minimumPlayers - count}} før at spillet kan starte</span>
       </div>
       <div>
         <a class="w-100 btn btn-orange mb-5 mt-1 text-white" (click)="Ready()">KLAR</a>
