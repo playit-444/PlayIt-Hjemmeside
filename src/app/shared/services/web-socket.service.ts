@@ -42,6 +42,7 @@ export class WebSocketService {
   }
 
   readMessage(msg: any) {
+    console.log(msg);
     // Authentication check
     if (msg?.Authentication) {
       if (msg.Authentication === 'Success') {
