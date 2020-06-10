@@ -16,7 +16,6 @@ export class GameCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('Game Count: ', this.gameCount);
     if(this.gameCount !== undefined)
       this.amount = this.gameCount.find(a => a.gameTypeId === this.game.gameTypeId);
   }

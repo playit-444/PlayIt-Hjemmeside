@@ -43,7 +43,6 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.lobbyId);
     this.GetGame();
   }
 

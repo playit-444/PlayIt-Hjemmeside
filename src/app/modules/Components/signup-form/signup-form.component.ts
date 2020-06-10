@@ -77,10 +77,6 @@ export class SignupFormComponent implements OnInit {
         password: this.signUpForm.value.password,
         avatar: this.avatar
       }
-
-      console.log(user.avatar);
-      console.log(user);
-
       this.userService.CreateUser(user)
         .subscribe(success => {
             this.toastr.success('Du er nu oprettet. Du vil modtage en validerings e-mail', 'Succes!');
